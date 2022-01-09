@@ -1,0 +1,206 @@
+:root{
+  --playState: 'running';
+  --color1: #ff0000;
+  --color2: #ffff00;
+  --color3: #00ff00;
+  --color4: #0000ff;
+  --color5: #ff00ff;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus{
+  outline: none;
+}
+
+body{
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(40, 37, 46);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.colored-body{
+  width: 576px;
+  height: 324px;
+  background-color: red;
+  box-shadow: 0 0 0 7px #000;
+  overflow: hidden;
+  border-radius: 5px;
+  animation-name: color;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-play-state: var(--playState);
+}
+
+.moving-text{
+  color: #ddd;
+  font-size: 2.5rem;
+  line-height: 2rem;
+  display: inline-block;
+  transform: translateX(50px);
+  animation-name: moving-text;
+  animation-duration: 35s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-play-state: var(--playState);
+}
+
+.input-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.play-stop-btn{
+  width: 70px;
+  height: 30px;
+  font-size: 1.1rem;
+  background-color: transparent;
+  border-radius: 15px;
+  color: #fff;
+  border: 2px solid #fff;
+  margin-bottom: 1rem;
+}
+
+.info{
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+input{
+  width: 4ch;
+  text-align: center;
+  height: 35px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: .2rem;
+  caret-color: transparent;
+}
+
+.red{
+  color: #f00;
+  border: 2px solid #f00;
+  border-radius: 5px;
+}
+
+.red:focus{
+  border-radius: 10px;
+}
+
+.green{
+  color: #0f0;
+  border: 2px solid #0f0;
+  border-radius: 5px;
+}
+
+.green:focus{
+  border-radius: 10px;
+}
+
+.blue{
+  color: #00f;
+  border: 2px solid #00f;
+  border-radius: 5px;
+}
+
+.blue:focus{
+  border-radius: 10px;
+}
+
+.enter{
+  width: 120px;
+  height: 30px;
+  font-size: 1.1rem;
+  background-color: transparent;
+  border-radius: 15px;
+  color: #fff;
+  border: 2px solid #fff;
+  margin-top: 1rem;
+}
+
+.play-stop-btn:hover,
+.enter:hover{
+  cursor: pointer;
+}
+
+@keyframes moving-text {
+  0%{
+    transform: translate(50px, 0);
+  }
+
+  16%{
+    transform: translate(380px, 290px);
+  }
+
+  21%{
+    transform: translate(480px, 200px);
+  }
+
+  35%{
+    transform: translate(100px, 0);
+  }
+
+  42%{
+    transform: translate(0, 120px);
+  }
+  
+  51%{
+    transform: translate(190px, 290px);
+  }
+
+  65%{
+    transform: translate(410px, 0);
+  }
+
+  69%{
+    transform: translate(480px, 60px);
+  }
+
+  82%{
+    transform: translate(290px, 290px);
+  }
+
+  97%{
+    transform: translate(0, 50px);
+  }
+
+  100%{
+    transform: translate(50px, 0);
+  }
+}
+
+@keyframes color {
+  0%{
+    background-color: var(--color1);
+  }
+
+  20%{
+    background-color: var(--color2);
+  }
+
+  40%{
+    background-color: var(--color3);
+  }
+
+  60%{
+    background-color: var(--color4);
+  }
+
+  80%{
+    background-color: var(--color5);
+  }
+
+  100%{
+    background-color: var(--color1);
+  }
+}

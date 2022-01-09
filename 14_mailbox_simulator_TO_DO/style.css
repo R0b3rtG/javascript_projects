@@ -1,0 +1,68 @@
+*, *::after, *::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus{
+  outline: none;
+}
+
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.log-and-notif{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+}
+
+.log,
+.notifications{
+  width: 350px;
+  height: 450px;
+  background-color: #949494;
+  color: #fff;
+  padding: 1rem;
+  overflow-y: scroll;
+  border-radius: 1rem;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+}
+
+.btn{
+  margin: 1rem .5rem 1rem .5rem;
+  color: #000;
+  border-radius: 1rem;
+  border: none;
+  background-color: #ccc;
+  padding: .4rem 1rem;
+  font-weight: 600;
+  transition: transform 200ms;
+}
+
+*:disabled{
+  background-color: #999;
+  transform: scale(.9);
+  box-shadow: 0 3px 6px rgb(0, 0, 0, .3);
+}
+
+.remove-scroll::-webkit-scrollbar{
+  display: none;
+}
+
+.remove-scroll{
+  scrollbar-width: none;
+}
+
+h3{
+  text-align: center;
+  font-size: 1.5rem;
+}

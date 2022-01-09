@@ -1,0 +1,97 @@
+*, *::after, *::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.title{
+  color: #fff;
+  text-align: center;
+  margin-bottom: .5rem;
+}
+
+.input{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn{
+  border: none;
+  border-radius: .3rem;
+  padding: .3rem .6rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.meal{
+  border-radius: 1rem;
+  background-color: #555;
+  box-shadow: 0 0 15px 3px rgba(0, 0, 0, .4);
+  margin: 1rem 10rem;
+  padding: 1rem 2.5rem;
+  flex-direction: column;
+  align-items: center;
+  display: none;
+}
+
+.meal-name{
+  text-align: center;
+  color: #fff;
+}
+
+.info{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.info li{
+  background: #888;
+  box-shadow: 0 0 7px 3px rgba(0, 0, 0, .2);
+  color: #fff;
+  padding: .2rem .6rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.instructions{
+  width: 70%;
+  margin: 2rem 0;
+  color: #fff;
+}
+
+.image{
+  width: 50%;
+  height: auto;
+  border-radius: .5rem;
+}
+
+.ingredients{
+  margin: 1.5rem 0;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+strong{
+  margin-bottom: .5rem;
+}
+
+iframe{
+  width: 70%;
+  min-height: 375px;
+}

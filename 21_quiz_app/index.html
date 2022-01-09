@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Quiz</title>
+</head>
+<body>
+  <h4 class="correct">Correct</h4>
+  <h4 class="wrong">Wrong</h4>
+  <section class="final-prompt-background">
+    <div class="final-prompt">
+      <h3>You scored <span class="scored"></span> out of <span class="out-of"></span></h3>
+      <p>Wanna play again?</p>
+      <button class="btn play-again">Play Again</button>
+    </div>
+  </section>
+  <section class="main">
+    <h1 class="main-t">QUIZ!</h1>
+    <div class="quiz-box">
+      <h2 class="question">What does CSS stand for?</h2>
+      <div class="answers">
+        <button class="answer a">Cascading Style Sheet</button>
+        <button class="answer b">Collabuttonsing Structure Sheet</button>
+        <button class="answer c">Calling Subuttoner Sign</button>
+        <button class="answer d">Constructive Structure Sigma</button>
+      </div>
+      <button class="btn submit-btn">Submit</button>
+      <p class="counter"><span class="current"></span> / <span class="max"></span></p>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

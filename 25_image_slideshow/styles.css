@@ -1,0 +1,52 @@
+*, *::before, *::after{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*:focus{
+  outline: none;
+}
+
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.image,
+.next-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.btn{
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  padding: .5rem;
+  line-height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  background: #ffffffaa;
+  color: #000;
+  cursor: pointer;
+  z-index: 4;
+}
+
+.btn-left{
+  left: 30px;
+}
+
+.btn-right{
+  right: 30px;
+}
+
+.fade{
+  opacity: 0;
+}

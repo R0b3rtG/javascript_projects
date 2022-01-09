@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Random Number Generator</title>
+</head>
+<body>
+  <div class="container">
+    <div class="inputs">
+      <div class="min">
+        <label for="min">From</label>
+        <input type="number" name="min" id="min" maxlength="6" value="1">
+      </div>
+      <div class="max">
+        <label for="max">To</label>
+        <input type="number" name="max" id="max" maxlength="5" value="100">
+      </div>
+    </div>
+    <button class="btn">Get Number</button>
+    <input type="text" name="result" id="result" readonly>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

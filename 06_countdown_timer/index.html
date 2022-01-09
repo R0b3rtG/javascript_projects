@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+  <title>Countdown Timer</title>
+</head>
+<body>
+  <div class="main-container">
+    <div class="form" style="display: none;">
+      <div class="alert"></div>
+      <input type="text" placeholder="Event Name" class="event-name-in" maxlength="30">
+      <label class="label">When is the event scheduled for?</label>
+      <div class="date">
+        <input type="text" placeholder="Day" class="day" minlength="1" maxlength="2" onkeypress=" return checkForNumber(event)">
+        <select class="months">
+          <option value="january">January</option>
+          <option value="february">February</option>
+          <option value="march">March</option>
+          <option value="april">April</option>
+          <option value="may">May</option>
+          <option value="june">June</option>
+          <option value="july">July</option>
+          <option value="august">August</option>
+          <option value="september">September</option>
+          <option value="october">October</option>
+          <option value="november">November</option>
+          <option value="december">December</option>
+        </select>
+        <input type="text" placeholder="Year" class="year" minlength="4" maxlength="4" onkeypress=" return checkForNumber(event)">
+      </div>
+      <div class="time">
+        <input type="text" placeholder="Hour" class="hour-input" maxlength="2" onkeypress=" return checkForNumber(event)">
+        <input type="text" placeholder="Minute" class="minute-input" maxlength="2" onkeypress=" return checkForNumber(event)">
+      </div>
+      <button class="btn start-timer">Start Timer</button>
+    </div>
+    <div class="top-items">
+      <div class="whole-clock">
+        <div class="clock">
+          <div class="outter-rim">
+            <div class="inner-rim">
+              <div class="screen">
+                <div class="background-text">
+                  <p>88</p>
+                  <p>:</p>
+                  <p>88</p>
+                </div>
+                <div class="actual-time">  
+                  <p class="hour"></p>
+                  <p class="dots"> </p>
+                  <p class="minute"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flat-step"></div>
+        <div class="feet">
+          <div class="foot"></div>
+          <div class="foot"></div>
+        </div>
+      </div>
+      <div class="board">
+        <div class="string1"></div>
+        <div class="nail"></div>
+        <div class="string2"></div>
+        <div class="event">
+          <p class="event-name">Event Name Here</p>
+          <div class="red-pin pin"></div>
+          <div class="blue-pin pin"></div>
+          <div class="corner"></div>
+        </div>
+        <div class="days-left">
+          <div class="corner"></div>
+          <div class="pin green-pin"></div>
+          <p>Days Left:</p>
+        </div>
+        <div class="d1 d">
+          <p>0</p>
+          <div class="shadow"></div>
+        </div>
+        <div class="d2 d">
+          <p>0</p>
+          <div class="shadow"></div>
+        </div>
+        <div class="d3 d">
+          <p>0</p>
+          <div class="shadow"></div>
+        </div>
+      </div>
+      <div class="whole-cactus">
+        <div class="cactus">
+          <div class="left-line"></div>
+          <div class="right-line"></div>
+        </div>
+        <div class="pot">
+          <div class="pot-left"></div>
+          <div class="pot-right"></div>
+        </div>
+      </div>
+      <div class="whole-lamp">
+        <div class="head">
+          <div class="light-cast"></div>
+          <div class="light"></div>
+          <div class="front"></div>
+          <div class="back"></div>
+        </div>
+        <div class="arm">
+          <div class="lower-arm"></div>
+          <div class="arm-joint"></div>
+          <div class="upper-arm"></div>
+        </div>
+        <div class="lamp-foot">
+          <div class="round-part"></div>
+          <div class="flat-part"></div>
+        </div>
+      </div>
+    </div>
+    <div class="cupboard">
+      <div class="top"></div>
+      <div class="body">
+        <div class="slots">
+          <div class="slot slot1">
+            <div class="handle"></div>
+          </div>
+          <div class="slot slot2">
+            <div class="handle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn change-event">Change Event</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

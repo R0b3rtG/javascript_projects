@@ -1,0 +1,102 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus{
+  outline: none;
+}
+
+body{
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  place-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #555;
+  border-radius: 15px;
+  padding: 2rem;
+  width: 300px;
+  height: 450px;
+  position: relative;
+}
+
+.title{
+  text-align: center;
+  margin: .5rem 0 4rem 0;  
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+label{
+  width: 100%;
+  font-size: 1.1rem;
+  padding: .3rem 0;
+  color: #fff;
+}
+
+input{
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  padding: .3rem .6rem;
+  color: #000;
+  border-radius: 5px;
+  /* border: 1px solid #000; */
+  border: none;
+  background-color: #ddd;
+}
+
+input:focus{
+  background-color: #fff;
+}
+
+.btn{
+  width: 80%;
+  border-radius: 15px;
+  border: none;
+  background-color: #ddd;
+  color: #000;
+  font-size: 1.2rem;
+  padding: .3rem 0;
+  margin-top: 1rem;
+}
+
+.btn:hover{
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.ip-test{
+  position: absolute;
+  bottom: 15px;
+  width: 50%;
+}
+
+.btn-test{
+  width: 50%;
+  padding: 0;
+  font-size: 1rem;
+  position: absolute;
+  bottom: 5px;
+}
+
+.message{
+  position: absolute;
+  color: #fff;
+  background-color: #0f0;
+  font-size: .9rem;
+  padding: .2rem;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  top: 100px;
+  display: none;
+}

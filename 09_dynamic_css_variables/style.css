@@ -1,0 +1,140 @@
+:root{
+  --alertBoxBorder: #0f0;
+  --alertBoxBackground: #88e788;
+  --emailBorder: #000;
+  --emailBackground: #fff;
+  --passwordBorder: #000;
+  --passwordBackground: #fff;
+  --emailFontSize: 1rem;
+  --passwordFontSize: 1rem;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus{
+  outline: none;
+}
+
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(55, 95, 95);
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.container{
+  background-color: #fff;
+  width: 300px;
+  height: 500px;
+  display: grid;
+  place-content: center;
+  border-radius: 20px;
+}
+
+.log-in{
+  width: 250px;
+  height: 450px;
+  /* border: 2px solid #000; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title{
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+label{
+  text-align: left;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: .5rem;
+}
+
+input{
+  width: 230px;
+  height: 40px;
+  padding: .5rem;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+
+.password-div{
+  position: relative;
+}
+
+.email-input{
+  border: 1px solid var(--emailBorder);
+  background-color: var(--emailBackground);
+  font-size: var(--emailFontSize);
+}
+
+.password-input{
+  font-size: var(--passwordFontSize);
+  border: 1px solid var(--passwordBorder);
+  background-color: var(--passwordBackground);
+  padding: .5rem 1.7rem .5rem .5rem;
+}
+
+.btn{
+  border-radius: 15px;
+  width: 150px;
+  height: 30px;
+  margin-top: 2rem;
+  font-size: 1rem;
+  background-color: #bbb;
+  border: 1px #000 solid;
+  color: #000;
+}
+
+.btn:hover{
+  cursor: pointer;
+  background-color: #aaa;
+}
+
+.alertBox{
+  background-color: var(--alertBoxBackground);
+  border: 2px solid var(--alertBoxBorder);
+  border-radius: 10px;
+  text-align: center;
+  font-size: .9rem;
+  padding: .7rem .7rem;
+  font-weight: 600;
+  position: absolute;
+  top: 0;
+}
+
+.cancel-btn{
+  margin-top: 1rem;
+  border-radius: 15px;
+  width: 110px;
+  height: 25px;
+  font-size: .9rem;
+  background-color: #bbb;
+  border: 1px #000 solid;
+  color: #000;
+}
+
+i{
+  position: absolute;
+  top: .7rem;
+  right: .5rem;
+  color: #000;
+}
