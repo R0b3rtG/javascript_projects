@@ -47,10 +47,10 @@ function restrictBinary(e) {
     return false;
   }
   if ((x >= 48 && x <= 49)){
+    error.innerHTML = '';
     return true;
   } else {
-    showText(`<span class="bold">${String.fromCharCode(e.which)}</span> is not a valid character`, 'red');
-    setTimeout(function(){ error.innerHTML = ''}, 2000);
+    showText(`<span class="character">${String.fromCharCode(e.which)}</span> is not a valid character`, 'red');
     return false;
   }
 }
@@ -61,10 +61,10 @@ function restrictDecimal(e) {
     return false;
   }
   if ((x >= 48 && x <= 57)){
+    error.innerHTML = '';
     return true;
   } else {
-    showText(`<span class="bold">${String.fromCharCode(e.which)}</span> is not a valid character`, 'red');
-    setTimeout(function(){ error.innerHTML = ''}, 2000);
+    showText(`<span class="character">${String.fromCharCode(e.which)}</span> is not a valid character`, 'red');
     return false;
   }
 }
@@ -93,7 +93,7 @@ function changeToB2D() {
   input2.value = '';
   showText('Changed to Binary to Decimal Converter', 'green');
   setTimeout(function(){ error.innerHTML = ''}, 3000);
-  heading.innerHTML = 'Binary to Decimal Converter';
+  heading.innerHTML = 'Binary To Decimal Converter';
   btn.innerHTML = 'Convert to Decimal';
   b2d.style.transform = 'scale(.95)';
   setTimeout(function(){
