@@ -26,8 +26,3 @@
 |23|Random Number Generator|https://r0b3rtg-random-number-generator.netlify.app/|YES|
 |24|Roman/Decimal Converter|https://r0b3rtg-roman-decimal-converter.netlify.app/|YES|
 |25|Image Slideshow|https://r0b3rtg-image-slideshow.netlify.app/|NO|
-|26||||
-|27||||
-|28||||
-|29||||
-|30||||
