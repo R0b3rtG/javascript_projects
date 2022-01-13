@@ -31,4 +31,4 @@
 # Side Projects
 |ID|Project Name|Link|Done?|
 |--|------------|----|-----|
-|00|Password Generator||Almost|
+|00|Password Generator|https://r0b3rtg-password-generator.netlify.app/|Almost|
