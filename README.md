@@ -1,5 +1,6 @@
+# Main Projects
 |ID|Project Name|Link|Done?|
-|--|------------|----|----|
+|--|------------|----|-----|
 |00|Binary/Decimal Converter|https://r0b3rtg-binary-decimal-converter.netlify.app/|YES|
 |01|Border Radius Preview|https://r0b3rtg-border-radius-preview.netlify.app/|YES|
 |02|Calculator|https://r0b3rtg-calculator.netlify.app/|YES|
@@ -26,3 +27,8 @@
 |23|Random Number Generator|https://r0b3rtg-random-number-generator.netlify.app/|YES|
 |24|Roman/Decimal Converter|https://r0b3rtg-roman-decimal-converter.netlify.app/|YES|
 |25|Image Slideshow|https://r0b3rtg-image-slideshow.netlify.app/|NO|
+
+# Side Projects
+|ID|Project Name|Link|Done?|
+|--|------------|----|-----|
+|00|Password Generator||Almost|
