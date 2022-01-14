@@ -32,4 +32,4 @@
 |ID|Project Name|Link|Done?|
 |--|------------|----|-----|
 |00|Password Generator|https://r0b3rtg-password-generator.netlify.app/|Almost|
-|01|Guess The Number||NO|
+|01|Guess The Number|https://r0b3rtg-guess-the-number.netlify.app/|NO|
