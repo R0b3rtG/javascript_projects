@@ -1,4 +1,5 @@
 # Main Projects
+
 |ID|Project Name|Link|Done?|
 |--|------------|----|-----|
 |00|Binary/Decimal Converter|https://r0b3rtg-binary-decimal-converter.netlify.app/|YES|
@@ -29,6 +30,7 @@
 |25|Image Slideshow|https://r0b3rtg-image-slideshow.netlify.app/|NO|
 
 # Side Projects
+
 |ID|Project Name|Link|Done?|
 |--|------------|----|-----|
 |00|Password Generator|https://r0b3rtg-password-generator.netlify.app/|Almost|
