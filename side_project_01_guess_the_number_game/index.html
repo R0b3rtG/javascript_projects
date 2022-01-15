@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Guess The Number</title>
+</head>
+<body>
+    <div class="modal">
+        <h3 class="title ta-center">Congratulations!</h3>
+        <h3 class="title ta-center">You Won!</h3>
+        <h3 class="title ta-center">Number of attempts: <span class="number-of-attempts"></span></h3>
+        <h3 class="title ta-center">Do you want to play again?</h3>
+        <button class="btn play-again">Play Again</button>
+    </div>
+    <div class="container">
+        <h3 class="title attempts-in-container ta-center">Number of attempts: <span class="number-of-attempts">0</span></h3>
+        <h3 class="title ta-center">Enter a number between 1 and 1000</h3>
+        <form class="form">
+            <input type="text" placeholder="Your Guess" class="input ta-center">
+            <button class="btn try">Try</button>
+        </form>
+        <p class="text ta-center"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>    
+</html>
