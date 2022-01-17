@@ -8,21 +8,35 @@
     <title>Guess The Number</title>
 </head>
 <body>
-    <div class="modal">
-        <h3 class="title ta-center">Congratulations!</h3>
-        <h3 class="title ta-center">You Won!</h3>
-        <h3 class="title ta-center">Number of attempts: <span class="number-of-attempts"></span></h3>
-        <h3 class="title ta-center">Do you want to play again?</h3>
-        <button class="btn play-again">Play Again</button>
-    </div>
-    <div class="container">
-        <h3 class="title attempts-in-container ta-center">Number of attempts: <span class="number-of-attempts">0</span></h3>
-        <h3 class="title ta-center">Enter a number between 1 and 1000</h3>
-        <form class="form">
-            <input type="text" placeholder="Your Guess" class="input ta-center">
-            <button class="btn try">Try</button>
+    <div class="start-game-modal">
+        <h3 class="heading ta-center">Hello and welcome to <br> my number guessing game!</h3>
+        <br>
+        <h3 class="heading ta-center">Please choose a range of numbers <br> and our very smart AI will generate <br> a random number within that range</h3>
+        <p class="warning-range ta-center"></p>
+        <form class="form start-game-form">
+            <label for="min" class="label">Min value:</label>
+            <input type="text" id="min" class="input">
+            <label for="max" class="label">Max value:</label>
+            <input type="text" id="max" class="input">
+            <button type="submit" class="btn start-game">Start Game</button>
         </form>
-        <p class="text ta-center"></p>
+    </div>
+    <div class="game">
+        <h3 class="heading attempts-in-container ta-center">Number of attempts: <span class="number-of-attempts">0</span></h3>
+        <h3 class="heading ta-center">Enter a number between <span class="min-on-screen"></span> and <span class="max-on-screen"></span></h3>
+        <form class="form game-form">
+            <input type="text" placeholder="Your Guess" class="game-input input ta-center">
+            <button class="btn try" type="submit">Try</button>
+        </form>
+        <p class="warning ta-center"></p>
+    </div>
+    <div class="end-game-modal">
+        <h3 class="heading ta-center">Congratulations!</h3>
+        <h3 class="heading ta-center">You Won!</h3>
+        <h3 class="heading ta-center">Number of attempts: <span class="number-of-attempts"></span></h3>
+        <h3 class="heading ta-center">Do you want to play again?</h3>
+        <button class="btn play-again">Play Again</button>
+        <button class="btn change-numbers">Change Numbers</button>
     </div>
 
     <script src="script.js"></script>

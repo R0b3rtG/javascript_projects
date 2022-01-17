@@ -15,17 +15,17 @@ body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.container{
-    display: flex;
+.game{
     flex-direction: column;
     align-items: center;
+    display: none;
 }
 
 .ta-center{
     text-align: center;
 }
 
-.title{
+.heading{
     padding: .3rem 0;
 }
 
@@ -56,13 +56,18 @@ body{
     align-items: center;
 }
 
-.text{
+.warning, 
+.warning-range{
     color: #f00;
     font-weight: 600;
     font-size: 1.1rem;
 }
 
-.modal{
+.warning-range{
+    min-height: 1.5rem;
+}
+
+.end-game-modal{
     flex-direction: column;
     align-items: center;
     display: none;
@@ -70,4 +75,23 @@ body{
 
 .attempts-in-container{
     margin-bottom: 1rem;
+}
+
+label{
+    display: block;
+}
+
+.start-game-modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label{
+    font-weight: 600;
+    font-size: 1rem;
+    color: #000;
+    padding: .1rem .5rem;
+    display: block;
+    width: 100%;
 }
