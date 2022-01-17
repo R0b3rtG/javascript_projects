@@ -12,8 +12,8 @@
         <h3 class="heading ta-center">Hello and welcome to <br> my number guessing game!</h3>
         <br>
         <h3 class="heading ta-center">Please choose a range of numbers <br> and our very smart AI will generate <br> a random number within that range</h3>
-        <p class="warning-range ta-center"></p>
-        <form class="form start-game-form">
+        <p class="warning warning-range ta-center"></p>
+        <form class="form start-game-form" autocomplete="off" spellcheck="false">
             <label for="min" class="label">Min value:</label>
             <input type="text" id="min" class="input">
             <label for="max" class="label">Max value:</label>
@@ -22,13 +22,14 @@
         </form>
     </div>
     <div class="game">
+        <img class="dice" src="./img/dice.png" style="display: none;">
         <h3 class="heading attempts-in-container ta-center">Number of attempts: <span class="number-of-attempts">0</span></h3>
         <h3 class="heading ta-center">Enter a number between <span class="min-on-screen"></span> and <span class="max-on-screen"></span></h3>
-        <form class="form game-form">
+        <form class="form game-form" autocomplete="off" spellcheck="false">
             <input type="text" placeholder="Your Guess" class="game-input input ta-center">
             <button class="btn try" type="submit">Try</button>
         </form>
-        <p class="warning ta-center"></p>
+        <p class="warning warning-game ta-center"></p>
     </div>
     <div class="end-game-modal">
         <h3 class="heading ta-center">Congratulations!</h3>

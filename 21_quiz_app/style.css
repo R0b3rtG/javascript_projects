@@ -14,7 +14,7 @@ body{
   height: 100vh;
   display: grid;
   place-content: center;
-  background: url('/img/background.jpg') no-repeat center center / cover;
+  background: url('./img/background.jpg') no-repeat center center / cover;
   position: relative;
 }
 

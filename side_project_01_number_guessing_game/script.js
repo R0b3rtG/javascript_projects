@@ -1,6 +1,6 @@
 const attemptsTxt = document.querySelectorAll('.number-of-attempts'),
       input = document.querySelector('.game-input'),
-      warning = document.querySelector('.warning'),
+      warning = document.querySelector('.warning-game'),
       startGameModal = document.querySelector('.start-game-modal'),
       endGameModal = document.querySelector('.end-game-modal'),
       gameContainer = document.querySelector('.game'),
@@ -24,6 +24,7 @@ function startGame(e){
       min = parseInt(minValueInput.value);
       max = parseInt(maxValueInput.value);
       input.value = '';
+      warning.textContent = '';
       getNewNumber(min, max, number);
       attemptsTxt.forEach(element => element.textContent = attempts);
       startGameModal.style.display = 'none';
@@ -50,15 +51,21 @@ function getNewNumber(min, max){
 const gameForm = document.querySelector('.game-form');
 gameForm.onsubmit = checkInput;
 
+const dice = document.querySelector('.dice');
+
 function checkInput(e) {
   e.preventDefault();
-  if(parseInt(input.value) >= min && parseInt(input.value) <= max){
-    attempts++;
-    attemptsTxt.forEach(element => element.textContent = attempts);
-    checkIfWon(parseInt(input.value));
-  } else {
-    warning.textContent = `Enter a number between ${min} and ${max}`;
-  }
+  dice.style.display = 'block';
+  setTimeout(() => {
+    dice.style.display = 'none';
+    if(parseInt(input.value) >= min && parseInt(input.value) <= max){
+      attempts++;
+      attemptsTxt.forEach(element => element.textContent = attempts);
+      checkIfWon(parseInt(input.value));
+    } else {
+      warning.textContent = `Enter a number between ${min} and ${max}`;
+    }
+  }, 500);
 }
 
 function checkIfWon(input){
@@ -66,9 +73,9 @@ function checkIfWon(input){
     youWon();
   } else {
     if(number < input)
-      warning.textContent = 'Enter a lower number';
+      warning.textContent = 'Wrong! Enter a lower number';
     if(number > input)
-      warning.textContent = 'Enter a higher number';
+      warning.textContent = 'Wrong! Enter a higher number';
   }
 }
 
@@ -100,4 +107,5 @@ function changeNumbers(){
   minValueInput.value = '';
   maxValueInput.value = '';
   attempts = 0;
+  warningRange.textContent = '';
 }

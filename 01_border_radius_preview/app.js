@@ -33,7 +33,7 @@ optionBMO.addEventListener('click', function(){
   const s2 = slider2.value;
   const s3 = slider3.value;
   const s4 = slider4.value;
-  box.setAttribute('style', "background-image: url('/img/wallpaper1.png')");
+  box.setAttribute('style', "background-image: url('./img/wallpaper1.png')");
   slider1.value = s1;
   slider2.value = s2;
   slider3.value = s3;
@@ -45,7 +45,7 @@ optionFinn.addEventListener('click', function(){
   const s2 = slider2.value;
   const s3 = slider3.value;
   const s4 = slider4.value;
-  box.setAttribute('style', "background-image: url('/img/wallpaper2.jpg')");
+  box.setAttribute('style', "background-image: url('./img/wallpaper2.jpg')");
   slider1.value = s1;
   slider2.value = s2;
   slider3.value = s3;
@@ -57,7 +57,7 @@ optionJake.addEventListener('click', function(){
   const s2 = slider2.value;
   const s3 = slider3.value;
   const s4 = slider4.value;
-  box.setAttribute('style', "background-image: url('/img/wallpaper3.png')");
+  box.setAttribute('style', "background-image: url('./img/wallpaper3.png')");
   slider1.value = s1;
   slider2.value = s2;
   slider3.value = s3;

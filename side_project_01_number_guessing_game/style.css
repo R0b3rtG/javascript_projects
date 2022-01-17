@@ -4,51 +4,76 @@
     box-sizing: border-box;
 }
 
-:focus{
-    outline: none;    
-}
+*:focus{ outline: none; }
+
+*::selection{ background-color: transparent; }
 
 body{
+    background: url('./img/background.jpg') no-repeat center center / cover;
     min-height: 100vh;
     display: grid;
     place-content: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+}
+
+body::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
 }
 
 .game{
     flex-direction: column;
     align-items: center;
     display: none;
+    position: relative;
 }
 
-.ta-center{
-    text-align: center;
-}
+.ta-center{ text-align: center; }
 
 .heading{
+    color: #fff;
+    text-shadow: 2px 2px 0 #000;
     padding: .3rem 0;
 }
 
 .input{
-    padding: .3rem .1rem;
+    padding: .3rem;
+    background-color: transparent;
     border-radius: .4rem;
-    border: #444 solid 2px;
-    color: #444;
+    border: 2px #fff solid;
+    color: #fff;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
+    text-align: center;
 }
+
+.input::selection{
+    background-color: #ffffff44;
+}
+
+.input:focus{ outline: 1px solid #fff; }
 
 .btn{
     margin: .5rem 0;
     padding: .2rem 1rem;
     font-size: 1.1rem;
     font-weight: 600;
-    color: #000;
-    border: #000 solid 2px;
+    color: #fff;
+    border: #fff solid 2px;
     border-radius: .3rem;
-    background-color: #fff;
+    background-color: transparent;
     cursor: pointer;
+    transition: transform .2s;
 }
+
+.btn:hover{ transform: scale(1.1); }
 
 .form{
     display: flex;
@@ -63,9 +88,7 @@ body{
     font-size: 1.1rem;
 }
 
-.warning-range{
-    min-height: 1.5rem;
-}
+.warning{ min-height: 1.5rem; }
 
 .end-game-modal{
     flex-direction: column;
@@ -73,13 +96,7 @@ body{
     display: none;
 }
 
-.attempts-in-container{
-    margin-bottom: 1rem;
-}
-
-label{
-    display: block;
-}
+.attempts-in-container{ margin-bottom: 1rem; }
 
 .start-game-modal{
     display: flex;
@@ -90,8 +107,23 @@ label{
 .label{
     font-weight: 600;
     font-size: 1rem;
-    color: #000;
     padding: .1rem .5rem;
     display: block;
     width: 100%;
+    color: #fff;
+    display: block;
 }
+
+img{
+    width: 60px;
+    position: absolute;
+    top: -100px;
+    animation-name: rotate;
+    animation-direction: normal;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rotate { to{ transform: rotate(360deg); } }
