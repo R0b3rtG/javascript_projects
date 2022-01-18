@@ -5,30 +5,30 @@
 }
 
 body{
-    display: grid;
-    place-content: center;
-    height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .btn{
-    border: 2px solid #000;
-    color: #000;
-    padding: .5rem;
-    border-radius: 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-    text-align: center;
-    background-color: #fff;
+  border: 2px solid #000;
+  color: #000;
+  padding: .5rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  background-color: #fff;
 }
 
 .password{
-    text-align: center;
-    padding: 1rem;
+  text-align: center;
+  padding: 1rem;
 }
 
 div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
