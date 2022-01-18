@@ -73,6 +73,15 @@ body::before{
     transition: transform .2s;
 }
 
+.play-again, .change-numbers{
+    transition: opacity 1s;
+}
+
+.hide{ 
+    opacity: 0; 
+    cursor: default;
+}
+
 .btn:hover{ transform: scale(1.1); }
 
 .form{

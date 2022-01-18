@@ -11,10 +11,7 @@ const attemptsTxt = document.querySelectorAll('.number-of-attempts'),
 const startGameForm = document.querySelector('.start-game-form');
 startGameForm.onsubmit = startGame;
 
-let attempts,
-    number,
-    min,
-    max;
+let attempts, number, min, max;
 
 function startGame(e){
   e.preventDefault();
@@ -35,13 +32,14 @@ function startGame(e){
   } else {
     warningRange.textContent = 'Please enter some numbers';
   }
+  input.select();
 }
 
 const minOnScreen = document.querySelector('.min-on-screen');
 const maxOnScreen = document.querySelector('.max-on-screen');
 
 function getNewNumber(min, max){
-  number = Math.random() * (max - min) + min;
+  number = Math.random() * (max - min + 1) + min;
   number = parseInt(number);
   minOnScreen.textContent = min;
   maxOnScreen.textContent = max;
@@ -64,8 +62,9 @@ function checkInput(e) {
       checkIfWon(parseInt(input.value));
     } else {
       warning.textContent = `Enter a number between ${min} and ${max}`;
+      input.select();
     }
-  }, 500);
+  }, 1000);
 }
 
 function checkIfWon(input){
@@ -73,15 +72,24 @@ function checkIfWon(input){
     youWon();
   } else {
     if(number < input)
-      warning.textContent = 'Wrong! Enter a lower number';
+    warning.textContent = 'Wrong! Enter a lower number';
     if(number > input)
-      warning.textContent = 'Wrong! Enter a higher number';
+    warning.textContent = 'Wrong! Enter a higher number';
+    input.select();
   }
 }
 
 function youWon(){
   endGameModal.style.display = 'flex';
   gameContainer.style.display = 'none';
+  setTimeout(() => {
+    playAgainBtn.classList.remove('hide');
+    playAgainBtn.removeAttribute('disabled');
+    setTimeout(() => {
+      changeNumbersBtn.classList.remove('hide');
+      changeNumbersBtn.removeAttribute('disabled');
+    }, 1000);
+  }, 1000);
 }
 
 const playAgainBtn = document.querySelector('.play-again');
@@ -95,6 +103,11 @@ function playAgain(){
   input.value = '';
   attempts = 0;
   attemptsTxt.forEach(element => element.textContent = attempts);
+  playAgainBtn.classList.add('hide');
+  playAgainBtn.setAttribute('disabled', 'disabled');
+  changeNumbersBtn.classList.add('hide');
+  changeNumbersBtn.setAttribute('disabled', 'disabled');
+  input.select();
 }
 
 const changeNumbersBtn = document.querySelector('.change-numbers');
@@ -108,4 +121,11 @@ function changeNumbers(){
   maxValueInput.value = '';
   attempts = 0;
   warningRange.textContent = '';
+  playAgainBtn.classList.add('hide');
+  playAgainBtn.setAttribute('disabled', 'disabled');
+  changeNumbersBtn.classList.add('hide');
+  changeNumbersBtn.setAttribute('disabled', 'disabled');
+  minValueInput.select();
 }
+
+minValueInput.select();
