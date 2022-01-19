@@ -17,9 +17,15 @@ body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 100vw;
   height: 100vh;
+  background-color: rgb(21, 21, 51);
   display: grid;
   place-content: center;
-  background-color: rgb(21, 21, 51);
+}
+
+.container{
+  display: grid;
+  place-content: center;
+  width: 100vw;
 }
 
 ul{
@@ -50,6 +56,38 @@ ul{
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+
+.l1,
+.l3,
+.l5,
+.l7,
+.l9,
+.l11,
+.l13,
+.l15{
+  opacity: 1;
+  animation-name: bulb;
+  animation-duration: var(--duration);
+  animation-delay: var(--duration);
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  animation-play-state: var(--play-state);
+}
+
+.l2,
+.l4,
+.l6,
+.l8,
+.l10,
+.l12,
+.l14{
+  opacity: 1;
+  animation-name: bulb;
+  animation-duration: var(--duration);
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  animation-play-state: var(--play-state);
 }
 
 .l1::after,
@@ -242,8 +280,66 @@ p{
   font-weight: 500;
 }
 
+.fa-mobile-alt{
+  font-size: 4rem;
+  color: #fff;
+  animation-name: rotation;
+  animation-duration: 1s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.warning{
+  display: none;
+}
+
 @keyframes light{
   to{
     opacity: 1;
+  }
+}
+
+@keyframes bulb{
+  to{
+    opacity: .5;
+  }
+}
+
+@keyframes rotation {
+  form{
+    transform: rotate(0);
+  }
+  
+  to{
+    transform: rotate(-90deg);
+  }
+}
+
+@media (max-width: 1100px){
+  .container{
+    transform: scale(.8);
+  }
+}
+
+@media (max-width: 700px){
+  .container{
+    transform: scale(.7);
+  }
+}
+
+@media (max-width: 600px){
+  .container{
+    transform: scale(.6);
+  }
+}
+
+@media (max-width: 430px){
+  .container{
+    display: none;
+  }
+
+  .warning{
+    display: block;
   }
 }
