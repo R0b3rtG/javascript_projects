@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Dollars to Cents</title>
-</head>
-<body>
-  <div class="container">
-    <div class="input-div">
-      <h4 class="input-dollars">Dollars Input</h4>
-      <input type="text" class="input" onkeypress="return checkInput(event)" maxlength="10">
-    </div>
-    <button class="convert-btn">Convert</button>
-    <div class="cents-div">
-      <h4 class="total-cents">Total Cents</h4>
-      <input type="text" readonly class="cents">
-    </div>
-    <div class="coins">
-      <div class="quarters">
-        <p>Quarters (25¢)</p>
-        <input type="text" class="output output-quarters" readonly>
-      </div>
-      <div class="dimes">
-        <p>Dimes (10¢)</p>
-        <input type="text" class="output output-dimes" readonly>
-      </div>
-      <div class="nickels">
-        <p>Nickels (5¢)</p>
-        <input type="text" class="output output-nickels" readonly>
-      </div>
-      <div class="pennies">
-        <p>Pennies (1¢)</p>
-        <input type="text" class="output output-pennies" readonly>
-      </div>
-    </div>
-  </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Dollars to Cents</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="input-div">
+				<h4 class="input-dollars">Dollars Input</h4>
+				<input
+					type="text"
+					class="input"
+					onkeypress="return checkInput(event)"
+					maxlength="10"
+				/>
+			</div>
+			<button class="convert-btn">Convert</button>
+			<div class="cents-div">
+				<h4 class="total-cents">Total Cents</h4>
+				<input type="text" readonly class="cents" />
+			</div>
+			<div class="coins">
+				<div class="quarters">
+					<p>Quarters (25¢)</p>
+					<input type="text" class="output output-quarters" readonly />
+				</div>
+				<div class="dimes">
+					<p>Dimes (10¢)</p>
+					<input type="text" class="output output-dimes" readonly />
+				</div>
+				<div class="nickels">
+					<p>Nickels (5¢)</p>
+					<input type="text" class="output output-nickels" readonly />
+				</div>
+				<div class="pennies">
+					<p>Pennies (1¢)</p>
+					<input type="text" class="output output-pennies" readonly />
+				</div>
+			</div>
+		</div>
 
-  <script src="app.js"></script>
-</body>
+		<script src="app.js"></script>
+	</body>
 </html>

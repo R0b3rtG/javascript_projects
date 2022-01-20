@@ -1,28 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
-  <title>Color Cycle</title>
-</head>
-<body>
-  <div class="colored-body">
-    <h1 class="moving-text">DVD</h1>
-  </div>
-  <div class="input-section">
-    <button class="play-stop-btn"><i class="fas fa-pause"></i></button>
-    <h4 class="info">Stop the animation and enter a color code</h4>
-    <div class="fields">
-      <input type="text" class="red" readonly onkeypress="return restrictRed()" spellcheck="false">
-      <input type="text" class="green" readonly onkeypress="return restrictGreen()" spellcheck="false">
-      <input type="text" class="blue" readonly onkeypress="return restrictBlue()" spellcheck="false"> 
-    </div>
-    <button class="enter">Enter Code</button>
-  </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+			integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="style.css" />
+		<title>Color Cycle</title>
+	</head>
+	<body>
+		<div class="colored-body">
+			<h1 class="moving-text">DVD</h1>
+		</div>
+		<div class="input-section">
+			<button class="play-stop-btn"><i class="fas fa-pause"></i></button>
+			<h4 class="info">Stop the animation and enter a color code</h4>
+			<div class="fields">
+				<input
+					type="text"
+					class="red"
+					readonly
+					onkeypress="return restrictRed()"
+					spellcheck="false"
+				/>
+				<input
+					type="text"
+					class="green"
+					readonly
+					onkeypress="return restrictGreen()"
+					spellcheck="false"
+				/>
+				<input
+					type="text"
+					class="blue"
+					readonly
+					onkeypress="return restrictBlue()"
+					spellcheck="false"
+				/>
+			</div>
+			<button class="enter">Enter Code</button>
+		</div>
 
-  <script src="app.js"></script>
-</body>
+		<script src="app.js"></script>
+	</body>
 </html>

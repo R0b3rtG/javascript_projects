@@ -1,120 +1,122 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-*:focus{
-  outline: none;
+*:focus {
+	outline: none;
 }
 
-body{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  width: 100vw;
-  min-height: 100vh;
-  display: grid;
-  place-content: center;
-  background: url('./img/background.jpg') no-repeat center center / cover;
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	width: 100vw;
+	min-height: 100vh;
+	display: grid;
+	place-content: center;
+	background: url('./img/background.jpg') no-repeat center center / cover;
 }
 
-.main-section{
-  background: linear-gradient(55deg,
-            rgba(255, 255, 255, .2),
-            rgba(255, 255, 255, .5),
-            rgba(255, 255, 255, .8),
-            rgba(255, 255, 255, .4),
-            rgba(255, 255, 255, .3),
-            rgba(255, 255, 255, .6),
-            rgba(255, 255, 255, .4),
-            rgba(255, 255, 255, .5),
-            rgba(255, 255, 255, .6),
-            rgba(255, 255, 255, .8),
-            rgba(255, 255, 255, .5),
-            rgba(255, 255, 255, .3));
-  backdrop-filter: blur(.3rem);
-  border-radius: 1rem;
-  padding: 2rem;
-  width: 30rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.main-section {
+	background: linear-gradient(
+		55deg,
+		rgba(255, 255, 255, 0.2),
+		rgba(255, 255, 255, 0.5),
+		rgba(255, 255, 255, 0.8),
+		rgba(255, 255, 255, 0.4),
+		rgba(255, 255, 255, 0.3),
+		rgba(255, 255, 255, 0.6),
+		rgba(255, 255, 255, 0.4),
+		rgba(255, 255, 255, 0.5),
+		rgba(255, 255, 255, 0.6),
+		rgba(255, 255, 255, 0.8),
+		rgba(255, 255, 255, 0.5),
+		rgba(255, 255, 255, 0.3)
+	);
+	backdrop-filter: blur(0.3rem);
+	border-radius: 1rem;
+	padding: 2rem;
+	width: 30rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-input{
-  padding: .2rem .4rem;
-  border: #000 2px solid;
-  border-radius: .4rem;
-  background-color: rgba(170, 170, 170, 0.5);
-  color: #000;
-  font-size: .9rem;
-  font-weight: 600;
+input {
+	padding: 0.2rem 0.4rem;
+	border: #000 2px solid;
+	border-radius: 0.4rem;
+	background-color: rgba(170, 170, 170, 0.5);
+	color: #000;
+	font-size: 0.9rem;
+	font-weight: 600;
 }
 
-input::placeholder{
-  color: #222;
+input::placeholder {
+	color: #222;
 }
 
-input:focus{
-  background-color: rgba(210, 210, 210, 0.5);
+input:focus {
+	background-color: rgba(210, 210, 210, 0.5);
 }
 
-button{
-  color: #000;
-  font-size: .9rem;
-  font-weight: 700;
-  border: #000 solid 2px;
-  padding: .3rem;
-  border-radius: 1rem;
-  background-color: transparent;
-  cursor: pointer;
+button {
+	color: #000;
+	font-size: 0.9rem;
+	font-weight: 700;
+	border: #000 solid 2px;
+	padding: 0.3rem;
+	border-radius: 1rem;
+	background-color: transparent;
+	cursor: pointer;
 }
 
-.convert{
-  margin-bottom: 1.1rem;
+.convert {
+	margin-bottom: 1.1rem;
 }
 
-h1{
-  text-align: center;
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
+h1 {
+	text-align: center;
+	font-size: 1.5rem;
+	margin-bottom: 2rem;
 }
 
-.error{
-  text-align: center;
-  color: rgb(224, 0, 0);
-  min-height: 1.4rem;
-  margin-bottom: .2rem;
+.error {
+	text-align: center;
+	color: rgb(224, 0, 0);
+	min-height: 1.4rem;
+	margin-bottom: 0.2rem;
 }
 
-.error .character{
-  font-weight: 600;
+.error .character {
+	font-weight: 600;
 }
 
-.equals-sign{
-  font-size: 1.5rem;
-  font-weight: 800;
-  text-align: center;
+.equals-sign {
+	font-size: 1.5rem;
+	font-weight: 800;
+	text-align: center;
 }
 
-.inputs{
-  display: flex;
-  justify-content: center;
-  gap: .5rem;
-  margin-bottom: .2rem;
+.inputs {
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+	margin-bottom: 0.2rem;
 }
 
-@media (max-width: 500px){
-  .inputs{
-    flex-direction: column;
-  }
+@media (max-width: 500px) {
+	.inputs {
+		flex-direction: column;
+	}
 
-  .main-section{
-    width: 21rem;
-  }
+	.main-section {
+		width: 21rem;
+	}
 }
 
-@media (max-width: 350px){
-  .main-section{
-    width: 19rem;
-  }
+@media (max-width: 350px) {
+	.main-section {
+		width: 19rem;
+	}
 }

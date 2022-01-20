@@ -1,155 +1,155 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-*:focus{
-  outline: none;
+*:focus {
+	outline: none;
 }
 
-body{
-  background: #222;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  place-content: center;
+body {
+	background: #222;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	place-content: center;
 }
 
-.container{
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  width: 350px;
-  height: 450px;
-  border-radius: 40px;
-  box-shadow: 0 0 30px 5px #be00fe25;
-  background-color: #be00feaa;
+.container {
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	width: 350px;
+	height: 450px;
+	border-radius: 40px;
+	box-shadow: 0 0 30px 5px #be00fe25;
+	background-color: #be00feaa;
 }
 
-.clock-box{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 70%;
+.clock-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	height: 70%;
 }
 
-.inputs{
-  width: 100%;
-  height: 30%;
-  background-color: #333;
+.inputs {
+	width: 100%;
+	height: 30%;
+	background-color: #333;
 }
 
-.clock{
-  width: 100%;
-  color: #fff;
-  text-align: center;
-  font-weight: 600;
-  font-size: 5.5rem;
-  margin: 1rem 0;
+.clock {
+	width: 100%;
+	color: #fff;
+	text-align: center;
+	font-weight: 600;
+	font-size: 5.5rem;
+	margin: 1rem 0;
 }
 
-.buttons{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.buttons {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.btn{
-  padding: .4rem .7rem;
-  border: none;
-  border-radius: 0px;
-  margin: 0 .5rem;
-  font-size: 1rem;
-  color: #000;
-  background-color: #fff;
-  transition: all .5s;
+.btn {
+	padding: 0.4rem 0.7rem;
+	border: none;
+	border-radius: 0px;
+	margin: 0 0.5rem;
+	font-size: 1rem;
+	color: #000;
+	background-color: #fff;
+	transition: all 0.5s;
 }
 
-.btn:hover{
-  cursor: pointer;
-  background-color: #000;
-  color: #fff;
+.btn:hover {
+	cursor: pointer;
+	background-color: #000;
+	color: #fff;
 }
 
 .fa-play-circle,
 .fa-undo-alt,
-.fa-pause-circle{
-  padding: .3rem;
+.fa-pause-circle {
+	padding: 0.3rem;
 }
 
-.session-break-text{
-  width: 100%;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #fff;
+.session-break-text {
+	width: 100%;
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: #fff;
 }
 
-.inputs{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.inputs {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
-.upper-inputs{
-  display: flex;
-  justify-content: center;
-  color: #fff;
-  align-items: center;
+.upper-inputs {
+	display: flex;
+	justify-content: center;
+	color: #fff;
+	align-items: center;
 }
 
-.set-new-btn{
-  margin-top: .7rem;
-  font-size: .9rem;
+.set-new-btn {
+	margin-top: 0.7rem;
+	font-size: 0.9rem;
 }
 
 .session-length-p,
-.break-length-p{
-  text-align: center;
-  margin-bottom: 1rem;
+.break-length-p {
+	text-align: center;
+	margin-bottom: 1rem;
 }
 
 .session-length-in,
-.break-length-in{
-  display: flex;
-  justify-content: center;
+.break-length-in {
+	display: flex;
+	justify-content: center;
 }
 
 .session-input,
-.break-input{
-  margin: 0 1rem;
+.break-input {
+	margin: 0 1rem;
 }
 
 .session-time,
-.break-time{
-  margin: 0 1rem;
+.break-time {
+	margin: 0 1rem;
 }
 
 .session-up-btn,
 .session-down-btn,
 .break-up-btn,
-.break-down-btn{
-  background-color: transparent;
-  color: #df70e0;
-  font-size: 1.3rem;
-  border-radius: 50%;
-  text-align: center;
-  width: 25px;
-  height: 25px;
-  padding: 0;
-  border: none;
-  transition: all .5s;
+.break-down-btn {
+	background-color: transparent;
+	color: #df70e0;
+	font-size: 1.3rem;
+	border-radius: 50%;
+	text-align: center;
+	width: 25px;
+	height: 25px;
+	padding: 0;
+	border: none;
+	transition: all 0.5s;
 }
 
 .session-up-btn:hover,
 .session-down-btn:hover,
 .break-up-btn:hover,
-.break-down-btn:hover{
-  cursor: pointer;
-  color: #fff;
+.break-down-btn:hover {
+	cursor: pointer;
+	color: #fff;
 }

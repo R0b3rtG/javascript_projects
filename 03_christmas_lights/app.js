@@ -10,30 +10,30 @@ const setTime5 = document.querySelector('.time5');
 const playBtn = document.querySelector('.play-button');
 const stopBtn = document.querySelector('.stop-button');
 
-setTime1.addEventListener('click', function(){
-  time.style.setProperty('--duration', '1s');
+setTime1.addEventListener('click', function () {
+	time.style.setProperty('--duration', '1s');
 });
 
-setTime2.addEventListener('click', function(){
-  time.style.setProperty('--duration', '2s');
+setTime2.addEventListener('click', function () {
+	time.style.setProperty('--duration', '2s');
 });
 
-setTime3.addEventListener('click', function(){
-  time.style.setProperty('--duration', '3s');
+setTime3.addEventListener('click', function () {
+	time.style.setProperty('--duration', '3s');
 });
 
-setTime4.addEventListener('click', function(){
-  time.style.setProperty('--duration', '4s');
+setTime4.addEventListener('click', function () {
+	time.style.setProperty('--duration', '4s');
 });
 
-setTime5.addEventListener('click', function(){
-  time.style.setProperty('--duration', '5s');
+setTime5.addEventListener('click', function () {
+	time.style.setProperty('--duration', '5s');
 });
 
-playBtn.addEventListener('click', function(){
-  playState.style.setProperty('--play-state', 'running');
+playBtn.addEventListener('click', function () {
+	playState.style.setProperty('--play-state', 'running');
 });
 
-stopBtn.addEventListener('click', function(){
-  playState.style.setProperty('--play-state', 'paused');
+stopBtn.addEventListener('click', function () {
+	playState.style.setProperty('--play-state', 'paused');
 });

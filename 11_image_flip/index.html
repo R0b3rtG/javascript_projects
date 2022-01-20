@@ -1,59 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-  <title>Image Flip</title>
-</head>
-<body>
-  <div class="main-container">
-    <div class="container">
-      <div class="image">
-        <img src="https://source.unsplash.com/random/500x250" alt="" class="the-image">
-      </div>
-      <div class="arrow-up">
-        <i class="fas fa-arrow-up"></i>
-      </div>
-      <div class="arrow-right">
-        <i class="fas fa-arrow-right"></i>
-      </div>
-      <div class="arrow-down">
-        <i class="fas fa-arrow-down"></i>
-      </div>
-      <div class="arrow-left">
-        <i class="fas fa-arrow-left"></i>
-      </div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+			integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+			crossorigin="anonymous"
+		/>
+		<title>Image Flip</title>
+	</head>
+	<body>
+		<div class="main-container">
+			<div class="container">
+				<div class="image">
+					<img
+						src="https://source.unsplash.com/random/500x250"
+						alt=""
+						class="the-image"
+					/>
+				</div>
+				<div class="arrow-up">
+					<i class="fas fa-arrow-up"></i>
+				</div>
+				<div class="arrow-right">
+					<i class="fas fa-arrow-right"></i>
+				</div>
+				<div class="arrow-down">
+					<i class="fas fa-arrow-down"></i>
+				</div>
+				<div class="arrow-left">
+					<i class="fas fa-arrow-left"></i>
+				</div>
+			</div>
+			<div class="change-image">
+				<div class="random-image">
+					<h3>Set dimentions for a random image</h3>
+					<div class="dims">
+						<div class="width-random">
+							<label>Width</label>
+							<input
+								type="text"
+								maxlength="4"
+								class="width-in"
+								onkeypress="return onlyNumbers(event)"
+							/>
+						</div>
+						<div class="height-random">
+							<label>Height</label>
+							<input
+								type="text"
+								maxlength="4"
+								class="height-in"
+								onkeypress="return onlyNumbers(event)"
+							/>
+						</div>
+					</div>
+					<button class="submit-dims">Submit</button>
+				</div>
+				<div class="set-image">
+					<h3>Enter the link for the image you want</h3>
+					<input type="text" placeholder="URL" class="url-in" />
+					<button class="submit-url">Submit</button>
+				</div>
+			</div>
+		</div>
 
-    </div>
-    <div class="change-image">
-      <div class="random-image">
-        <h3>Set dimentions for a random image</h3>
-        <div class="dims">
-          <div class="width-random">
-            <label>Width</label>
-            <input type="text" maxlength="4" class="width-in" onkeypress="return onlyNumbers(event)">
-          </div>
-          <div class="height-random">
-            <label>Height</label>
-            <input type="text" maxlength="4" class="height-in" onkeypress="return onlyNumbers(event)">
-          </div>
-        </div>
-        <button class="submit-dims">Submit</button>
-      </div>
-      <div class="set-image">
-        <h3>Enter the link for the image you want</h3>
-        <input type="text" placeholder="URL" class="url-in">
-        <button class="submit-url">Submit</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
-</body>
+		<script src="app.js"></script>
+	</body>
 </html>

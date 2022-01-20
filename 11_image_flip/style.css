@@ -1,162 +1,162 @@
-:root{
-  --imageWidth: 500px;
-  --imageHeight: 250px;
+:root {
+	--imageWidth: 500px;
+	--imageHeight: 250px;
 }
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-*:focus{
-  outline: none;
+*:focus {
+	outline: none;
 }
 
-body{
-  font-family: 'Patrick Hand', cursive;
-  display: grid;
-  place-content: center;
-  height: 100vh;
-  max-width: 100vw;
+body {
+	font-family: 'Patrick Hand', cursive;
+	display: grid;
+	place-content: center;
+	height: 100vh;
+	max-width: 100vw;
 }
 
-.main-container{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.main-container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 }
 
-.container{
-  display: grid;
-  place-items: center;
-  grid-template-columns: 30px var(--imageWidth) 30px;
-  grid-template-rows: 30px var(--imageHeight) 30px;
+.container {
+	display: grid;
+	place-items: center;
+	grid-template-columns: 30px var(--imageWidth) 30px;
+	grid-template-rows: 30px var(--imageHeight) 30px;
 }
 
-.arrow-up{
-  grid-column: 2;
-  grid-row: 1;
+.arrow-up {
+	grid-column: 2;
+	grid-row: 1;
 }
 
-.arrow-right{
-  grid-column: 3;
-  grid-row: 2;
+.arrow-right {
+	grid-column: 3;
+	grid-row: 2;
 }
 
-.arrow-down{
-  grid-column: 2;
-  grid-row: 3;
+.arrow-down {
+	grid-column: 2;
+	grid-row: 3;
 }
 
-.arrow-left{
-  grid-column: 1;
-  grid-row: 2;
+.arrow-left {
+	grid-column: 1;
+	grid-row: 2;
 }
 
-.fas{
-  font-size: 1.5rem;
-  color: #000;
+.fas {
+	font-size: 1.5rem;
+	color: #000;
 }
 
-.image{
-  display: grid;
-  place-content: center;
-  grid-column: 2;
-  grid-row: 2;
+.image {
+	display: grid;
+	place-content: center;
+	grid-column: 2;
+	grid-row: 2;
 }
 
-.img{
-  z-index: 2;
+.img {
+	z-index: 2;
 }
 
 .fa-arrow-up,
-.fa-arrow-down{
-  text-align: center;
+.fa-arrow-down {
+	text-align: center;
 }
 
 .fa-arrow-left,
-.fa-arrow-right{
-  text-align: center;
+.fa-arrow-right {
+	text-align: center;
 }
 
 .arrow-up,
-.arrow-down{
-  width: var(--imageWidth);
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  border: 1px solid #000;
+.arrow-down {
+	width: var(--imageWidth);
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	border: 1px solid #000;
 }
 
 .arrow-left,
-.arrow-right{
-  width: 30px;
-  height: var(--imageHeight);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 1px solid #000;
+.arrow-right {
+	width: 30px;
+	height: var(--imageHeight);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	border: 1px solid #000;
 }
 
-.change-image{
-  display: flex;
-  width: 450px;
-  justify-content: space-between;
-  margin-top: .5rem;
+.change-image {
+	display: flex;
+	width: 450px;
+	justify-content: space-between;
+	margin-top: 0.5rem;
 }
 
-h3{
-  font-size: .9rem;
-  width: 100%;
-  text-align: center;
+h3 {
+	font-size: 0.9rem;
+	width: 100%;
+	text-align: center;
 }
 
-.dims{
-  display: flex;
-  justify-content: space-between;
-  margin-top: .5rem;
+.dims {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 0.5rem;
 }
 
-.dims input{
-  width: 50px;
+.dims input {
+	width: 50px;
 }
 
-.set-image{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.set-image {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-.set-image input{
-  width: 200px;
-  margin-top: .5rem;
+.set-image input {
+	width: 200px;
+	margin-top: 0.5rem;
 }
 
-input{
-  border: 1px solid #000;
-  border-radius: 5px;
-  padding: .2rem .5rem;
-  font-family: 'Patrick Hand', cursive;
-  font-size: .9rem;
+input {
+	border: 1px solid #000;
+	border-radius: 5px;
+	padding: 0.2rem 0.5rem;
+	font-family: 'Patrick Hand', cursive;
+	font-size: 0.9rem;
 }
 
-button{
-  width: 100%;
-  margin-top: .5rem;
-  border: none;
-  border-radius: 5px;
-  background-color: #333;
-  font-family: 'Patrick Hand', cursive;
-  font-size: .9rem;
-  padding: .2rem .5rem;
-  color: #fff;
+button {
+	width: 100%;
+	margin-top: 0.5rem;
+	border: none;
+	border-radius: 5px;
+	background-color: #333;
+	font-family: 'Patrick Hand', cursive;
+	font-size: 0.9rem;
+	padding: 0.2rem 0.5rem;
+	color: #fff;
 }
 
 button:hover,
 .arrow-down:hover,
 .arrow-left:hover,
 .arrow-up:hover,
-.arrow-right:hover{
-  cursor: pointer ;
+.arrow-right:hover {
+	cursor: pointer;
 }
