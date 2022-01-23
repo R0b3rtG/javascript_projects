@@ -57,14 +57,30 @@ body {
 .person {
 	text-align: center;
 	transition: background-color 750ms, border-radius 750ms, color 750ms,
-		transform 750ms, outline-color 750ms;
+		transform 750ms, border-color 750ms;
 	cursor: pointer;
 	font-weight: 600;
-	border-bottom-width: 2px;
-	border-bottom-style: solid;
-	border-bottom-color: rgba(255, 255, 255, 0);
 	padding: 0.1rem 0.3rem;
-	outline-color: #ffffff00;
+	position: relative;
+}
+
+.person:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	box-shadow: 0 0 0 2px #fff;
+	opacity: 0;
+	background-color: transparent;
+	transition: opacity 750ms, border-radius 750ms;
+	z-index: 2;
+}
+
+.person:hover:after {
+	border-radius: 1rem;
+	opacity: 1;
 }
 
 .main-content {
@@ -172,13 +188,6 @@ body {
 
 .inf:last-child {
 	grid-column: 2 / span 2;
-}
-
-.person:hover {
-	border-radius: 1rem;
-	outline-style: solid;
-	outline-width: 2px;
-	outline-color: #fff;
 }
 
 .selected {
