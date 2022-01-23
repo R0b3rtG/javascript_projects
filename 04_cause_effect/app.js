@@ -38,3 +38,17 @@ async function getData() {
 }
 
 getData();
+
+const peopleDiv = document.querySelector('.people-div');
+const list = document.querySelector('.list');
+const icon = document.querySelector('.icon');
+icon.addEventListener('click', (event) => {
+	icon.classList.toggle('open');
+	if (icon.classList.contains('open')) {
+		list.style.display = 'flex';
+		peopleDiv.style.height = '650px';
+	} else {
+		list.style.display = 'none';
+		peopleDiv.style.height = '85px';
+	}
+});
