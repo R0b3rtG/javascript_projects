@@ -31,6 +31,10 @@ body::after {
 
 .calc-body {
 	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	background-color: #000;
 	width: 340px;
 	height: 500px;
