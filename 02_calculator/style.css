@@ -9,18 +9,31 @@
 }
 
 body {
+	background: url('./img/wallpaper.jpg') no-repeat center center / cover;
 	font-family: 'Roboto', sans-serif;
 	height: 100vh;
 	width: 100vw;
 	display: grid;
 	place-content: center;
+	position: relative;
+}
+
+body::after {
+	content: '';
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: -1;
 }
 
 .calc-body {
 	overflow: hidden;
 	background-color: #000;
-	width: 300px;
-	height: 450px;
+	width: 340px;
+	height: 500px;
 	border-radius: 10px;
 }
 
@@ -35,7 +48,7 @@ body {
 .btn {
 	width: 60px;
 	height: 60px;
-	border-radius: 100%;
+	border-radius: 50%;
 	border: none;
 	font-size: 1.5rem;
 }
@@ -97,6 +110,7 @@ body {
 	font-size: 3rem;
 	padding: 0 1rem;
 	font-weight: 100;
+	margin-bottom: 1rem;
 }
 
 .output {
@@ -106,8 +120,59 @@ body {
 	text-align: right;
 	font-size: 2rem;
 	padding: 0 1rem;
+	margin-bottom: 1rem;
 	font-weight: 100;
 	caret-color: transparent;
 	color: #fff;
 	border: none;
+}
+
+@media (max-width: 450px) {
+	.buttons {
+		gap: 0.3rem;
+	}
+
+	.calc-body {
+		width: 100vw;
+		height: 100vh;
+	}
+
+	.btn {
+		font-size: 2rem;
+		width: 80px;
+		height: 80px;
+	}
+
+	.b-0 {
+		height: 80px !important;
+		border-radius: 2.5rem !important;
+	}
+
+	.input {
+		font-size: 4rem;
+	}
+
+	.output {
+		font-size: 3rem;
+	}
+}
+
+@media (max-width: 380px) {
+	.btn {
+		font-size: 1.4rem;
+		width: 65px;
+		height: 65px;
+	}
+
+	.b-0 {
+		height: 65px !important;
+		border-radius: 2.5rem !important;
+	}
+	.input {
+		font-size: 3.5rem;
+	}
+
+	.output {
+		font-size: 3rem;
+	}
 }

@@ -26,76 +26,74 @@ let lastOp = '';
 
 b0.addEventListener('click', function () {
 	if (input.value.length !== 8) {
-		input.value += 0;
+		input.value += '0';
 	}
 });
 
 b1.addEventListener('click', function () {
 	if (input.value.length !== 8) {
-		input.value += 1;
+		input.value += '1';
 	}
 });
 
 b2.addEventListener('click', function () {
 	if (input.value.length !== 8) {
-		input.value += 2;
+		input.value += '2';
 	}
 });
 
 b3.addEventListener('click', function () {
 	if (input.value.length !== 8) {
-		input.value += 3;
+		input.value += '3';
 	}
 });
 
 b4.addEventListener('click', function () {
 	if (input.value.length !== 8) {
-		input.value += 4;
+		input.value += '4';
 	}
 });
 
 b5.addEventListener('click', function () {
 	if (input.value.length !== 8) {
-		input.value += 5;
+		input.value += '5';
 	}
 });
 
 b6.addEventListener('click', function () {
 	if (input.value.length !== 8) {
-		input.value += 6;
+		input.value += '6';
 	}
 });
 
 b7.addEventListener('click', function () {
 	if (input.value.length !== 8) {
-		input.value += 7;
+		input.value += '7';
 	}
 });
 
 b8.addEventListener('click', function () {
 	if (input.value.length !== 8) {
-		input.value += 8;
+		input.value += '8';
 	}
 });
 
 b9.addEventListener('click', function () {
 	if (input.value.length !== 8) {
-		input.value += 9;
+		input.value += '9';
 	}
 });
 
 bDot.addEventListener('click', function () {
 	if (input.value.length !== 8) {
-		input.value += '.';
+		if (input.value.indexOf('.') == -1) {
+			input.value += '.';
+		}
 	}
 });
 
 bNegative.addEventListener('click', function () {
-	if (parseFloat(input.value) > 0) {
-		input.value = '-' + input.value;
-	} else if (parseFloat(input.value) < 0) {
-		input.value = input.value.substr(1, input.value.length);
-	}
+	input.value = parseFloat(input.value) * -1;
 });
 
 bPercent.addEventListener('click', function () {
