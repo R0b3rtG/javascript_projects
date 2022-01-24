@@ -104,14 +104,13 @@ body::after {
 
 .input {
 	width: 100%;
-	height: 60px;
 	background-color: #000;
 	border: none;
 	text-align: right;
 	color: #fff;
 	caret-color: transparent;
 	font-size: 3rem;
-	padding: 0.2rem 1rem;
+	padding: 0.1rem 1rem;
 	font-weight: 100;
 	margin-bottom: 1rem;
 }
@@ -119,10 +118,9 @@ body::after {
 .output {
 	background-color: #000;
 	width: 100%;
-	height: 40px;
 	text-align: right;
 	font-size: 2rem;
-	padding: 0.2rem 1rem;
+	padding: 0.1rem 1rem;
 	margin-bottom: 1rem;
 	font-weight: 100;
 	caret-color: transparent;
