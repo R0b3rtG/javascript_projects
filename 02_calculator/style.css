@@ -67,7 +67,6 @@ body::after {
 	border-radius: 30px;
 	text-align: left;
 	width: 93%;
-	height: 60px;
 	grid-column: 1 / span 2;
 	padding: 1rem 1.6rem;
 }
@@ -146,10 +145,6 @@ body::after {
 		font-size: 2rem;
 		width: 80px;
 		height: 80px;
-	}
-
-	.b-0 {
-		height: 80px !important;
 		border-radius: 2.5rem !important;
 	}
 
@@ -165,19 +160,23 @@ body::after {
 @media (max-width: 380px) {
 	.btn {
 		font-size: 1.4rem;
-		width: 65px;
-		height: 65px;
+		width: 75px;
+		height: 75px;
 	}
 
-	.b-0 {
-		height: 65px !important;
-		border-radius: 2.5rem !important;
-	}
 	.input {
 		font-size: 3.5rem;
 	}
 
 	.output {
 		font-size: 3rem;
+	}
+}
+
+@media (max-width: 330px) {
+	.btn {
+		font-size: 1.4rem;
+		width: 65px;
+		height: 65px;
 	}
 }
