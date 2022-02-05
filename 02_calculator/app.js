@@ -4,150 +4,130 @@ const bAC = document.querySelector('.b-ac');
 const bNegative = document.querySelector('.b-negative');
 const bPercent = document.querySelector('.b-percent');
 const bDivide = document.querySelector('.b-divide');
-const b7 = document.querySelector('.b-7');
-const b8 = document.querySelector('.b-8');
-const b9 = document.querySelector('.b-9');
 const bTimes = document.querySelector('.b-times');
-const b4 = document.querySelector('.b-4');
-const b5 = document.querySelector('.b-5');
-const b6 = document.querySelector('.b-6');
 const bMinus = document.querySelector('.b-minus');
-const b1 = document.querySelector('.b-1');
-const b2 = document.querySelector('.b-2');
-const b3 = document.querySelector('.b-3');
 const bPlus = document.querySelector('.b-plus');
-const b0 = document.querySelector('.b-0');
 const bDot = document.querySelector('.b-dot');
 const bEquals = document.querySelector('.b-equals');
+const numButtons = document.querySelectorAll('.num-btn');
+const opButtons = document.querySelectorAll('.op-btn');
+
 let val1 = 0;
 let val2 = 0;
-let sign;
 let lastOp = '';
+let beforeLastOp = '';
 
-b0.addEventListener('click', function () {
-	if (input.value.length !== 8) {
-		input.value += '0';
-	}
+numButtons.forEach((btn) => {
+	btn.addEventListener('click', () => {
+		if (input.value.length !== 8) {
+			input.value += btn.textContent;
+		}
+		if (lastOp == 'equals') {
+			lastOp = '';
+		}
+	});
 });
 
-b1.addEventListener('click', function () {
-	if (input.value.length !== 8) {
-		input.value += '1';
+bDot.addEventListener('click', () => {
+	if (input.value == '') {
+		if (val1 == '') {
+			input.value = 0;
+		} else {
+			input.value = val1;
+		}
+		output.value = '';
 	}
-});
-
-b2.addEventListener('click', function () {
-	if (input.value.length !== 8) {
-		input.value += '2';
-	}
-});
-
-b3.addEventListener('click', function () {
-	if (input.value.length !== 8) {
-		input.value += '3';
-	}
-});
-
-b4.addEventListener('click', function () {
-	if (input.value.length !== 8) {
-		input.value += '4';
-	}
-});
-
-b5.addEventListener('click', function () {
-	if (input.value.length !== 8) {
-		input.value += '5';
-	}
-});
-
-b6.addEventListener('click', function () {
-	if (input.value.length !== 8) {
-		input.value += '6';
-	}
-});
-
-b7.addEventListener('click', function () {
-	if (input.value.length !== 8) {
-		input.value += '7';
-	}
-});
-
-b8.addEventListener('click', function () {
-	if (input.value.length !== 8) {
-		input.value += '8';
-	}
-});
-
-b9.addEventListener('click', function () {
-	if (input.value.length !== 8) {
-		input.value += '9';
-	}
-});
-
-bDot.addEventListener('click', function () {
-	if (input.value.length !== 8) {
+	let isNegative = val1 < 0 ? 1 : 0;
+	if (parseInt(input.value).toString().length <= 8 + isNegative) {
 		if (input.value.indexOf('.') == -1) {
 			input.value += '.';
 		}
 	}
 });
 
-bNegative.addEventListener('click', function () {
-	input.value = parseFloat(input.value) * -1;
+bNegative.addEventListener('click', () => {
+	if (input.value == '') {
+		if (val1 != 0 && val1 != '') {
+			input.value = parseFloat(val1) * -1;
+			output.value = '';
+		}
+	} else {
+		if (input.value != 0 && input.value != '') {
+			input.value = parseFloat(input.value) * -1;
+		}
+	}
 });
 
-bPercent.addEventListener('click', function () {
-	input.value = parseFloat(input.value) / 100;
+bPercent.addEventListener('click', () => {
+	if (input.value == '') {
+		if (val1 != 0 && val1 != '') {
+			input.value = parseFloat(val1) / 100;
+			output.value = '';
+		}
+	} else {
+		if (input.value != 0 && input.value != '') {
+			input.value = parseFloat(input.value) / 100;
+		}
+	}
 });
 
-bAC.addEventListener('click', function () {
+bAC.addEventListener('click', () => {
 	val1 = 0;
 	val2 = 0;
 	input.value = '';
 	output.value = '';
+	beforeLastOp = '';
 	lastOp = '';
-	sign = '';
+	opButtons.forEach((btn) => {
+		btn.classList.remove('selected');
+	});
 });
 
-bPlus.addEventListener('click', function () {
-	if (lastOp === 'plus' || lastOp === '') {
+bPlus.addEventListener('click', () => {
+	beforeLastOp = '';
+	opButtons.forEach((btn) => {
+		btn.classList.remove('selected');
+	});
+	bPlus.classList.add('selected');
+	if (input.value != '') {
 		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 + val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'plus' || lastOp == '') {
+			if (lastOp != '') {
+				val1 = val1 + val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
-	}
-	if (lastOp === 'minus') {
-		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 - val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'minus') {
+			if (lastOp != '') {
+				val1 = val1 - val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
-	}
-	if (lastOp === 'times') {
-		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 * val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'times') {
+			if (lastOp != '') {
+				val1 = val1 * val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
-	}
-	if (lastOp === 'divide') {
-		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 / val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'divide') {
+			if (lastOp != '') {
+				val1 = val1 / val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
+	} else {
+		lastOp = 'plus';
 	}
+
+	input.value = '';
 	if (val1 != 'Nan' || val1 != 0) {
-		if (parseInt(val1).toString().substr(1, input.value.length).length <= 8) {
+		let hasDot = val1.toString().indexOf('.') != -1 ? 1 : 0;
+		let isNegative = val1 < 0 ? 1 : 0;
+		if (parseInt(val1).toString().length <= 8 + hasDot + isNegative) {
 			if (val1 != parseInt(val1)) {
 				output.value = val1.toFixed(2);
 			} else {
@@ -163,45 +143,51 @@ bPlus.addEventListener('click', function () {
 	lastOp = 'plus';
 });
 
-bMinus.addEventListener('click', function () {
-	if (lastOp === 'plus') {
+bMinus.addEventListener('click', () => {
+	beforeLastOp = '';
+	opButtons.forEach((btn) => {
+		btn.classList.remove('selected');
+	});
+	bMinus.classList.add('selected');
+	if (input.value != '') {
 		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 + val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'plus') {
+			if (lastOp != '') {
+				val1 = val1 + val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
-	}
-	if (lastOp === 'minus' || lastOp === '') {
-		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 - val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'minus' || lastOp == '') {
+			if (lastOp != '') {
+				val1 = val1 - val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
-	}
-	if (lastOp === 'times') {
-		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 * val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'times') {
+			if (lastOp != '') {
+				val1 = val1 * val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
-	}
-	if (lastOp === 'divide') {
-		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 / val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'divide') {
+			if (lastOp != '') {
+				val1 = val1 / val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
+	} else {
+		lastOp = 'minus';
 	}
+
+	input.value = '';
 	if (val1 != 'Nan' || val1 != 0) {
-		if (parseInt(val1).toString().substr(1, input.value.length).length <= 8) {
+		let hasDot = val1.toString().indexOf('.') != -1 ? 1 : 0;
+		let isNegative = val1 < 0 ? 1 : 0;
+		if (parseInt(val1).toString().length <= 8 + hasDot + isNegative) {
 			if (val1 != parseInt(val1)) {
 				output.value = val1.toFixed(2);
 			} else {
@@ -217,45 +203,51 @@ bMinus.addEventListener('click', function () {
 	lastOp = 'minus';
 });
 
-bTimes.addEventListener('click', function () {
-	if (lastOp === 'plus') {
+bTimes.addEventListener('click', () => {
+	opButtons.forEach((btn) => {
+		btn.classList.remove('selected');
+	});
+	bTimes.classList.add('selected');
+	beforeLastOp = '';
+	if (input.value != '') {
 		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 + val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'plus') {
+			if (lastOp != '') {
+				val1 = val1 + val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
-	}
-	if (lastOp === 'minus') {
-		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 - val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'minus') {
+			if (lastOp != '') {
+				val1 = val1 - val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
-	}
-	if (lastOp === 'times' || lastOp === '') {
-		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 * val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'times' || lastOp == '') {
+			if (lastOp != '') {
+				val1 = val1 * val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
-	}
-	if (lastOp === 'divide') {
-		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 / val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'divide') {
+			if (lastOp != '') {
+				val1 = val1 / val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
+	} else {
+		lastOp = 'times';
 	}
+
+	input.value = '';
 	if (val1 != 'Nan' || val1 != 0) {
-		if (parseInt(val1).toString().substr(1, input.value.length).length <= 8) {
+		let hasDot = val1.toString().indexOf('.') != -1 ? 1 : 0;
+		let isNegative = val1 < 0 ? 1 : 0;
+		if (parseInt(val1).toString().length <= 8 + hasDot + isNegative) {
 			if (val1 != parseInt(val1)) {
 				output.value = val1.toFixed(2);
 			} else {
@@ -271,45 +263,51 @@ bTimes.addEventListener('click', function () {
 	lastOp = 'times';
 });
 
-bDivide.addEventListener('click', function () {
-	if (lastOp === 'plus') {
+bDivide.addEventListener('click', () => {
+	beforeLastOp = '';
+	opButtons.forEach((btn) => {
+		btn.classList.remove('selected');
+	});
+	bDivide.classList.add('selected');
+	if (input.value != '') {
 		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 + val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'plus') {
+			if (lastOp != '') {
+				val1 = val1 + val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
-	}
-	if (lastOp === 'minus') {
-		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 - val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'minus') {
+			if (lastOp != '') {
+				val1 = val1 - val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
-	}
-	if (lastOp === 'times') {
-		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 * val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'times') {
+			if (lastOp != '') {
+				val1 = val1 * val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
-	}
-	if (lastOp === 'divide' || lastOp === '') {
-		val2 = parseFloat(input.value);
-		if (lastOp != '') {
-			val1 = val1 / val2;
-		} else {
-			val1 = val2;
+		if (lastOp === 'divide' || lastOp == '') {
+			if (lastOp != '') {
+				val1 = val1 / val2;
+			} else {
+				val1 = val2;
+			}
 		}
-		input.value = '';
+	} else {
+		lastOp = 'divide';
 	}
+
+	input.value = '';
 	if (val1 != 'Nan' || val1 != 0) {
-		if (parseInt(val1).toString().substr(1, input.value.length).length <= 8) {
+		let hasDot = val1.toString().indexOf('.') != -1 ? 1 : 0;
+		let isNegative = val1 < 0 ? 1 : 0;
+		if (parseInt(val1).toString().length <= 8 + hasDot + isNegative) {
 			if (val1 != parseInt(val1)) {
 				output.value = val1.toFixed(2);
 			} else {
@@ -325,7 +323,10 @@ bDivide.addEventListener('click', function () {
 	lastOp = 'divide';
 });
 
-bEquals.addEventListener('click', function () {
+bEquals.addEventListener('click', () => {
+	opButtons.forEach((btn) => {
+		btn.classList.remove('selected');
+	});
 	if (lastOp === 'plus') {
 		val2 = parseFloat(input.value);
 		if (lastOp != '') {
@@ -333,7 +334,6 @@ bEquals.addEventListener('click', function () {
 		} else {
 			val1 = val2;
 		}
-		input.value = '';
 	}
 	if (lastOp === 'minus') {
 		val2 = parseFloat(input.value);
@@ -342,7 +342,6 @@ bEquals.addEventListener('click', function () {
 		} else {
 			val1 = val2;
 		}
-		input.value = '';
 	}
 	if (lastOp === 'times') {
 		val2 = parseFloat(input.value);
@@ -351,7 +350,6 @@ bEquals.addEventListener('click', function () {
 		} else {
 			val1 = val2;
 		}
-		input.value = '';
 	}
 	if (lastOp === 'divide') {
 		val2 = parseFloat(input.value);
@@ -360,10 +358,29 @@ bEquals.addEventListener('click', function () {
 		} else {
 			val1 = val2;
 		}
+	}
+	input.value = '';
+
+	if (lastOp == 'equals') {
+		if (beforeLastOp == 'plus') {
+			val1 = val1 + val2;
+		}
+		if (beforeLastOp == 'minus') {
+			val1 = val1 - val2;
+		}
+		if (beforeLastOp == 'times') {
+			val1 = val1 * val2;
+		}
+		if (beforeLastOp == 'divide') {
+			val1 = val1 / val2;
+		}
 		input.value = '';
 	}
+
 	if (val1 != 'Nan' || val1 != 0) {
-		if (val1.toString().substr(1, input.value.length).length <= 8) {
+		let hasDot = val1.toString().indexOf('.') != -1 ? 1 : 0;
+		let isNegative = val1 < 0 ? 1 : 0;
+		if (parseInt(val1).toString().length <= 8 + hasDot + isNegative) {
 			if (val1 != parseInt(val1)) {
 				output.value = val1.toFixed(2);
 			} else {
@@ -376,9 +393,43 @@ bEquals.addEventListener('click', function () {
 	if (output.value == 'NaN') {
 		output.value = 0;
 	}
-	lastOp = '';
+	if (lastOp == '') {
+		output.value = '';
+	}
+
+	if (beforeLastOp == '') {
+		beforeLastOp = lastOp;
+	}
+	lastOp = 'equals';
 	input.value = '';
-	val1 = 0;
-	val2 = 0;
-	sign = '';
 });
+
+const inputAndOutputSection = document.querySelector('.input-and-output');
+inputAndOutputSection.addEventListener('touchstart', handleTouchStart, false);
+inputAndOutputSection.addEventListener('touchmove', handleTouchMove, false);
+
+let xDown = null;
+
+function getTouches(e) {
+	return e.touches;
+}
+
+function handleTouchStart(e) {
+	const firstTouch = getTouches(e)[0];
+	xDown = firstTouch.clientX;
+}
+
+function handleTouchMove(e) {
+	if (!xDown) {
+		return;
+	}
+
+	let xUp = e.touches[0].clientX;
+	let xDiff = xDown - xUp;
+
+	if (xDiff > 0 || xDiff < 0) {
+		console.log('swipe');
+		input.value = input.value.slice(0, -1);
+	}
+	xDown = null;
+}

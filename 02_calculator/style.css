@@ -54,10 +54,13 @@ body::after {
 	border-radius: 50%;
 	border: none;
 	font-size: 1.5rem;
+	cursor: pointer;
+	transition: background-color 500ms, color 500ms;
 }
 
-.btn:hover {
-	cursor: pointer;
+.btn.selected {
+	background-color: hsl(0, 0%, 93%) !important;
+	color: #000 !important;
 }
 
 .btn:nth-child(17) {
@@ -81,7 +84,7 @@ body::after {
 .btn:nth-child(12),
 .btn:nth-child(16),
 .btn:nth-child(19) {
-	background-color: rgb(255, 123, 0);
+	background-color: hsl(29, 100%, 50%);
 	color: #fff;
 	font-weight: 100;
 	font-size: 1.3rem;
@@ -98,7 +101,7 @@ body::after {
 .btn:nth-child(15),
 .btn:nth-child(17),
 .btn:nth-child(18) {
-	background-color: rgb(41, 41, 41);
+	background-color: hsl(0, 0%, 16%);
 	color: #fff;
 }
 
