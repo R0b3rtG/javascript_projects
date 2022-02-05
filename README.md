@@ -6,7 +6,7 @@
 | --- | --------------------------- | --------------------------------------------------------- | ----- |
 | 00  | Binary/Decimal Converter    | <https://r0b3rtg-binary-decimal-converter.netlify.app/>   | YES   |
 | 01  | Border Radius Preview       | <https://r0b3rtg-border-radius-preview.netlify.app/>      | YES   |
-| 02  | Calculator                  | <https://r0b3rtg-calculator.netlify.app/>                 | NO    |
+| 02  | Calculator                  | <https://r0b3rtg-calculator.netlify.app/>                 | YES   |
 | 03  | Christmas Lights            | <https://r0b3rtg-christmas-lights.netlify.app/>           | YES   |
 | 04  | Cause Effect                | <https://r0b3rtg-cause-effect.netlify.app/>               | YES   |
 | 05  | Color Cycle                 | <https://r0b3rtg-color-cycle.netlify.app/>                | NO    |
