@@ -32,30 +32,6 @@ playStopBtn.addEventListener('click', function () {
 	}
 });
 
-function restrictRed() {
-	if (inputRed.value.length < 2) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-function restrictGreen() {
-	if (inputGreen.value.length < 2) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-function restrictBlue() {
-	if (inputBlue.value.length < 2) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
 enterBtn.addEventListener('click', function () {
 	if (
 		inputRed.value !== '' ||
@@ -115,3 +91,9 @@ function checkInput() {
 		return false;
 	}
 }
+
+let resize = new ResizeObserver((enteries) => {
+	console.log(enteries);
+});
+
+resize.observe(document.body);

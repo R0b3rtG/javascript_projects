@@ -14,38 +14,39 @@
 		<title>Color Cycle</title>
 	</head>
 	<body>
-		<div class="colored-body">
-			<h1 class="moving-text">DVD</h1>
-		</div>
-		<div class="input-section">
-			<button class="play-stop-btn"><i class="fas fa-pause"></i></button>
-			<h4 class="info">Stop the animation and enter a color code</h4>
-			<div class="fields">
-				<input
-					type="text"
-					class="red"
-					readonly
-					onkeypress="return restrictRed()"
-					spellcheck="false"
-				/>
-				<input
-					type="text"
-					class="green"
-					readonly
-					onkeypress="return restrictGreen()"
-					spellcheck="false"
-				/>
-				<input
-					type="text"
-					class="blue"
-					readonly
-					onkeypress="return restrictBlue()"
-					spellcheck="false"
-				/>
+		<div class="main">
+			<div class="colored-body">
+				<h1 class="moving-text">DVD</h1>
 			</div>
-			<button class="enter">Enter Code</button>
+			<div class="input-section">
+				<button class="play-stop-btn"><i class="fas fa-pause"></i></button>
+				<h4 class="info">Stop the animation and enter a color code</h4>
+				<div class="fields">
+					<input
+						type="text"
+						class="red"
+						readonly
+						maxlength="2"
+						spellcheck="false"
+					/>
+					<input
+						type="text"
+						class="green"
+						readonly
+						maxlength="2"
+						spellcheck="false"
+					/>
+					<input
+						type="text"
+						class="blue"
+						readonly
+						maxlength="2"
+						spellcheck="false"
+					/>
+				</div>
+				<button class="enter">Enter Code</button>
+			</div>
 		</div>
-
 		<script src="app.js"></script>
 	</body>
 </html>
