@@ -6,12 +6,33 @@
 	box-sizing: border-box;
 }
 
+*::selection {
+	background-color: transparent;
+}
+
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	width: 100vw;
 	height: 100vh;
 	display: grid;
 	place-content: center;
+}
+
+.start-game-modal,
+.game,
+.end-game-modal {
+	display: grid;
+	place-content: center;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+}
+
+.end-game-modal {
+	background-color: #00000066;
+	color: #fff;
 }
 
 .info {
@@ -25,24 +46,43 @@ body {
 }
 
 .grid {
-	width: 400px;
-	height: 400px;
+	width: 350px;
+	height: 350px;
 	background-color: #000;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
 	gap: 0.2rem;
-	padding: 0.2rem;
+	padding: 0;
 }
 
 .cell {
+	cursor: pointer;
 	background-color: #fff;
 	display: grid;
 	place-content: center;
 }
 
+.cell.occupied {
+	cursor: default;
+}
+
 .X,
 .O {
-	font-size: 6rem;
+	font-size: 5rem;
 	text-align: center;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+.hidden {
+	display: none;
+}
+
+input::selection {
+	color: #fff;
+	background-color: #00f;
 }

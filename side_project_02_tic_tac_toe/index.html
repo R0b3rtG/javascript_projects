@@ -8,20 +8,45 @@
 		<title>TIC TAC TOE</title>
 	</head>
 	<body>
-		<div class="game-body">
-			<h2 class="info">Current Player: <span class="current-player"></span></h2>
-			<div class="grid">
-				<div class="cell" id="0-0"></div>
-				<div class="cell" id="0-1"></div>
-				<div class="cell" id="0-2"></div>
-				<div class="cell" id="1-0"></div>
-				<div class="cell" id="1-1"></div>
-				<div class="cell" id="1-2"></div>
-				<div class="cell" id="2-0"></div>
-				<div class="cell" id="2-1"></div>
-				<div class="cell" id="2-2"></div>
+		<div class="start-game-modal">
+			<h1>TIC TAC TOE</h1>
+			<p>Payer Names</p>
+			<form class="form">
+				<label for="player1-name">Player 1:</label>
+				<input class="p1-input" type="text" maxlength="15" value="Player1" />
+				<label for="player2-name">Player 2:</label>
+				<input class="p2-input" type="text" maxlength="15" value="Player2" />
+				<button type="submit" class="btn play-btn">Play</button>
+			</form>
+		</div>
+		<div class="game hidden">
+			<div class="game-body">
+				<h2 class="score-p1">
+					<span class="score-p1-name"></span>:
+					<span class="score-p1-value">0</span>
+				</h2>
+				<h2 class="score-p2">
+					<span class="score-p2-name"></span>:
+					<span class="score-p2-value">0</span>
+				</h2>
+				<h2 class="info">
+					Current Player: <span class="current-player"></span>
+				</h2>
+				<div class="grid">
+					<div class="cell" id="0-0"></div>
+					<div class="cell" id="0-1"></div>
+					<div class="cell" id="0-2"></div>
+					<div class="cell" id="1-0"></div>
+					<div class="cell" id="1-1"></div>
+					<div class="cell" id="1-2"></div>
+					<div class="cell" id="2-0"></div>
+					<div class="cell" id="2-1"></div>
+					<div class="cell" id="2-2"></div>
+				</div>
 			</div>
 		</div>
+
+		<div class="end-game-modal hidden"></div>
 
 		<script src="script.js"></script>
 	</body>
