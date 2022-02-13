@@ -20,23 +20,35 @@ const p1Input = document.querySelector('.p1-input');
 const p2Input = document.querySelector('.p2-input');
 
 const playBtn = document.querySelector('.play-btn');
+
+let player1Name;
+let player2Name;
+
 playBtn.addEventListener('click', (e) => {
 	e.preventDefault();
 
 	player1Name = `${p1Input.value} (X)`;
 	player2Name = `${p2Input.value} (O)`;
-	startGame(player1Name, player2Name);
+	startGame();
 });
 
 const currentPlayerDisplay = document.querySelector('.current-player');
 
-function startGame(player1Name, player2Name) {
+function startGame() {
 	let p1Score = 0;
 	let p2Score = 0;
+	const checkBox = document.querySelector('.rotation-toggle input');
+	const root = document.documentElement;
+	if (checkBox.checked) {
+		root.style.setProperty('--rotation-degrees', '180deg');
+	} else {
+		root.style.setProperty('--rotation-degrees', '0');
+	}
 	scoreP1Value.textContent = p1Score;
 	scoreP2Value.textContent = p2Score;
 	let currentPlayerName = player1Name;
 	currentPlayerDisplay.textContent = player1Name;
+	currentPlayerDisplay.classList.add('display-x-color');
 	scoreP1Name.textContent = player1Name;
 	scoreP2Name.textContent = player2Name;
 	startGameModal.classList.add('hidden');
@@ -56,8 +68,10 @@ function startGame(player1Name, player2Name) {
 	});
 
 	function doTurn(current, cell, cellsOccupied) {
+		document.body.classList.toggle('rotate');
 		currentPlayerName = current == 'X' ? player2Name : player1Name;
 		currentPlayerDisplay.textContent = currentPlayerName;
+		currentPlayerDisplay.classList.toggle('display-x-color');
 		const sign = document.createElement('span');
 		sign.classList.add(current);
 		sign.textContent = current;
@@ -69,6 +83,7 @@ function startGame(player1Name, player2Name) {
 		const gameState = checkWin(cellsOccupied).gameState;
 		const winner = checkWin(cellsOccupied).winner;
 		if (gameState == 'won') {
+			document.body.classList.remove('rotate');
 			updateScore(winner);
 			formatEndScreen(gameState, winner);
 			endGameModal.classList.remove('hidden');
@@ -76,6 +91,7 @@ function startGame(player1Name, player2Name) {
 			soundEffect.volume = 0.2;
 			soundEffect.play();
 		} else if (gameState == 'tie') {
+			document.body.classList.remove('rotate');
 			formatEndScreen(gameState, winner);
 			endGameModal.classList.remove('hidden');
 			const soundEffect = new Audio('./sounds/wah-wah.mp3');
@@ -99,18 +115,22 @@ function startGame(player1Name, player2Name) {
 		const title = document.createElement('h2');
 		title.classList.add('title');
 		if (gameState == 'won') {
-			title.textContent = winner == 'X' ? player1Name : player2Name;
-			title.textContent += ' won the game!';
+			let endMessage = `<span class="winner-${winner}">${
+				winner == 'X' ? player1Name : player2Name
+			}</span><br> won the game!`;
+			title.innerHTML = endMessage;
 		} else {
 			title.textContent = "It's a tie!";
 		}
 		endGameModal.append(title);
 
 		const replayBtn = document.createElement('button');
+		replayBtn.classList.add('end-btn');
 		replayBtn.classList.add('replay-btn');
 		replayBtn.textContent = 'Replay';
 
 		const resetBtn = document.createElement('button');
+		resetBtn.classList.add('end-btn');
 		resetBtn.classList.add('reset-btn');
 		resetBtn.textContent = 'Reset';
 
@@ -152,6 +172,7 @@ function startGame(player1Name, player2Name) {
 			cellsOccupied = 0;
 			currentPlayer = 'X';
 			currentPlayerDisplay.textContent = player1Name;
+			currentPlayerDisplay.classList.add('display-x-color');
 			endGameModal.textContent = '';
 		}
 	}

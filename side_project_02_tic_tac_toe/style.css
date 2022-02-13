@@ -1,21 +1,33 @@
+/* General */
 *,
 *::before,
 *::after {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'Play', sans-serif;
+}
+
+*:focus {
+	outline: none;
 }
 
 *::selection {
 	background-color: transparent;
 }
 
+:root {
+	--rotation-degrees: 180deg;
+	font-size: 20px;
+}
+
 body {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	width: 100vw;
 	height: 100vh;
 	display: grid;
 	place-content: center;
+	position: relative;
+	transition: transform 1s;
 }
 
 .start-game-modal,
@@ -30,30 +42,142 @@ body {
 	left: 0;
 }
 
-.end-game-modal {
-	background-color: #00000066;
-	color: #fff;
+.hidden {
+	display: none;
 }
 
-.info {
-	margin-bottom: 2rem;
+/* Start Game Screen */
+.title {
+	text-align: center;
+	font-weight: 700;
+	margin-bottom: 1rem;
 }
 
+.start-game-modal p {
+	text-align: center;
+	font-size: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.input {
+	font-size: 1rem;
+	padding: 0.2rem 0.5rem;
+	font-weight: 700;
+	border: #000 solid 2px;
+	border-radius: 0.7rem;
+	margin: 0.2rem 0 1rem 0;
+	text-align: center;
+	transition: transform 250ms, border-color 250ms, color 250ms;
+}
+
+.p1-input {
+	color: rgb(0, 0, 205);
+}
+
+.p1-input:focus {
+	border-color: rgb(0, 0, 205);
+	color: #000;
+}
+
+.p2-input:focus {
+	border-color: rgb(205, 0, 0);
+	color: #000;
+}
+
+.p2-input {
+	color: rgb(205, 0, 0);
+}
+
+.input:focus {
+	transform: scale(1.04);
+	background-color: #f4f4f4;
+}
+
+.input::selection {
+	background-color: #00000033;
+}
+
+.play-btn {
+	font-size: 1rem;
+	width: 50%;
+	background-color: #fff;
+	border: #000 solid 2px;
+	color: #000;
+	border-radius: 0.5rem;
+	padding: 0.1rem;
+	cursor: pointer;
+	transition: border-top-color 250ms 300ms, border-left-color 250ms 300ms,
+		border-bottom-color 250ms 300ms, border-right-color 250ms 300ms,
+		transform 250ms;
+}
+
+.play-btn:hover {
+	border-top-color: rgb(0, 0, 205);
+	border-left-color: rgb(0, 0, 205);
+	border-bottom-color: rgb(205, 0, 0);
+	border-right-color: rgb(205, 0, 0);
+	transform: scale(1.04);
+}
+
+.rotation-toggle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 0.5rem;
+}
+
+.rotation-toggle input {
+	margin-right: 0.2rem;
+	width: 14px;
+	height: 14px;
+}
+
+.rotation-toggle input:checked {
+	background-color: #fff;
+}
+
+/* Game Screen */
 .game-body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
+.score {
+	text-align: center;
+	font-size: 1.1rem;
+}
+
+.score-value {
+	font-weight: 700;
+}
+
+.current {
+	text-align: center;
+	font-size: 1.2rem;
+	margin: 1.5rem 0;
+}
+
+.current span {
+	color: rgb(205, 0, 0);
+}
+
 .grid {
-	width: 350px;
-	height: 350px;
-	background-color: #000;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
-	gap: 0.2rem;
-	padding: 0;
+	gap: 0.15rem;
+	width: 90vw;
+	max-width: 400px;
+	aspect-ratio: 1;
+	background-color: #000;
+	padding: 0.15rem;
 }
 
 .cell {
@@ -69,20 +193,71 @@ body {
 
 .X,
 .O {
-	font-size: 5rem;
+	font-size: 3.5rem;
 	text-align: center;
 }
 
-.form {
-	display: flex;
-	flex-direction: column;
+.X,
+.score-p1-name,
+.display-x-color {
+	color: rgb(0, 0, 205) !important;
 }
 
-.hidden {
-	display: none;
+.O,
+.score-p2-name {
+	color: rgb(205, 0, 0);
 }
 
-input::selection {
+/* End Game Screen */
+.end-game-modal {
+	background-color: #00000099;
+}
+
+.end-game-modal .title {
 	color: #fff;
-	background-color: #00f;
+}
+
+.winner-X {
+	color: #fff;
+	text-shadow: 0 0 15px rgb(0, 0, 205);
+}
+
+.winner-O {
+	color: #fff;
+	text-shadow: 0 0 15px rgb(205, 0, 0);
+}
+
+.end-buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.end-btn {
+	font-size: 0.9rem;
+	margin: 0 0.2rem;
+	color: #fff;
+	background-color: transparent;
+	border: #fff solid 2px;
+	border-radius: 0.5rem;
+	padding: 0.2rem 0.5rem;
+	cursor: pointer;
+	transition: border-top-color 250ms 300ms, border-left-color 250ms 300ms,
+		border-bottom-color 250ms 300ms, border-right-color 250ms 300ms,
+		transform 250ms;
+}
+
+.replay-btn:hover,
+.reset-btn:hover {
+	border-top-color: rgb(0, 0, 205);
+	border-left-color: rgb(0, 0, 205);
+	border-bottom-color: rgb(205, 0, 0);
+	border-right-color: rgb(205, 0, 0);
+	transform: scale(1.04);
+}
+
+@media (max-width: 450px) {
+	body.rotate {
+		transform: rotate(var(--rotation-degrees));
+	}
 }

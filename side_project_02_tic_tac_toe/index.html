@@ -4,33 +4,66 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- Font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+
 		<link rel="stylesheet" href="style.css" />
 		<title>TIC TAC TOE</title>
 	</head>
 	<body>
 		<div class="start-game-modal">
-			<h1>TIC TAC TOE</h1>
-			<p>Payer Names</p>
+			<h1 class="title">TIC TAC TOE</h1>
+			<p>Enter The Names Of The Players</p>
 			<form class="form">
 				<label for="player1-name">Player 1:</label>
-				<input class="p1-input" type="text" maxlength="15" value="Player1" />
+				<input
+					class="p1-input input"
+					type="text"
+					maxlength="11"
+					value="Player1"
+					id="player1-name"
+					placeholder="Player1"
+					autocomplete="off"
+					spellcheck="false"
+				/>
 				<label for="player2-name">Player 2:</label>
-				<input class="p2-input" type="text" maxlength="15" value="Player2" />
+				<input
+					class="p2-input input"
+					type="text"
+					maxlength="11"
+					value="Player2"
+					id="player2-name"
+					placeholder="Player2"
+					autocomplete="off"
+					spellcheck="false"
+				/>
+				<div class="rotation-toggle">
+					<input type="checkbox" name="rotation" id="rotation" checked />
+					<label for="rotation">Two Players Rotation On Phone</label>
+				</div>
 				<button type="submit" class="btn play-btn">Play</button>
 			</form>
 		</div>
+
 		<div class="game hidden">
 			<div class="game-body">
-				<h2 class="score-p1">
+				<h2 class="score-p1 score">
 					<span class="score-p1-name"></span>:
-					<span class="score-p1-value">0</span>
+					<span class="score-p1-value score-value">0</span>
 				</h2>
-				<h2 class="score-p2">
+				<h2 class="score-p2 score">
 					<span class="score-p2-name"></span>:
-					<span class="score-p2-value">0</span>
+					<span class="score-p2-value score-value">0</span>
 				</h2>
-				<h2 class="info">
-					Current Player: <span class="current-player"></span>
+				<h2 class="current">
+					Current Player: <br />
+					<span class="current-player"></span>
 				</h2>
 				<div class="grid">
 					<div class="cell" id="0-0"></div>
