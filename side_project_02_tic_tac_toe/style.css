@@ -175,7 +175,8 @@ body {
 	gap: 0.15rem;
 	width: 90vw;
 	max-width: 400px;
-	aspect-ratio: 1;
+	height: 90vw;
+	max-height: 400px;
 	background-color: #000;
 	padding: 0.15rem;
 }
