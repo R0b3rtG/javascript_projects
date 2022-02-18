@@ -9,7 +9,7 @@
 | 02  | Calculator                  | <https://r0b3rtg-calculator.netlify.app/>                 | YES   |
 | 03  | Christmas Lights            | <https://r0b3rtg-christmas-lights.netlify.app/>           | YES   |
 | 04  | Cause Effect                | <https://r0b3rtg-cause-effect.netlify.app/>               | YES   |
-| 05  | Color Cycle                 | <https://r0b3rtg-color-cycle.netlify.app/>                | NO    |
+| 05  | Color Cycle                 | <https://r0b3rtg-color-cycle.netlify.app/>                | YES   |
 | 06  | Coundown Timer              | <https://r0b3rtg-countdown-timer.netlify.app/>            | YES   |
 | 07  | CSV/JSON Converter          | <https://r0b3rtg-csv-json-converter.netlify.app/>         | NO    |
 | 08  | Dollars To Cents Converter  | <https://r0b3rtg-dollars-to-cents-converter.netlify.app/> | NO    |

@@ -91,9 +91,3 @@ function checkInput() {
 		return false;
 	}
 }
-
-let resize = new ResizeObserver((enteries) => {
-	console.log(enteries);
-});
-
-resize.observe(document.body);
