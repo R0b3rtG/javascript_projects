@@ -40,10 +40,10 @@ function displayForm() {
 })();
 
 function dotsAnim() {
-	if (dots.textContent === ' ') {
+	if (dots.textContent === '') {
 		dots.textContent = ':';
 	} else if (dots.textContent === ':') {
-		dots.textContent = ' ';
+		dots.textContent = '';
 	}
 }
 
