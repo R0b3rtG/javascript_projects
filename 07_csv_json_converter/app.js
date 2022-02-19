@@ -130,6 +130,9 @@ function validateCSV() {
 }
 
 function createAlert(text) {
+	if (document.querySelector('.alert') != null) {
+		document.querySelector('.alert').remove();
+	}
 	const alert = document.createElement('h1');
 	alert.classList.add('alert');
 	alert.textContent = text;

@@ -15,9 +15,22 @@ body {
 	place-content: center;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	background-color: #333;
+	background: url('./img/background.jpg') no-repeat center center / cover;
+	position: relative;
+}
+
+body::after {
+	content: '';
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #00000088;
 }
 
 .container {
+	z-index: 1;
 	display: flex;
 }
 
@@ -25,7 +38,7 @@ body {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	margin: 0 2rem;
+	margin: 1rem 3rem;
 	position: relative;
 }
 
@@ -33,8 +46,10 @@ body {
 	padding: 0.3rem 0.5rem;
 	border-radius: 10px;
 	border: none;
-	color: #333;
-	background-color: #fff;
+	color: #000;
+	font-size: 0.8rem;
+	font-weight: 600;
+	background-color: #eee;
 }
 
 .to-csv,
@@ -43,21 +58,80 @@ body {
 }
 
 textarea {
+	background-color: #c4c4c4;
 	resize: none;
 	border-radius: 10px;
 	border: none;
 	color: #000;
+	font-weight: 600;
+	font-size: 1rem;
 	padding: 0.5rem;
+	border-right: 2px solid #c4c4c4;
+}
+
+textarea::-webkit-scrollbar {
+	background-color: transparent;
+	width: 10px;
+	border-right: 4px transparent solid;
+}
+
+textarea::-webkit-scrollbar-button {
+	background-color: transparent;
+	height: 3px;
+}
+
+textarea::-webkit-scrollbar-track-piece {
+	border: 4px transparent solid;
+}
+
+textarea::-webkit-scrollbar-track-piece {
+	margin-inline: 15px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+	border-radius: 1rem;
+	background-color: #555;
+	border-right: 4px transparent solid;
+}
+
+textarea::-webkit-scrollbar-corner {
+	background-color: transparent;
 }
 
 .alert {
 	position: absolute;
-	bottom: 0;
-	color: #fff;
-	background-color: #333;
+	bottom: 1.5rem;
+	left: 50%;
+	transform: translateX(-50%);
+	color: #f00;
+	text-shadow: 0 0 3px #000;
+	background-color: transparent;
 	text-align: center;
 	padding: 0.5rem;
 	font-size: 1.1rem;
-	width: 100%;
-	height: 100px;
+	width: 300px;
+}
+
+@media (max-width: 325px) {
+	textarea {
+		font-size: 0.6rem !important;
+	}
+}
+
+@media (min-width: 330px) and (max-width: 420px) {
+	textarea {
+		font-size: 0.7rem !important;
+	}
+}
+
+@media (max-width: 1030px) {
+	textarea {
+		font-size: 1.2rem;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 }
