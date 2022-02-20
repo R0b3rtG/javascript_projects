@@ -49,7 +49,7 @@ body {
 	position: relative;
 	margin-top: 0.5rem;
 }
-
+/* 
 .moving-text {
 	color: #ddd;
 	font-size: 2.5rem;
@@ -62,7 +62,7 @@ body {
 	position: absolute;
 	top: 0;
 	left: 7%;
-}
+} */
 
 .input-section {
 	display: flex;
@@ -172,7 +172,7 @@ input {
 	animation-timing-function: ease-in-out;
 }
 
-@keyframes moving-text {
+/* @keyframes moving-text {
 	0% {
 		top: 0;
 		left: 7%;
@@ -227,7 +227,7 @@ input {
 		top: 0;
 		left: 7%;
 	}
-}
+} */
 
 @keyframes color {
 	0% {
