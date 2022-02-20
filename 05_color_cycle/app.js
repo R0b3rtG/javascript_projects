@@ -53,6 +53,7 @@
 			'#ff0000',
 		];
 		const info = document.querySelector('.info');
+
 		let index = 0;
 		let re = /^([a-f0-9]{2})$/i;
 
