@@ -1,35 +1,33 @@
-const images = [
-	'/img/ales-krivec-4miBe6zg5r0-unsplash.jpg',
-	'/img/pietro-de-grandi-T7K4aEPoGGk-unsplash.jpg',
-	'/img/robert-lukeman-_RBcxo9AU-U-unsplash.jpg',
-	'/img/sean-oulashin-KMn4VEeEPR8-unsplash.jpg',
-	'/img/ken-cheung-KonWFWUaAuk-unsplash.jpg',
-];
+const images = document.querySelectorAll('.image');
 
-let interval;
-let index = 0;
-let index2 = 1;
+const nextImage = () => {
+	const current = document.querySelector('.show');
+	if (current.nextElementSibling.classList.contains('image')) {
+		current.nextElementSibling.classList.add('show');
+	} else {
+		images[0].classList.add('show');
+	}
+	current.classList.remove('show');
+	clearInterval(interval);
+	interval = setInterval(nextImage, 10000);
+};
 
-const image = document.querySelector('.image');
-const nextImage = document.querySelector('.next-image');
+let interval = setInterval(nextImage, 10000);
 
-image.style.background = `url(${images[index]}) no-repeat center center / cover`;
-nextImage.style.background = `url(${images[index2]}) no-repeat center center / cover`;
+const prevImage = () => {
+	const current = document.querySelector('.show');
+	if (current.previousElementSibling.classList.contains('image')) {
+		current.previousElementSibling.classList.add('show');
+	} else {
+		images[images.length - 1].classList.add('show');
+	}
+	current.classList.remove('show');
+	clearInterval(interval);
+	interval = setInterval(nextImage, 10000);
+};
 
-function startInterval() {
-	interval = setInterval(() => {
-		index = index < 4 ? index + 1 : 0;
-		index2 = index2 < 4 ? index2 + 1 : 0;
-		image.classList.add('fade');
-		setTimeout(() => {
-			image.style.background = `url(${images[index]}) no-repeat center center / cover`;
-			setTimeout(() => {
-				image.style.opacity = 1;
-				image.classList.remove('fade');
-				nextImage.style.background = `url(${images[index2]}) no-repeat center center / cover`;
-			}, 1000);
-		}, 1000);
-	}, 5000);
-}
+const nextBtn = document.querySelector('.next-btn');
+nextBtn.addEventListener('click', nextImage);
 
-startInterval();
+const prevBtn = document.querySelector('.prev-btn');
+prevBtn.addEventListener('click', prevImage);

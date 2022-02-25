@@ -11,44 +11,84 @@
 }
 
 body {
+	width: 100vw;
+	height: 100vh;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.image,
-.next-image {
+.main-body {
+	width: 100vw;
+	height: 100vh;
+}
+
+.image {
 	position: absolute;
 	top: 0;
 	left: 0;
-	min-height: 100vh;
-	min-width: 100vw;
+	opacity: 0;
+	transition: all 2000ms;
+}
+
+.show {
 	opacity: 1;
-	transition: opacity 500ms;
+	z-index: 1;
+}
+
+.image1 {
+	background: url('./img/ales-krivec-4miBe6zg5r0-unsplash.jpg') no-repeat center
+		center / cover;
+	width: 100%;
+	height: 100%;
+}
+
+.image2 {
+	background: url('./img/ken-cheung-KonWFWUaAuk-unsplash.jpg') no-repeat center
+		center / cover;
+	width: 100%;
+	height: 100%;
+}
+
+.image3 {
+	background: url('./img/pietro-de-grandi-T7K4aEPoGGk-unsplash.jpg') no-repeat
+		center center / cover;
+	width: 100%;
+	height: 100%;
+}
+
+.image4 {
+	background: url('./img/robert-lukeman-_RBcxo9AU-U-unsplash.jpg') no-repeat
+		center center / cover;
+	width: 100%;
+	height: 100%;
+}
+
+.image5 {
+	background: url('./img/sean-oulashin-KMn4VEeEPR8-unsplash.jpg') no-repeat
+		center center / cover;
+	width: 100%;
+	height: 100%;
 }
 
 .btn {
-	font-size: 3rem;
+	font-size: 2rem;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
 	text-align: center;
-	padding: 0.5rem;
-	line-height: 2.5rem;
 	border-radius: 50%;
+	padding: 0.5rem;
+	line-height: 0;
 	border: none;
-	background: #ffffffaa;
+	background: #ffffff77;
 	color: #000;
 	cursor: pointer;
-	z-index: 4;
+	z-index: 2;
 }
 
-.btn-left {
+.prev-btn {
 	left: 30px;
 }
 
-.btn-right {
+.next-btn {
 	right: 30px;
-}
-
-.fade {
-	opacity: 0;
 }
