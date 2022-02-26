@@ -1,0 +1,107 @@
+*,
+*:before,
+*:after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: grid;
+	place-content: center;
+	background-color: #e0e0e0;
+	width: 100vw;
+	height: 100vh;
+}
+
+.main {
+	width: 100vw;
+	max-width: 300px;
+	height: 100vh;
+	max-height: 500px;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.clock-container {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+}
+
+.btn {
+	background-color: transparent;
+	border: 2px #000 solid;
+	color: #000;
+	font-weight: bold;
+	font-size: 1.3rem;
+	padding: 0.3em 0.5em;
+	border-radius: 1em;
+	cursor: pointer;
+}
+
+.outside-line,
+.arrow-line {
+	width: 2px;
+	height: 100%;
+	position: absolute;
+	left: 50%;
+	top: 0;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.arrow-line {
+	animation-duration: 60s;
+	animation-name: arrowRotation;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-delay: 600ms;
+	animation-play-state: paused;
+}
+
+.arrow {
+	width: 0px;
+	height: 0px;
+	border-bottom: 10px #000 solid;
+	border-right: 10px #000 solid;
+	border-top: 10px transparent solid;
+	border-left: 10px transparent solid;
+	transform: rotate(45deg) translateY(-20px) translateX(-20px);
+}
+
+.inside-line {
+	width: 2px;
+	height: 10px;
+	background-color: rgba(0, 0, 0, 0.5);
+	justify-self: flex-start;
+}
+
+.outside-line.opaque > .inside-line {
+	background-color: rgba(0, 0, 0, 1);
+}
+
+.outside-line:nth-child(5n + 1) > .inside-line {
+	height: 20px;
+}
+
+.outside-line:nth-child(15n + 1) > .inside-line {
+	height: 30px;
+}
+
+@keyframes arrowRotation {
+	0% {
+		transform: rotate(0);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}

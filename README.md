@@ -29,7 +29,8 @@
 | 22  | Random Meal Generator       | <https://r0b3rtg-random-meal-generator.netlify.app/>      | NO    |
 | 23  | Random Number Generator     | <https://r0b3rtg-random-number-generator.netlify.app/>    | NO    |
 | 24  | Roman/Decimal Converter     | <https://r0b3rtg-roman-decimal-converter.netlify.app/>    | NO    |
-| 25  | Image Slideshow             | <https://r0b3rtg-image-slideshow.netlify.app/>            | NO    |
+| 25  | Image Slideshow             | <https://r0b3rtg-image-slideshow.netlify.app/>            | YES   |
+| 26  | StopWatch                   | <https://r0b3rtg-stopwatch.netlify.app>                   | NO    |
 
 ## Side Projects
 
