@@ -11,6 +11,18 @@
 			crossorigin="anonymous"
 		/>
 		<link rel="stylesheet" href="style.css" />
+		<script
+			src="https://kit.fontawesome.com/3a3420d1ec.js"
+			crossorigin="anonymous"
+			defer
+		></script>
+		<link
+			rel="stylesheet"
+			id="fontawesome-css"
+			href="https://use.fontawesome.com/releases/v5.0.1/css/all.css?ver=4.9.1"
+			type="text/css"
+			media="all"
+		/>
 		<title>Dynamic CSS Vars</title>
 	</head>
 	<body>
@@ -18,28 +30,49 @@
 			<div class="log-in">
 				<h2 class="title">SIGN UP</h2>
 				<form class="form">
+					<label>Name</label>
+					<div class="name-div">
+						<!-- <i class="fa-solid fa-circle-user"></i> -->
+						<input
+							type="text"
+							placeholder="Name"
+							class="name-input"
+							autocomplete="off"
+						/>
+					</div>
 					<label>Email</label>
-					<input
-						type="email"
-						placeholder="Email"
-						class="email-input"
-						autocomplete="new-password"
-					/>
+					<div class="email-div">
+						<!-- <i class="fa-solid fa-envelope"></i> -->
+						<input
+							type="email"
+							placeholder="E-mail"
+							class="email-input"
+							autocomplete="off"
+						/>
+					</div>
 					<label>Password</label>
 					<div class="password-div">
+						<i class="fa fa-solid fa-lock"></i>
 						<input
 							type="password"
 							placeholder="Password"
 							class="password-input"
-							autocomplete="new-password"
+							autocomplete="off"
 						/>
 						<i class="far fa-eye-slash"></i>
+						<!-- <i class="fa-solid fa-bars fa hamburger hidden"></i> -->
 					</div>
 				</form>
-				<button class="btn" onclick="signUp()">SIGN UP</button>
+				<button class="btn">SIGN UP</button>
 			</div>
 		</div>
 
 		<script src="app.js"></script>
 	</body>
 </html>
+
+<!-- 
+  <i class="fa-solid fa-circle-user"></i> 
+  <i class="fa-solid fa-lock"></i>
+  <i class="fa-solid fa-envelope"></i>
+-->

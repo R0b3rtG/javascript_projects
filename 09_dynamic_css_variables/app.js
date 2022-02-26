@@ -11,6 +11,8 @@ let root = document.querySelector(':root');
 let testEmail;
 let testPassword;
 
+// onclick = 'signUp()';
+
 function signUp() {
 	testEmail = emailInput.value;
 	testPassword = passwordInput.value;
