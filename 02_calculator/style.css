@@ -8,6 +8,10 @@
 	outline: none;
 }
 
+html {
+	background-color: #000;
+}
+
 body {
 	background-color: #000;
 	background: url('./img/wallpaper.jpg') no-repeat center center / cover;
