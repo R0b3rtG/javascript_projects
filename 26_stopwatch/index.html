@@ -5,6 +5,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+			rel="stylesheet"
+		/>
 		<script src="script.js" defer></script>
 		<title>Document</title>
 	</head>
@@ -72,9 +80,23 @@
 				<div class="outside-line"><div class="inside-line"></div></div>
 				<div class="outside-line"><div class="inside-line"></div></div>
 				<div class="arrow-line"><div class="arrow"></div></div>
+				<div class="time-container">
+					<span class="minutes">00</span>
+					:
+					<span class="seconds">00</span>
+					.
+					<span class="milliseconds">00</span>
+				</div>
 			</div>
-			<div class="buttons">
+			<div class="buttons-container">
 				<button class="start-timer-btn btn">Start</button>
+				<button class="pause-timer-btn btn" disabled>Pause</button>
+				<button class="lap-btn btn" disabled>Lap</button>
+				<button class="resume-timer-btn btn" disabled>Resume</button>
+				<button class="reset-timer-btn btn" disabled>Reset</button>
+			</div>
+			<div class="laps-div">
+				<div id="bottom"></div>
 			</div>
 		</div>
 	</body>
