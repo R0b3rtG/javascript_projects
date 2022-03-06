@@ -54,6 +54,8 @@ function startInterval() {
 		time = formatTime(time);
 		let element = createLapElement(time, lapIndex);
 		lapsDiv.insertBefore(element, lapsDiv.firstChild);
+		lapsContainer.classList.remove('hidden');
+		clearLapsBtn.removeAttribute('disabled');
 	}
 	lapBtn.onclick = makeLap;
 
@@ -149,15 +151,8 @@ function resetTimer() {
 	arrow.style.transform = 'rotate(0)';
 	const opaqueLines = document.querySelectorAll('.outside-line.opaque');
 	// console.log(opaqueLines);
-	lapIndex = 1;
-
 	arr = [];
-
-	const bottomLapsDiv = document.createElement('div');
-	bottomLapsDiv.classList.add('bottom');
-	lapsDiv.textContent = '';
-	lapsDiv.append(bottomLapsDiv);
-
+	clearLaps();
 	let i = opaqueLines.length - 1;
 	let resetLinesInterval = setInterval(() => {
 		if (i >= 0) {
@@ -182,4 +177,19 @@ function resumeTimer() {
 	pauseBtn.removeAttribute('disabled');
 	lapBtn.removeAttribute('disabled');
 	startInterval();
+}
+
+const clearLapsBtn = document.querySelector('.clear-laps-btn');
+clearLapsBtn.onclick = clearLaps;
+
+const lapsContainer = document.querySelector('.laps-container');
+
+function clearLaps() {
+	lapIndex = 1;
+	const bottomLapsDiv = document.createElement('div');
+	bottomLapsDiv.classList.add('bottom');
+	lapsDiv.textContent = '';
+	lapsDiv.append(bottomLapsDiv);
+	clearLapsBtn.setAttribute('disabled', 'true');
+	lapsContainer.classList.add('hidden');
 }

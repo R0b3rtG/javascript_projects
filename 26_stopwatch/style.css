@@ -18,9 +18,15 @@ body {
 
 .main {
 	width: 100vw;
-	max-width: 300px;
-	/* height: 100vh;
-	max-height: 500px; */
+	max-width: 1000px;
+	display: flex;
+	justify-content: center;
+	/* flex-direction: column; */
+	gap: 5rem;
+	flex-wrap: wrap;
+}
+
+.main-container {
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
@@ -28,6 +34,7 @@ body {
 
 .clock-container {
 	position: relative;
+	min-width: 300px;
 	width: 100%;
 	aspect-ratio: 1;
 	display: grid;
@@ -60,6 +67,11 @@ body {
 	border-radius: 1em;
 	cursor: pointer;
 	width: 100%;
+	transition: transform 0.5s;
+}
+
+.btn:hover {
+	transform: scale(1.05);
 }
 
 .outside-line,
@@ -114,12 +126,20 @@ body {
 	display: none;
 }
 
+.laps-container {
+	min-width: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 1rem;
+}
+
 .laps-div {
 	scroll-behavior: smooth;
 	padding: 0.2rem 1rem;
 	overflow-y: scroll;
-	height: 200px;
-	border: 2px #fff solid;
+	height: 300px;
+	/* border: 2px #fff solid; */
 	border-radius: 0.75rem;
 	display: flex;
 	flex-direction: column;
@@ -175,4 +195,8 @@ body::-webkit-scrollbar-thumb {
 #bottom {
 	width: 100%;
 	height: 1px;
+}
+
+.laps-container.hidden {
+	display: none;
 }
