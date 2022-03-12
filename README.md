@@ -31,12 +31,12 @@
 | 24  | Roman/Decimal Converter     | <https://r0b3rtg-roman-decimal-converter.netlify.app/>    | NO    |
 | 25  | Image Slideshow             | <https://r0b3rtg-image-slideshow.netlify.app/>            | YES   |
 | 26  | StopWatch                   | <https://r0b3rtg-stopwatch.netlify.app>                   | YES   |
-| 27  | Word Frequency              | <https://r0b3rtg-word-frequency.netlify.app>              | NO    |
+| 27  | Word Frequency              | <https://r0b3rtg-word-frequency.netlify.app>              | YES   |
 
 ## Side Projects
 
 | ID  | Project Name         | Link                                                | Done?  |
 | --- | -------------------- | --------------------------------------------------- | ------ |
-| 00  | Password Generator   | <https://r0b3rtg-password-generator.netlify.app/>   | Almost |
+| 00  | Password Generator   | <https://r0b3rtg-password-generator.netlify.app/>   | NO     |
 | 01  | Number Guessing Game | <https://r0b3rtg-number-guessing-game.netlify.app/> | NO     |
 | 02  | Tic Tac Toe          | <https://r0b3rtg-tic-tac-toe.netlify.app/>          | YES    |
