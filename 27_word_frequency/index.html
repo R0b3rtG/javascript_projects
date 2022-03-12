@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+		<script src="script.js" defer></script>
+		<title>Word Frequency</title>
+	</head>
+	<body>
+		<div class="container">
+			<h1 class="title">Word Counter</h1>
+			<textarea
+				name="textarea"
+				id="textarea"
+				class="textarea"
+				spellcheck="false"
+				placeholder="Enter Your Text Here"
+			></textarea>
+			<button class="btn">Get Results</button>
+			<div class="results hidden">
+				<h2 class="title">Most frequent words</h2>
+				<canvas id="word-chart" width="400" height="400"></canvas>
+				<h2 class="title">Words found</h2>
+				<div class="general-results">
+					<span class="word-count"
+						>Word Count: <span class="word-count-number"></span>
+					</span>
+					<span class="char-count"
+						>Char Count: <span class="char-count-number"></span>
+					</span>
+				</div>
+				<div class="words-div"></div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -30,7 +30,8 @@
 | 23  | Random Number Generator     | <https://r0b3rtg-random-number-generator.netlify.app/>    | NO    |
 | 24  | Roman/Decimal Converter     | <https://r0b3rtg-roman-decimal-converter.netlify.app/>    | NO    |
 | 25  | Image Slideshow             | <https://r0b3rtg-image-slideshow.netlify.app/>            | YES   |
-| 26  | StopWatch                   | <https://r0b3rtg-stopwatch.netlify.app>                   | NO    |
+| 26  | StopWatch                   | <https://r0b3rtg-stopwatch.netlify.app>                   | YES   |
+| 27  | Word Frequency              | <https://r0b3rtg-word-frequency.netlify.app>              | NO    |
 
 ## Side Projects
 
