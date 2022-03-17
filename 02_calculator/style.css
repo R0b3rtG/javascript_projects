@@ -31,7 +31,7 @@ body::after {
 	top: 0;
 	left: 0;
 	background-color: rgba(0, 0, 0, 0.6);
-	z-index: -1;
+	z-index: 1;
 }
 
 .calc-body {
@@ -43,6 +43,7 @@ body::after {
 	width: 340px;
 	height: 500px;
 	border-radius: 10px;
+	z-index: 2;
 }
 
 .buttons {
