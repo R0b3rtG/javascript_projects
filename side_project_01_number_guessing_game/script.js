@@ -11,7 +11,11 @@ const attemptsTxt = document.querySelectorAll('.number-of-attempts'),
 const startGameForm = document.querySelector('.start-game-form');
 startGameForm.onsubmit = startGame;
 
-let attempts, number, min, max;
+let attempts,
+	number,
+	min,
+	max,
+	waiting = false;
 
 function startGame(e) {
 	e.preventDefault();
@@ -53,26 +57,32 @@ const dice = document.querySelector('.dice');
 
 function checkInput(e) {
 	e.preventDefault();
-	dice.style.display = 'block';
-	setTimeout(() => {
-		dice.style.display = 'none';
-		if (parseInt(input.value) >= min && parseInt(input.value) <= max) {
-			attempts++;
-			attemptsTxt.forEach((element) => (element.textContent = attempts));
-			checkIfWon(parseInt(input.value));
-		} else {
-			warning.textContent = `Enter a number between ${min} and ${max}`;
-			input.select();
-		}
-	}, 1000);
+	if (!waiting) {
+		dice.style.display = 'block';
+		waiting = true;
+		setTimeout(() => {
+			dice.style.display = 'none';
+			if (parseInt(input.value) >= min && parseInt(input.value) <= max) {
+				attempts++;
+				attemptsTxt.forEach((element) => (element.textContent = attempts));
+				checkIfWon(parseInt(input.value));
+			} else {
+				warning.textContent = `Enter a number between ${min} and ${max}`;
+				input.select();
+			}
+			waiting = false;
+		}, 1000);
+	}
 }
 
-function checkIfWon(input) {
-	if (number == input) {
+function checkIfWon(inputValue) {
+	if (number == inputValue) {
 		youWon();
 	} else {
-		if (number < input) warning.textContent = 'Wrong! Enter a lower number';
-		if (number > input) warning.textContent = 'Wrong! Enter a higher number';
+		if (number < inputValue)
+			warning.textContent = 'Wrong! Enter a lower number';
+		if (number > inputValue)
+			warning.textContent = 'Wrong! Enter a higher number';
 		input.select();
 	}
 }
