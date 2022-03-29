@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Checkout Page</title>
+		<script
+			src="https://kit.fontawesome.com/3a3420d1ec.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<div class="main">
+			<h1 class="title">Checkout Page</h1>
+			<div class="container">
+				<ul class="products"></ul>
+				<div class="shopping-cart">
+					<h2 style="display: none">No products in your shopping cart</h2>
+					<h2>Products in your shopping cart</h2>
+					<div class="grid">
+						<div class="header">
+							<span>Product</span>
+							<span>Quantity</span>
+							<span>Value</span>
+						</div>
+						<div class="prod">
+							<span
+								>Product Number 1 <i class="fa-solid fa-circle-info"></i>
+								<span class="hover-info"
+									>This is short description about this awesome product that
+									only appears on hover.</span
+								></span
+							>
+							<span><input type="text" maxlength="2" /></span>
+							<span>&dollar;120.00</span>
+						</div>
+					</div>
+					<p class="total-price">Total: <span>&dollar;120.00</span></p>
+					<button class="continue-btn btn">Continue</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="index.js"></script>
+	</body>
+</html>
