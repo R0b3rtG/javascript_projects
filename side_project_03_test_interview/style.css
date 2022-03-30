@@ -6,6 +6,10 @@
 	padding: 0;
 }
 
+.hidden {
+	display: none !important;
+}
+
 body {
 	background-color: #f8f9fb;
 	display: grid;
@@ -150,6 +154,7 @@ body {
 .prod i:hover + .hover-info {
 	display: block;
 	opacity: 1;
+	z-index: 2;
 }
 
 .header span:not(:first-child),
@@ -183,4 +188,25 @@ body {
 	font-size: 1.3rem;
 	padding-block: 0.7em;
 	margin-top: 1.5rem;
+}
+
+.delete-cart-item-btn {
+	background-color: transparent;
+	border: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #f00;
+	font-size: 1rem;
+	cursor: pointer;
+	display: none;
+}
+
+.prod:hover > .delete-cart-item-btn {
+	display: block;
+}
+
+.delete-cart-item-btn:hover {
+	text-decoration: underline;
 }
