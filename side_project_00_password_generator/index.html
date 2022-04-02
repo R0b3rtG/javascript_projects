@@ -10,8 +10,19 @@
 	</head>
 	<body>
 		<div class="container">
-			<button class="btn">Get password</button>
-			<h1 class="password"></h1>
+			<div class="alert alert-red">You already saved this password, silly!</div>
+			<div class="alert alert-green">
+				The password has been copied to your clipboard.
+			</div>
+			<div class="upper-div">
+				<button class="btn get-password-btn">Get password</button>
+				<input type="text" readonly class="password hidden" />
+				<button class="btn save-password-btn hidden">Save Password</button>
+			</div>
+			<div class="lower-div hidden">
+				<h2 class="title">Saved Passwords</h2>
+				<ul class="password-list"></ul>
+			</div>
 		</div>
 	</body>
 </html>

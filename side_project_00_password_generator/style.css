@@ -4,14 +4,47 @@
 	box-sizing: border-box;
 }
 
+*:focus {
+	outline: none;
+}
+
 body {
+	overflow-x: hidden;
 	display: grid;
 	place-content: center;
-	height: 100vh;
+	min-height: 100vh;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.container {
+	padding: 2rem;
+	width: 100vw;
+	max-width: 700px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 3rem;
+	min-height: 100vh;
+}
+
+.upper-div,
+.lower-div {
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+.title {
+	text-decoration: underline;
+	text-align: center;
+}
+
 .btn {
+	cursor: pointer;
 	border: 2px solid #000;
 	color: #000;
 	padding: 0.5rem;
@@ -19,16 +52,99 @@ body {
 	font-size: 1rem;
 	font-weight: 600;
 	text-align: center;
-	background-color: #fff;
+	background-color: transparent;
 }
 
 .password {
 	text-align: center;
-	padding: 1rem;
+	font-size: 2rem;
+	font-weight: 700;
+	width: 100%;
 }
 
-div {
+input {
+	border: none;
+	background-color: transparent;
+}
+
+.password-list {
+	width: 100vw;
 	display: flex;
 	flex-direction: column;
+	list-style: none;
 	align-items: center;
+	gap: 0.5rem;
+}
+
+.password-li {
+	width: 100vw;
+	max-width: 290px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid #000;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+}
+
+.password-li .options {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	align-items: center;
+}
+
+.password-text {
+	font-size: 1em;
+}
+
+.copy {
+	color: #0f0;
+	font-size: 1.1rem;
+}
+
+.del {
+	color: #f00;
+	font-weight: 700;
+	font-size: 1.3rem;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.secondary-btn {
+	font-family: monospace;
+	cursor: pointer;
+	border: none;
+	text-align: center;
+	background-color: transparent;
+}
+
+*.hidden {
+	display: none;
+}
+
+.alert {
+	position: absolute;
+	top: 15px;
+	padding: 1rem;
+	color: #fff;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	transform: translateY(-130%);
+	transition: transform 1000ms ease-in-out;
+}
+
+.alert-red {
+	background-color: rgb(240, 102, 102);
+	border: #f00 solid 2px;
+}
+
+.alert-green {
+	background-color: rgb(135, 243, 131);
+	border: rgb(0, 235, 0) solid 2px;
+}
+
+.alert.show {
+	transform: translateY(0);
 }
