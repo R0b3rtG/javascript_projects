@@ -1,4 +1,4 @@
-const arrow = document.querySelector('.faq-container');
+const faq = document.querySelector('.faq-container');
 
 faq.addEventListener('click', function (e) {
 	if (e.target.classList.contains('fa-chevron-up')) {
@@ -18,8 +18,41 @@ faq.addEventListener('click', function (e) {
 	}
 });
 
-const form = document.querySelector('form');
+const form = document.querySelector('.contact-form');
 
 form.addEventListener('submit', function (e) {
 	e.preventDefault();
+
+	checkInput();
 });
+
+const input = document.querySelector('.contact-input');
+
+function checkInput() {
+	re = /^[0-9a-zA-Z]+@(gmail|outlook|hotmail).(com|ro|ru)$/;
+  showAlert(re.test(input.value));
+}
+
+const section4 = document.querySelector('.sec-4');
+
+let alertBox;
+function showAlert(succeeded) {
+  if(alertBox != null || alertBox != undefined) {
+    alertBox.remove();
+  }
+  alertBox = document.createElement('div');
+  alertBox.classList.add('alert-box');
+  if(succeeded){
+    alertBox.textContent = 'Check your email inbox for confirmation';
+    alertBox.classList.add('alert-succeeded');
+  }
+  else {
+    alertBox.textContent = 'Please check if your email is entered correctly';
+    alertBox.classList.add('alert-did-not-succeed');
+  }
+  section4.insertBefore(alertBox, form);
+  setTimeout(() => {
+    alertBox.remove();
+    alertBox = null;
+  }, 5000)
+}
