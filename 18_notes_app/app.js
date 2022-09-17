@@ -384,14 +384,14 @@ notesContainer.addEventListener('click', function (e) {
 	});
 });
 
+const editBtn = document.querySelector('.edit-btn');
+const saveBtn = document.querySelector('.save-btn');
+const cancelEditBtn = document.querySelector('.cancel-edit-btn');
+
 const backBtn = document.querySelector('.back-btn');
 const colorsTitle = document.querySelector('.colors-label');
 const colorsList = document.querySelector('.colors-view');
 const hexCodeView = document.querySelector('#hex-color-view');
-
-const editBtn = document.querySelector('.edit-btn');
-const saveBtn = document.querySelector('.save-btn');
-const cancelEditBtn = document.querySelector('.cancel-edit-btn');
 
 const viewColorsDiv = document.querySelector('.colors-view');
 const redView = document.querySelector('.red-view');
