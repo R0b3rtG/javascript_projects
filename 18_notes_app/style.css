@@ -23,7 +23,7 @@ body {
 	justify-content: right;
 	align-items: center;
 	background-color: #fbbc04;
-	padding: 0.5rem 0;
+	padding: 0.5rem;
 	position: fixed;
 	width: 100%;
 }
@@ -274,6 +274,7 @@ main {
 	border-radius: 50%;
 	border: 1px solid #000;
 	transform: scale(1);
+	cursor: pointer;
 }
 
 #hex-color {
@@ -290,7 +291,9 @@ main {
 	margin-bottom: 0.6rem;
 }
 
-.selected {
+.selected,
+.color:hover,
+.color-view:hover {
 	border-width: 2px;
 	transform: scale(1.2);
 }

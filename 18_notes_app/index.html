@@ -1,67 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="style.css" />
-		<!-- Favicon -->
-		<link
-			rel="apple-touch-icon"
-			sizes="180x180"
-			href="favicon/apple-touch-icon.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="32x32"
-			href="favicon/favicon-32x32.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="16x16"
-			href="favicon/favicon-16x16.png"
-		/>
-		<link rel="manifest" href="favicon/site.webmanifest" />
-		<!-- Font Awesome -->
-		<link
-			rel="stylesheet"
-			href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-			integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-			crossorigin="anonymous"
-		/>
 
-		<title>NotesPro</title>
-	</head>
-	<body>
-		<nav class="navbar">
-			<h1 class="title">NotesPro</h1>
-			<div class="add-div">
-				<i class="far fa-plus-square"></i>
-			</div>
-		</nav>
-		<main id="main">
-			<div class="back-thing" style="display: none">
-				<div class="input-prompt" style="display: none">
-					<h2 class="prompt-title">Create a note</h2>
-					<form class="form">
-						<label for="note-title-q" class="title-label">Title</label>
-						<input
-							type="text"
-							name="note-title-q"
-							id="note-title-q"
-							spellcheck="false"
-						/>
-						<label>Choose Theme Color</label>
-						<div class="colors">
-							<div class="color red" style="background-color: #f00"></div>
-							<div class="color blue" style="background-color: #00f"></div>
-							<div class="color green" style="background-color: #0f0"></div>
-							<div class="color yellow" style="background-color: #ff0"></div>
-							<div
-								class="color choose"
-								style="
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
+  <link rel="manifest" href="favicon/site.webmanifest" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+
+  <title>NotesApp</title>
+</head>
+
+<body>
+  <nav class="navbar">
+    <h1 class="title">NotesApp</h1>
+    <div class="add-div">
+      <i class="far fa-plus-square"></i>
+    </div>
+  </nav>
+  <main id="main">
+    <div class="back-thing" style="display: none">
+      <div class="input-prompt" style="display: none">
+        <h2 class="prompt-title">Create a note</h2>
+        <form class="form">
+          <label for="note-title-q" class="title-label">Title</label>
+          <input type="text" name="note-title-q" id="note-title-q" spellcheck="false" />
+          <label>Choose Theme Color</label>
+          <div class="colors">
+            <div class="color red" style="background-color: #f00"></div>
+            <div class="color blue" style="background-color: #00f"></div>
+            <div class="color green" style="background-color: #0f0"></div>
+            <div class="color yellow" style="background-color: #ff0"></div>
+            <div class="color choose" style="
 									background: linear-gradient(
 										90deg,
 										#f00,
@@ -73,67 +50,31 @@
 										#f0f,
 										#f0f
 									);
-								"
-							></div>
-						</div>
-						<input
-							type="text"
-							id="hex-color"
-							placeholder="Hex Code"
-							spellcheck="false"
-							maxlength="7"
-							readonly
-						/>
-						<textarea
-							name="note-text"
-							id="note-text"
-							cols="30"
-							rows="10"
-							placeholder="Note Here"
-							spellcheck="false"
-						></textarea>
-						<div class="buttons">
-							<button type="submit" class="submit-btn btn">Create</button>
-							<button class="cancel-btn btn">Cancel</button>
-						</div>
-					</form>
-				</div>
-			</div>
+								"></div>
+          </div>
+          <input type="text" id="hex-color" placeholder="Hex Code" spellcheck="false" maxlength="7" readonly />
+          <textarea name="note-text" id="note-text" cols="30" rows="10" placeholder="Note Here"
+            spellcheck="false"></textarea>
+          <div class="buttons">
+            <button type="submit" class="submit-btn btn">Create</button>
+            <button class="cancel-btn btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-			<div class="back-thing-view" style="display: none">
-				<div class="view-edit" style="display: none">
-					<form class="form-view">
-						<label for="note-title-q" class="title-label">Title</label>
-						<input
-							type="text"
-							name="note-title-q"
-							id="note-title-q-view"
-							spellcheck="false"
-							readonly
-						/>
-						<label class="colors-label" style="display: none"
-							>Choose Theme Color</label
-						>
-						<div class="colors-view" style="display: none">
-							<div
-								class="color-view red-view"
-								style="background-color: #f00"
-							></div>
-							<div
-								class="color-view blue-view"
-								style="background-color: #00f"
-							></div>
-							<div
-								class="color-view green-view"
-								style="background-color: #0f0"
-							></div>
-							<div
-								class="color-view yellow-view"
-								style="background-color: #ff0"
-							></div>
-							<div
-								class="color-view choose-view"
-								style="
+    <div class="back-thing-view" style="display: none">
+      <div class="view-edit" style="display: none">
+        <form class="form-view">
+          <label for="note-title-q" class="title-label">Title</label>
+          <input type="text" name="note-title-q" id="note-title-q-view" spellcheck="false" readonly />
+          <label class="colors-label" style="display: none">Choose Theme Color</label>
+          <div class="colors-view" style="display: none">
+            <div class="color-view red-view" style="background-color: #f00"></div>
+            <div class="color-view blue-view" style="background-color: #00f"></div>
+            <div class="color-view green-view" style="background-color: #0f0"></div>
+            <div class="color-view yellow-view" style="background-color: #ff0"></div>
+            <div class="color-view choose-view" style="
 									background: linear-gradient(
 										90deg,
 										#f00,
@@ -145,46 +86,32 @@
 										#f0f,
 										#f0f
 									);
-								"
-							></div>
-						</div>
-						<input
-							type="text"
-							id="hex-color-view"
-							placeholder="Hex Code"
-							spellcheck="false"
-							maxlength="7"
-							readonly
-							style="display: none"
-						/>
-						<textarea
-							name="note-text"
-							id="note-text-view"
-							cols="30"
-							rows="10"
-							placeholder="Note Here"
-							spellcheck="false"
-							readonly
-						></textarea>
-						<div class="buttons-view">
-							<button class="edit-btn btn">
-								<i class="fas fa-pencil-alt"></i>
-							</button>
-							<button class="save-btn btn" style="display: none">Save</button>
-							<button class="back-btn btn">Back</button>
-							<button class="cancel-edit-btn btn" style="display: none">
-								Cancel
-							</button>
-						</div>
-					</form>
-				</div>
-			</div>
+								"></div>
+          </div>
+          <input type="text" id="hex-color-view" placeholder="Hex Code" spellcheck="false" maxlength="7" readonly
+            style="display: none" />
+          <textarea name="note-text" id="note-text-view" cols="30" rows="10" placeholder="Note Here" spellcheck="false"
+            readonly></textarea>
+          <div class="buttons-view">
+            <button class="edit-btn btn">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="save-btn btn" style="display: none">Save</button>
+            <button class="back-btn btn">Back</button>
+            <button class="cancel-edit-btn btn" style="display: none">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-			<div class="container">
-				<!-- Notes Content -->
-			</div>
-		</main>
+    <div class="container">
+      <!-- Notes Content -->
+    </div>
+  </main>
 
-		<script src="app.js"></script>
-	</body>
+  <script src="app.js"></script>
+</body>
+
 </html>
