@@ -434,65 +434,6 @@ viewColorsDiv.addEventListener('click', function (e) {
 	}
 });
 
-// viewColorsDiv.addEventListener('click', function (e) {
-// 	if (e.target.classList.contains('choose-view')) {
-// 		e.target.classList.add('selected');
-// 		redView.classList.remove('selected');
-// 		blueView.classList.remove('selected');
-// 		greenView.classList.remove('selected');
-// 		yellowView.classList.remove('selected');
-// 		hexCodeView.removeAttribute('readonly');
-// 		hexCodeView.select();
-// 		hexCodeView.value = '#';
-// 		isSelected = true;
-// 		selectedColor = 'choose';
-// 	}
-// 	if (e.target.classList.contains('red-view')) {
-// 		e.target.classList.add('selected');
-// 		chooseView.classList.remove('selected');
-// 		blueView.classList.remove('selected');
-// 		greenView.classList.remove('selected');
-// 		yellowView.classList.remove('selected');
-// 		hexCodeView.setAttribute('readonly', 'true');
-// 		hexCodeView.value = '';
-// 		isSelected = true;
-// 		selectedColor = '#f00';
-// 	}
-// 	if (e.target.classList.contains('blue-view')) {
-// 		e.target.classList.add('selected');
-// 		redView.classList.remove('selected');
-// 		chooseView.classList.remove('selected');
-// 		greenView.classList.remove('selected');
-// 		yellowView.classList.remove('selected');
-// 		hexCodeView.setAttribute('readonly', 'true');
-// 		hexCodeView.value = '';
-// 		isSelected = true;
-// 		selectedColor = '#00f';
-// 	}
-// 	if (e.target.classList.contains('green-view')) {
-// 		e.target.classList.add('selected');
-// 		redView.classList.remove('selected');
-// 		blueView.classList.remove('selected');
-// 		chooseView.classList.remove('selected');
-// 		yellowView.classList.remove('selected');
-// 		hexCodeView.setAttribute('readonly', 'true');
-// 		hexCodeView.value = '';
-// 		isSelected = true;
-// 		selectedColor = '#0f0';
-// 	}
-// 	if (e.target.classList.contains('yellow-view')) {
-// 		e.target.classList.add('selected');
-// 		redView.classList.remove('selected');
-// 		blueView.classList.remove('selected');
-// 		greenView.classList.remove('selected');
-// 		chooseView.classList.remove('selected');
-// 		hexCodeView.setAttribute('readonly', 'true');
-// 		hexCodeView.value = '';
-// 		isSelected = true;
-// 		selectedColor = '#ff0';
-// 	}
-// });
-
 saveBtn.addEventListener('click', function (e) {
 	viewTitle.style.border = '1px solid #aaa';
 	hexCodeView.style.border = '1px solid #aaa';
