@@ -1,133 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="style.css" />
-		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
-		<link
-			rel="stylesheet"
-			href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-			integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-			crossorigin="anonymous"
-		/>
-		<title>Roman Numerals Converter</title>
-	</head>
-	<body>
-		<h1>Roman Numerals Converter</h1>
-		<p>
-			This is an app that transforms Roman Numerals in Deciman Numbers and vice
-			versa.
-		</p>
-		<p>
-			To use the app just enter the desired numeral or number in the
-			coresponding input field from below and hit the "Convert" button.
-		</p>
-		<p>
-			For the Roman Numerals input the accepted characters you can use are as
-			follows:
-		</p>
-		<ul>
-			<li>I = 1</li>
-			<li>V = 5</li>
-			<li>X = 10</li>
-			<li>L = 50</li>
-			<li>C = 100</li>
-			<li>D = 500</li>
-			<li>M = 1000</li>
-			<li>(V) = 5000</li>
-			<li>(X) = 10000</li>
-			<li>(L) = 50000</li>
-			<li>(C) = 100000</li>
-			<li>(D) = 500000</li>
-			<li>(M) = 1000000</li>
-		</ul>
-		<p>
-			The characters wrapped between parentheses , ie. "(X)", mean that the
-			value of the roman numeral between the parentheses is multiplied by 1000.
-			<br />
-			ie. X = 10 <br />
-			therefore (X) = 10 * 1000 = 10000
-		</p>
-		<p>
-			For the Decimal Numbers input the accepted numbers are in the interval [1,
-			3999999]
-		</p>
-		<p>
-			*if the text in the fields is too long you can scroll horizontaly. <br />
-			On PC use the arrows and on devices with touchscreen slide on the field.
-		</p>
 
-		<div class="roman2decimal input-area">
-			<h2 class="t">Roman To Decimal</h2>
-			<input
-				type="text"
-				readonly
-				class="roman-input"
-				placeholder="Roman Numeral Input"
-			/>
-			<input
-				type="text"
-				readonly
-				class="decimal-output"
-				placeholder="Decimal Number Output"
-			/>
-			<div class="buttons-1 buttons">
-				<button class="back-btn-1 btn"><i class="fas fa-backspace"></i></button>
-				<button class="clear-btn-1 btn">AC</button>
-				<button class="I btn">I</button>
-				<button class="V btn">V</button>
-				<button class="X btn">X</button>
-				<button class="L btn">L</button>
-				<button class="C btn">C</button>
-				<button class="D btn">D</button>
-				<button class="M btn">M</button>
-				<button class="V2 btn">(V)</button>
-				<button class="X2 btn">(X)</button>
-				<button class="L2 btn">(L)</button>
-				<button class="C2 btn">(C)</button>
-				<button class="D2 btn">(D)</button>
-				<button class="M2 btn">(M)</button>
-				<button class="convert-to-dec btn">
-					<i class="fas fa-arrow-right"></i>
-				</button>
-			</div>
-		</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
+  <script src="https://kit.fontawesome.com/3a3420d1ec.js" crossorigin="anonymous"></script>
+  <script src="app.js" defer></script>
+  <title>Roman Numerals Converter</title>
+</head>
 
-		<div class="decimal2roman input-area">
-			<h2 class="t">Decimal To Roman</h2>
-			<input
-				type="text"
-				readonly
-				class="decimal-input"
-				placeholder="Decimal Number Input"
-			/>
-			<input
-				type="text"
-				readonly
-				class="roman-output"
-				placeholder="Roman Numeral Output"
-			/>
-			<div class="buttons-2 buttons">
-				<button class="back-btn-2 btn"><i class="fas fa-backspace"></i></button>
-				<button class="clear-btn-2 btn">AC</button>
-				<button class="b1 btn">1</button>
-				<button class="b2 btn">2</button>
-				<button class="b3 btn">3</button>
-				<button class="b4 btn">4</button>
-				<button class="b5 btn">5</button>
-				<button class="b6 btn">6</button>
-				<button class="b7 btn">7</button>
-				<button class="b8 btn">8</button>
-				<button class="b9 btn">9</button>
-				<button class="b0 btn">0</button>
-				<button class="convert-to-roman btn">
-					<i class="fas fa-arrow-right"></i>
-				</button>
-			</div>
-		</div>
+<body>
+  <div class="instructions collapsed">
+    <p><span>Intructions</span> <span><i class="fa-solid fa-angle-down"></i></span></p>
+    <h1>Roman Numerals Converter</h1>
+    <p>
+      This is an app that transforms Roman Numerals in Deciman Numbers and vice
+      versa.
+    </p>
+    <p>
+      To use the app just enter the desired numeral or number in the
+      coresponding input field from below and hit the "Convert" button.
+    </p>
+    <p>
+      For the Roman Numerals input the accepted characters you can use are as
+      follows:
+    </p>
+    <ul>
+      <li>I = 1</li>
+      <li>V = 5</li>
+      <li>X = 10</li>
+      <li>L = 50</li>
+      <li>C = 100</li>
+      <li>D = 500</li>
+      <li>M = 1000</li>
+      <li>(V) = 5000</li>
+      <li>(X) = 10000</li>
+      <li>(L) = 50000</li>
+      <li>(C) = 100000</li>
+      <li>(D) = 500000</li>
+      <li>(M) = 1000000</li>
+    </ul>
+    <p>
+      The characters wrapped between parentheses , e.g. "(X)", mean that the
+      value of the roman numeral between the parentheses is multiplied by 1000.
+      <br />
+      ie. X = 10 <br />
+      therefore (X) = 10 * 1000 = 10000
+    </p>
+    <p>
+      For the Decimal Numbers input the accepted numbers are in the interval [1,
+      3999999]
+    </p>
+    <p>
+      *if the text in the fields is too long you can scroll horizontaly. <br />
+      On PC use the arrows and on devices with touchscreen slide on the field.
+    </p>
+  </div>
 
-		<script src="app.js"></script>
-	</body>
+  <div class="roman2decimal input-area">
+    <h2 class="t">Roman To Decimal</h2>
+    <input type="text" readonly class="roman-input" placeholder="Roman Numeral Input" />
+    <input type="text" readonly class="decimal-output" placeholder="Decimal Number Output" />
+    <div class="buttons-1 buttons">
+      <button class="back-btn-1 btn"><i class="fas fa-backspace"></i></button>
+      <button class="clear-btn-1 btn">AC</button>
+      <button class="I btn">I</button>
+      <button class="V btn">V</button>
+      <button class="X btn">X</button>
+      <button class="L btn">L</button>
+      <button class="C btn">C</button>
+      <button class="D btn">D</button>
+      <button class="M btn">M</button>
+      <button class="V2 btn">(V)</button>
+      <button class="X2 btn">(X)</button>
+      <button class="L2 btn">(L)</button>
+      <button class="C2 btn">(C)</button>
+      <button class="D2 btn">(D)</button>
+      <button class="M2 btn">(M)</button>
+      <button class="convert-to-dec btn">
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="decimal2roman input-area">
+    <h2 class="t">Decimal To Roman</h2>
+    <input type="text" readonly class="decimal-input" placeholder="Decimal Number Input" />
+    <input type="text" readonly class="roman-output" placeholder="Roman Numeral Output" />
+    <div class="buttons-2 buttons">
+      <button class="back-btn-2 btn"><i class="fas fa-backspace"></i></button>
+      <button class="clear-btn-2 btn">AC</button>
+      <button class="b1 btn">1</button>
+      <button class="b2 btn">2</button>
+      <button class="b3 btn">3</button>
+      <button class="b4 btn">4</button>
+      <button class="b5 btn">5</button>
+      <button class="b6 btn">6</button>
+      <button class="b7 btn">7</button>
+      <button class="b8 btn">8</button>
+      <button class="b9 btn">9</button>
+      <button class="b0 btn">0</button>
+      <button class="convert-to-roman btn">
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+</body>
+
 </html>

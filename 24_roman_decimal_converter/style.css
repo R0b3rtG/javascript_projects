@@ -17,6 +17,23 @@ body {
 	min-height: 100vh;
 }
 
+.instructions {
+	overflow: hidden;
+	height: auto;
+}
+
+.instructions.collapsed {
+	height: 1.5rem;
+}
+
+.instructions > p:first-child {
+	margin-top: 0;
+}
+
+.fa-solid {
+	cursor: pointer;
+}
+
 h1 {
 	color: #fff;
 	text-align: center;

@@ -345,6 +345,7 @@ clear2.addEventListener('click', () => {
 	decimalInputField.value = '';
 	romanOutputField.value = '';
 });
+
 b1.addEventListener('click', () => (decimalInputField.value += '1'));
 b2.addEventListener('click', () => (decimalInputField.value += '2'));
 b3.addEventListener('click', () => (decimalInputField.value += '3'));
@@ -355,6 +356,7 @@ b7.addEventListener('click', () => (decimalInputField.value += '7'));
 b8.addEventListener('click', () => (decimalInputField.value += '8'));
 b9.addEventListener('click', () => (decimalInputField.value += '9'));
 b0.addEventListener('click', () => (decimalInputField.value += '0'));
+
 convert2.addEventListener('click', () => {
 	let num = decimalInputField.value;
 	num = convertToRoman(num);
@@ -362,4 +364,13 @@ convert2.addEventListener('click', () => {
 	romanOutputField.style.color = '#000';
 	if (num == 'only numbers from [1,3999999]')
 		romanOutputField.style.color = '#f00';
+});
+
+const collapseBtn = document.querySelector('.fa-angle-down');
+const instructions = document.querySelector('.instructions');
+
+collapseBtn.addEventListener('click', () => {
+	collapseBtn.classList.toggle('fa-angle-down');
+	collapseBtn.classList.toggle('fa-angle-up');
+	instructions.classList.toggle('collapsed');
 });
