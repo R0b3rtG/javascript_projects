@@ -154,6 +154,7 @@ main {
 }
 
 .view-edit.nice-view .form-view #note-title-q-view {
+	height: auto;
 	font-size: 2rem;
 	width: 100%;
 	padding-inline: 0.5rem;
