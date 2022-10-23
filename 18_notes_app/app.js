@@ -7,8 +7,28 @@ class Note {
 	}
 }
 
-let date = new Date();
-console.log(date);
+function rgbToHex(color) {
+	color = '' + color;
+	if (!color || color.indexOf('rgb') < 0) {
+		return;
+	}
+
+	if (color.charAt(0) == '#') {
+		return color;
+	}
+
+	let nums = /(.*?)rgb\((\d+),\s*(\d+),\s*(\d+)\)/i.exec(color),
+		r = parseInt(nums[2], 10).toString(16),
+		g = parseInt(nums[3], 10).toString(16),
+		b = parseInt(nums[4], 10).toString(16);
+
+	return (
+		'#' +
+		((r.length == 1 ? '0' + r : r) +
+			(g.length == 1 ? '0' + g : g) +
+			(b.length == 1 ? '0' + b : b))
+	);
+}
 
 let notes = [];
 
@@ -56,14 +76,15 @@ let isSelected = false;
 let selectedColor = '';
 
 // Show Input Prompt
-addBtn.addEventListener('click', function () {
+addBtn.addEventListener('click', onAddNote);
+function onAddNote() {
 	if (promptDiv.style.display === 'none') {
 		promptDiv.style.display = 'block';
 	}
 	if (backtThing.style.display === 'none') {
 		backtThing.style.display = 'block';
 	}
-});
+}
 
 const titleInput = document.querySelector('#note-title-q');
 const textArea = document.querySelector('#note-text');
@@ -80,36 +101,38 @@ const choose = document.querySelector('.choose');
 function selectHexInput() {
 	hexInput.removeAttribute('readonly');
 	hexInput.select();
-	hexInput.value = '#';
+	if (hexInput.value == '') hexInput.value = '#';
 	selectedColor = 'choose';
 }
 
-hexInput.addEventListener('click', () => {
-	if (selectedColor != 'choose') {
-		for (let i = 0; i < colorsDiv.children.length; i++) {
-			colorsDiv.children[i].classList.remove('selected');
-			isSelected = true;
-		}
-		choose.classList.add('selected');
-		selectHexInput();
-	}
-});
-
-colorsDiv.addEventListener('click', function (e) {
+hexInput.addEventListener('click', onHexClick);
+function onHexClick() {
 	for (let i = 0; i < colorsDiv.children.length; i++) {
 		colorsDiv.children[i].classList.remove('selected');
 		isSelected = true;
 	}
-	e.target.classList.add('selected');
+	choose.classList.add('selected');
+	selectHexInput();
+}
 
-	if (e.target.classList.contains('choose')) {
-		selectHexInput();
-	} else {
-		hexInput.setAttribute('readonly', 'true');
-		hexInput.value = '';
-		selectedColor = e.target.style.backgroundColor;
+colorsDiv.addEventListener('click', onSelectColor);
+function onSelectColor(e) {
+	if (e.target.classList.contains('color')) {
+		for (let i = 0; i < colorsDiv.children.length; i++) {
+			colorsDiv.children[i].classList.remove('selected');
+			isSelected = true;
+		}
+		e.target.classList.add('selected');
+
+		if (e.target.classList.contains('choose')) {
+			selectHexInput();
+		} else {
+			hexInput.setAttribute('readonly', 'true');
+			hexInput.value = '';
+			selectedColor = e.target.style.backgroundColor;
+		}
 	}
-});
+}
 
 const createBtn = document.querySelector('.submit-btn');
 const cancelBtn = document.querySelector('.cancel-btn');
@@ -118,7 +141,8 @@ let hexWithThree = /^#[0-9a-fA-F]{3}/;
 let hexWithSix = /^#[0-9a-fA-F]{6}/;
 
 // Create and Cancle Buttons
-createBtn.addEventListener('click', function (e) {
+createBtn.addEventListener('click', onCreateNote);
+function onCreateNote(e) {
 	let hexCode = hexInput.value;
 	let noteTitle = titleInput.value;
 	let noteText = textArea.value;
@@ -154,15 +178,16 @@ createBtn.addEventListener('click', function (e) {
 	}
 
 	e.preventDefault();
-});
+}
 
-cancelBtn.addEventListener('click', function (e) {
+cancelBtn.addEventListener('click', onCancelCreate);
+function onCancelCreate(e) {
 	reset();
 	promptDiv.style.display = 'none';
 	backtThing.style.display = 'none';
 
 	e.preventDefault();
-});
+}
 
 function flashColors() {
 	setTimeout(() => {
@@ -255,29 +280,58 @@ function* generateId(lastIndex) {
 	}
 }
 
-notesContainer.addEventListener('click', function (e) {
+const deleteBackground = document.querySelector('.back-thing-delete');
+const deletePrompt = document.querySelector('.delete-prompt');
+
+const deletePromptButtons = document.querySelector('.delete-prompt-buttons');
+
+notesContainer.addEventListener('click', onDeleteNote);
+function onDeleteNote(e) {
 	if (e.target.classList.contains('fa-trash-alt')) {
-		if (
-			confirm(
-				`If you delete this note it will be lost forever!\nAre you sure you want to delete this note?`
-			)
-		) {
-			idValue = parseInt(e.target.parentElement.parentElement.parentElement.id);
-			e.target.parentElement.parentElement.parentElement.remove();
+		let noteToDelete = e.target.parentElement.parentElement.parentElement;
+		let noteToDeleteId = parseInt(noteToDelete.id);
+
+		deleteBackground.style.display = 'block';
+		deletePromptButtons.addEventListener('click', onCancelOrConfirmDelete, {
+			once: true,
+		});
+		function onCancelOrConfirmDelete(e) {
+			if (e.target.classList.contains('cancel-delete-btn')) {
+				cancelDelete();
+				return;
+			}
+
+			if (e.target.classList.contains('confirm-delete-btn')) {
+				confirmDelete(e);
+				return;
+			}
+
+			deletePromptButtons.addEventListener('click', onCancelOrConfirmDelete, {
+				once: true,
+			});
+		}
+
+		function cancelDelete() {
+			deleteBackground.style.display = 'none';
+		}
+
+		function confirmDelete() {
+			noteToDelete.remove();
 			if (localStorage.getItem('notes') == null) {
 				notes = [];
 			} else {
 				notes = JSON.parse(localStorage.getItem('notes'));
 			}
 			for (let i = 0; i < notes.length; i++) {
-				if (notes[i]._id == idValue) {
+				if (notes[i]._id == noteToDeleteId) {
 					notes.splice(i, 1);
 				}
 			}
 			localStorage.setItem('notes', JSON.stringify(notes));
+			deleteBackground.style.display = 'none';
 		}
 	}
-});
+}
 
 const viewTitle = document.querySelector('#note-title-q-view');
 const viewContent = document.querySelector('#note-text-view');
@@ -289,8 +343,23 @@ let contentToShow;
 let colorToShow;
 let idToUse;
 
-notesContainer.addEventListener('click', function (e) {
-	let noteToShow;
+const buttonsView = document.querySelector('.buttons-view');
+const buttonsEdit = document.querySelector('.buttons-edit');
+
+const colorsTitle = document.querySelector('.colors-label');
+const colorsList = document.querySelector('.colors-view');
+const hexCodeView = document.querySelector('#hex-color-view');
+
+const viewColorsDiv = document.querySelector('.colors-view');
+const redView = document.querySelector('.red-view');
+const blueView = document.querySelector('.blue-view');
+const greenView = document.querySelector('.green-view');
+const yellowView = document.querySelector('.yellow-view');
+const chooseView = document.querySelector('.choose-view');
+
+let noteToShow;
+notesContainer.addEventListener('click', onViewNote);
+function onViewNote(e) {
 	if (e.target.classList.contains('fa-eye')) {
 		redView.classList.remove('selected');
 		blueView.classList.remove('selected');
@@ -317,97 +386,208 @@ notesContainer.addEventListener('click', function (e) {
 		viewEdit.style.borderColor = colorToShow;
 		backThingView.style.display = 'block';
 		viewEdit.style.display = 'block';
-	}
+		viewEdit.classList.add('nice-view');
 
-	backBtn.addEventListener('click', function (e) {
-		backThingView.style.display = 'none';
-		viewEdit.style.display = 'none';
-		colorsTitle.style.display = 'none';
-		colorsList.style.display = 'none';
-		hexCodeView.style.display = 'none';
+		buttonsView.addEventListener('click', onEditOrBack, { once: true });
+		function onEditOrBack(e) {
+			if (e.target.classList.contains('back-btn')) {
+				closeViewNote(e);
+				return;
+			}
 
-		e.preventDefault();
-	});
+			if (
+				e.target.classList.contains('edit-btn') ||
+				e.target.parentElement.classList.contains('edit-btn')
+			) {
+				openEditPrompt(e);
+				return;
+			}
 
-	editBtn.addEventListener('click', function (e) {
-		editBtn.style.display = 'none';
-		backBtn.style.display = 'none';
-		saveBtn.style.display = 'block';
-		cancelEditBtn.style.display = 'block';
-		viewTitle.removeAttribute('readonly');
-		viewContent.removeAttribute('readonly');
-		colorsTitle.style.display = 'block';
-		colorsList.style.display = 'flex';
-		hexCodeView.style.display = 'block';
-		e.preventDefault();
+			buttonsView.addEventListener('click', onEditOrBack, { once: true });
+		}
 
-		cancelEditBtn.addEventListener('click', function (e) {
-			viewTitle.setAttribute('readonly', 'true');
-			viewContent.setAttribute('readonly', 'true');
+		function closeViewNote(e) {
+			viewEdit.classList.remove('nice-view');
+			backThingView.style.display = 'none';
+			viewEdit.style.display = 'none';
 			colorsTitle.style.display = 'none';
 			colorsList.style.display = 'none';
 			hexCodeView.style.display = 'none';
-			editBtn.style.display = 'block';
-			backBtn.style.display = 'block';
-			saveBtn.style.display = 'none';
-			cancelEditBtn.style.display = 'none';
-			isSelected = false;
-			selectedColor = '';
-			viewTitle.style.border = '1px solid #aaa';
-			hexCodeView.style.border = '1px solid #aaa';
-			viewContent.style.border = '1px solid #aaa';
-			redView.classList.remove('selected');
-			blueView.classList.remove('selected');
-			greenView.classList.remove('selected');
-			yellowView.classList.remove('selected');
-			chooseView.classList.remove('selected');
-			hexCodeView.value = '';
-
-			if (localStorage.getItem('notes') == null) {
-				notes = [];
-			} else {
-				notes = JSON.parse(localStorage.getItem('notes'));
-			}
-			for (let index = 0; index < notes.length; index++) {
-				if (notes[index]._id == noteToShow.id) {
-					titleToShow = notes[index]._title;
-					contentToShow = notes[index]._content;
-					colorToShow = notes[index]._color;
-					idToUse = notes[index]._id;
-				}
-			}
-			viewTitle.value = titleToShow;
-			viewContent.value = contentToShow;
 
 			e.preventDefault();
-		});
-	});
-});
+		}
 
-const editBtn = document.querySelector('.edit-btn');
-const saveBtn = document.querySelector('.save-btn');
-const cancelEditBtn = document.querySelector('.cancel-edit-btn');
+		function openEditPrompt(e) {
+			viewEdit.classList.remove('nice-view');
+			let colorCode = notes[noteToShow.id]._color;
+			let rgbColor = rgbToHex(colorCode);
+			for (let j = 0; j < viewColorsDiv.children.length; j++) {
+				viewColorsDiv.children[j].classList.remove('selected');
+				isSelected = true;
+			}
+			if (rgbColor == undefined) {
+				hexCodeView.value = colorCode;
+				viewColorsDiv.children[4].classList.add('selected');
+			} else {
+				for (let j = 0; j < viewColorsDiv.children.length; j++) {
+					if (viewColorsDiv.children[j].style.backgroundColor == colorCode)
+						viewColorsDiv.children[j].classList.add('selected');
+				}
+			}
 
-const backBtn = document.querySelector('.back-btn');
-const colorsTitle = document.querySelector('.colors-label');
-const colorsList = document.querySelector('.colors-view');
-const hexCodeView = document.querySelector('#hex-color-view');
+			buttonsView.style.display = 'none';
+			buttonsEdit.style.display = 'grid';
+			viewTitle.removeAttribute('readonly');
+			viewContent.removeAttribute('readonly');
+			colorsTitle.style.display = 'block';
+			colorsList.style.display = 'flex';
+			hexCodeView.style.display = 'block';
 
-const viewColorsDiv = document.querySelector('.colors-view');
-const redView = document.querySelector('.red-view');
-const blueView = document.querySelector('.blue-view');
-const greenView = document.querySelector('.green-view');
-const yellowView = document.querySelector('.yellow-view');
-const chooseView = document.querySelector('.choose-view');
+			buttonsEdit.addEventListener('click', onSaveOrCancelEdit, { once: true });
+			function onSaveOrCancelEdit(e) {
+				if (e.target.classList.contains('save-btn')) saveEdit(e);
+
+				if (e.target.classList.contains('cancel-edit-btn')) cancelEdit(e);
+			}
+
+			function cancelEdit(e) {
+				buttonsView.addEventListener('click', onEditOrBack, { once: true });
+				viewEdit.classList.add('nice-view');
+
+				viewTitle.setAttribute('readonly', 'true');
+				viewContent.setAttribute('readonly', 'true');
+				colorsTitle.style.display = 'none';
+				colorsList.style.display = 'none';
+				hexCodeView.style.display = 'none';
+				buttonsView.style.display = 'grid';
+				buttonsEdit.style.display = 'none';
+				isSelected = false;
+				selectedColor = '';
+				viewTitle.style.border = '1px solid #aaa';
+				hexCodeView.style.border = '1px solid #aaa';
+				viewContent.style.border = '1px solid #aaa';
+				redView.classList.remove('selected');
+				blueView.classList.remove('selected');
+				greenView.classList.remove('selected');
+				yellowView.classList.remove('selected');
+				chooseView.classList.remove('selected');
+				hexCodeView.value = '';
+
+				if (localStorage.getItem('notes') == null) {
+					notes = [];
+				} else {
+					notes = JSON.parse(localStorage.getItem('notes'));
+				}
+				for (let index = 0; index < notes.length; index++) {
+					if (notes[index]._id == noteToShow.id) {
+						titleToShow = notes[index]._title;
+						contentToShow = notes[index]._content;
+						colorToShow = notes[index]._color;
+						idToUse = notes[index]._id;
+					}
+				}
+				viewTitle.value = titleToShow;
+				viewContent.value = contentToShow;
+
+				e.preventDefault();
+			}
+
+			function saveEdit(e) {
+				viewTitle.style.border = '1px solid #aaa';
+				hexCodeView.style.border = '1px solid #aaa';
+				viewContent.style.border = '1px solid #aaa';
+
+				let ok = true;
+
+				if (titleToShow != viewTitle.value) {
+					if (viewTitle.value == '') {
+						viewTitle.style.border = '2px solid #f00';
+						ok = false;
+					} else {
+						titleToShow = viewTitle.value;
+					}
+				}
+				if (contentToShow != viewContent.value) {
+					if (viewContent.value == '') {
+						viewContent.style.border = '2px solid #f00';
+						ok = false;
+					} else {
+						contentToShow = viewContent.value;
+					}
+				}
+				if (isSelected == true) {
+					if (selectedColor == 'choose') {
+						if (
+							(hexWithThree.test(hexCodeView.value) &&
+								hexCodeView.value.length === 4) ||
+							re2.test(hexCodeView.value)
+						) {
+							selectedColor = hexCodeView.value;
+						} else {
+							hexCodeView.style.border = '2px solid #f00';
+							ok = false;
+						}
+					}
+					if (colorToShow != selectedColor) {
+						if (selectedColor != '') {
+							colorToShow = selectedColor;
+						}
+					}
+				}
+				if (localStorage.getItem('notes') == null) {
+					notes = [];
+				} else {
+					notes = JSON.parse(localStorage.getItem('notes'));
+				}
+				for (let i = 0; i < notes.length; i++) {
+					if (idToUse == notes[i]._id) {
+						notes[i]._title = titleToShow;
+						notes[i]._content = contentToShow;
+						notes[i]._color = colorToShow;
+					}
+				}
+				if (ok) {
+					localStorage.setItem('notes', JSON.stringify(notes));
+					notesContainer.innerHTML = '';
+					backThingView.style.display = 'none';
+					hexCodeView.value = '';
+					hexCodeView.setAttribute('readonly', 'true');
+					hexCodeView.style.display = 'none';
+					colorsList.style.display = 'none';
+					colorsTitle.style.display = 'none';
+					viewTitle.setAttribute('readonly', 'true');
+					viewContent.setAttribute('readonly', 'true');
+					buttonsView.style.display = 'grid';
+					buttonsEdit.style.display = 'none';
+					redView.classList.remove('selected');
+					blueView.classList.remove('selected');
+					greenView.classList.remove('selected');
+					yellowView.classList.remove('selected');
+					chooseView.classList.remove('selected');
+					getNotes();
+				} else {
+					buttonsEdit.addEventListener('click', onSaveOrCancelEdit, {
+						once: true,
+					});
+				}
+
+				e.preventDefault();
+			}
+
+			e.preventDefault();
+		}
+	}
+}
 
 function selectHexCodeViewInput() {
 	hexCodeView.removeAttribute('readonly');
 	hexCodeView.select();
-	hexCodeView.value = '#';
+	if (hexCodeView.value == '') hexCodeView.value = '#';
 	selectedColor = 'choose';
 }
 
-hexCodeView.addEventListener('click', () => {
+hexCodeView.addEventListener('click', onHexViewClick);
+function onHexViewClick() {
 	if (selectedColor != 'choose') {
 		for (let i = 0; i < colorsList.children.length; i++) {
 			colorsList.children[i].classList.remove('selected');
@@ -416,102 +596,23 @@ hexCodeView.addEventListener('click', () => {
 		chooseView.classList.add('selected');
 		selectHexCodeViewInput();
 	}
-});
+}
 
-viewColorsDiv.addEventListener('click', function (e) {
-	for (let i = 0; i < viewColorsDiv.children.length; i++) {
-		viewColorsDiv.children[i].classList.remove('selected');
-		isSelected = true;
-	}
-	e.target.classList.add('selected');
+viewColorsDiv.addEventListener('click', onSelectViewColor);
+function onSelectViewColor(e) {
+	if (e.target.classList.contains('color-view')) {
+		for (let i = 0; i < viewColorsDiv.children.length; i++) {
+			viewColorsDiv.children[i].classList.remove('selected');
+			isSelected = true;
+		}
+		e.target.classList.add('selected');
 
-	if (e.target.classList.contains('choose')) {
-		selectHexCodeViewInput();
-	} else {
-		hexCodeView.setAttribute('readonly', 'true');
-		hexCodeView.value = '';
-		selectedColor = e.target.style.backgroundColor;
-	}
-});
-
-saveBtn.addEventListener('click', function (e) {
-	viewTitle.style.border = '1px solid #aaa';
-	hexCodeView.style.border = '1px solid #aaa';
-	viewContent.style.border = '1px solid #aaa';
-
-	let ok = true;
-
-	if (titleToShow != viewTitle.value) {
-		if (viewTitle.value == '') {
-			viewTitle.style.border = '2px solid #f00';
-			ok = false;
+		if (e.target.classList.contains('choose-view')) {
+			selectHexCodeViewInput();
 		} else {
-			titleToShow = viewTitle.value;
+			hexCodeView.setAttribute('readonly', 'true');
+			hexCodeView.value = '';
+			selectedColor = e.target.style.backgroundColor;
 		}
 	}
-	if (contentToShow != viewContent.value) {
-		if (viewContent.value == '') {
-			viewContent.style.border = '2px solid #f00';
-			ok = false;
-		} else {
-			contentToShow = viewContent.value;
-		}
-	}
-	if (isSelected == true) {
-		if (selectedColor == 'choose') {
-			if (
-				(hexWithThree.test(hexCodeView.value) &&
-					hexCodeView.value.length === 4) ||
-				re2.test(hexCodeView.value)
-			) {
-				selectedColor = hexCodeView.value;
-			} else {
-				hexCodeView.style.border = '2px solid #f00';
-				ok = false;
-			}
-		} else {
-			console.log(selectedColor);
-		}
-		if (colorToShow != selectedColor) {
-			if (selectedColor != '') {
-				colorToShow = selectedColor;
-			}
-		}
-	}
-	if (localStorage.getItem('notes') == null) {
-		notes = [];
-	} else {
-		notes = JSON.parse(localStorage.getItem('notes'));
-	}
-	for (let i = 0; i < notes.length; i++) {
-		if (idToUse == notes[i]._id) {
-			notes[i]._title = titleToShow;
-			notes[i]._content = contentToShow;
-			notes[i]._color = colorToShow;
-		}
-	}
-	if (ok) {
-		localStorage.setItem('notes', JSON.stringify(notes));
-		notesContainer.innerHTML = '';
-		backThingView.style.display = 'none';
-		hexCodeView.value = '';
-		hexCodeView.setAttribute('readonly', 'true');
-		hexCodeView.style.display = 'none';
-		colorsList.style.display = 'none';
-		colorsTitle.style.display = 'none';
-		viewTitle.setAttribute('readonly', 'true');
-		viewContent.setAttribute('readonly', 'true');
-		editBtn.style.display = 'block';
-		backBtn.style.display = 'block';
-		cancelEditBtn.style.display = 'none';
-		saveBtn.style.display = 'none';
-		redView.classList.remove('selected');
-		blueView.classList.remove('selected');
-		greenView.classList.remove('selected');
-		yellowView.classList.remove('selected');
-		chooseView.classList.remove('selected');
-		getNotes();
-	}
-
-	e.preventDefault();
-});
+}

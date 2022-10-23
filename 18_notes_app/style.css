@@ -61,7 +61,7 @@ main {
 .container {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	align-content: flex-start;
 	gap: 25px;
 }
 
@@ -94,7 +94,7 @@ main {
 .p-flex {
 	display: flex;
 	width: 100%;
-	height: 75%;
+	height: 76%;
 }
 
 .content {
@@ -102,6 +102,9 @@ main {
 	margin: 0.7rem 0.3rem 0.7rem 0.5rem;
 	overflow: hidden !important;
 	color: #555;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
 }
 
 .options {
@@ -125,15 +128,6 @@ main {
 }
 
 /* VIEW AND EDIT NOTE */
-.back-thing-view {
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	top: 0;
-	left: 0;
-	background-color: rgba(0, 0, 0, 0.1);
-	z-index: 3;
-}
 
 .view-edit {
 	position: fixed;
@@ -142,10 +136,71 @@ main {
 	height: 450px;
 	left: calc(50% - 150px);
 	top: calc(50% - 225px);
-	padding: 0 2rem;
+	padding-block: 0;
+	padding-inline: 2rem;
 	background-color: #fff;
 	border: 3px solid #fbbc04;
 	border-radius: 15px;
+}
+
+.view-edit.nice-view {
+	padding-inline: 1rem;
+}
+
+.view-edit.nice-view .form-view {
+	padding-block: 1.5rem;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.view-edit.nice-view .form-view #note-title-q-view {
+	font-size: 2rem;
+	width: 100%;
+	padding-inline: 0.5rem;
+	padding-block: 0;
+	padding-bottom: 0.1rem;
+	border-radius: 0;
+	border-left-color: transparent !important;
+	border-right-color: transparent !important;
+	border-top-color: transparent !important;
+	border-bottom-color: #000 !important;
+	border-bottom-width: 2px !important;
+	overflow: hidden !important;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+
+.view-edit.nice-view .form-view #note-text-view {
+	height: auto;
+	flex-grow: 1;
+	border-radius: 0;
+	font-size: 0.9rem;
+	border-color: transparent !important;
+}
+
+.view-edit .form-view #note-text-view::-webkit-scrollbar {
+	border-radius: 1rem;
+	width: 0.6rem;
+}
+
+.view-edit .form-view #note-text-view::-webkit-scrollbar-button {
+	height: 0.1rem;
+	width: 0;
+}
+
+.view-edit .form-view #note-text-view::-webkit-scrollbar-thumb {
+	background-color: #ccc;
+	border-radius: 1rem;
+	border: #fff 0.05rem solid;
+}
+
+.view-edit .form-view #note-text-view::-webkit-scrollbar-thumb:hover {
+	background-color: #ddd;
+}
+
+.view-edit.nice-view .form-view .title-label {
+	display: none;
 }
 
 .form-view {
@@ -197,7 +252,8 @@ main {
 	border: 1px solid #aaa;
 }
 
-.buttons-view {
+.buttons-view,
+.buttons-edit {
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -215,7 +271,9 @@ main {
 }
 
 /* INPUT-PROMPT */
-.back-thing {
+.back-thing,
+.back-thing-delete,
+.back-thing-view {
 	width: 100vw;
 	height: 100vh;
 	position: fixed;
@@ -361,4 +419,59 @@ main {
 .edit-btn {
 	grid-column: 2;
 	grid-row: 1;
+}
+
+/* DELETE PROMPT */
+.delete-prompt {
+	padding: 0 0.8rem;
+	background-color: #fff;
+	border: 3px solid #fbbc04;
+	border-radius: 15px;
+	position: fixed;
+	width: 300px;
+	height: 200px;
+	left: calc(50% - 150px);
+	top: calc(50% - 100px);
+	box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
+	justify-content: center;
+	flex-direction: column;
+	gap: 2rem;
+	display: flex;
+}
+
+.delete-prompt p {
+	text-align: center;
+}
+
+.delete-prompt p:first-child {
+	font-size: 1.1rem;
+	color: #f00;
+	text-decoration: underline;
+}
+
+.delete-prompt p span {
+	font-weight: 600;
+}
+
+.delete-prompt-buttons {
+	display: flex;
+	gap: 2rem;
+}
+
+.delete-prompt-buttons > .btn {
+	font-size: 1rem;
+	height: auto;
+	padding: 0.3rem;
+}
+
+.delete-prompt-buttons > .btn:first-child {
+	background-color: #f00;
+	color: #fff;
+	border: none;
+}
+
+.delete-prompt-buttons > .btn:last-child {
+	background-color: #ccc;
+	color: #fff;
+	border: none;
 }

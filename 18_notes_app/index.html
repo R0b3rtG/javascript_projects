@@ -29,7 +29,7 @@
     <div class="back-thing" style="display: none">
       <div class="input-prompt" style="display: none">
         <h2 class="prompt-title">Create a note</h2>
-        <form class="form">
+        <form class="form" autocomplete="off">
           <label for="note-title-q" class="title-label">Title</label>
           <input type="text" name="note-title-q" id="note-title-q" spellcheck="false" />
           <label>Choose Theme Color</label>
@@ -65,9 +65,9 @@
 
     <div class="back-thing-view" style="display: none">
       <div class="view-edit" style="display: none">
-        <form class="form-view">
+        <form class="form-view" autocomplete="off">
           <label for="note-title-q" class="title-label">Title</label>
-          <input type="text" name="note-title-q" id="note-title-q-view" spellcheck="false" readonly />
+          <input type="text" name="note-title-q" id="note-title-q-view" spellcheck="off" readonly />
           <label class="colors-label" style="display: none">Choose Theme Color</label>
           <div class="colors-view" style="display: none">
             <div class="color-view red-view" style="background-color: #f00"></div>
@@ -93,16 +93,28 @@
           <textarea name="note-text" id="note-text-view" cols="30" rows="10" placeholder="Note Here" spellcheck="false"
             readonly></textarea>
           <div class="buttons-view">
-            <button class="edit-btn btn">
-              <i class="fas fa-pencil-alt"></i>
-            </button>
-            <button class="save-btn btn" style="display: none">Save</button>
-            <button class="back-btn btn">Back</button>
-            <button class="cancel-edit-btn btn" style="display: none">
-              Cancel
-            </button>
+            <button class="edit-btn btn" type="button"><i class="fas fa-pencil-alt"></i></button>
+            <button class="back-btn btn" type="button">Back</button>
+          </div>
+          <div class="buttons-edit" style="display: none">
+            <button class="save-btn btn" type="button">Save</button>
+            <button class="cancel-edit-btn btn" type="button">Cancel</button>
           </div>
         </form>
+      </div>
+    </div>
+
+    <div class="back-thing-delete" style="display: none;">
+      <div class="delete-prompt">
+        <div class="text">
+          <p>WARNING!</p>
+          <p>If you <span>DELETE</span> this note it will be <span>LOST</span> <span>FOREVER!</span></p>
+          <p>Do you really want to delete it?</p>
+        </div>
+        <div class="delete-prompt-buttons">
+          <button class="btn confirm-delete-btn">Delete</button>
+          <button class="btn cancel-delete-btn">Cancel</button>
+        </div>
       </div>
     </div>
 
