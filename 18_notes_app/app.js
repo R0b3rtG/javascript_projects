@@ -7,6 +7,12 @@ class Note {
 	}
 }
 
+const createBtn = document.querySelector('.submit-btn');
+const cancelBtn = document.querySelector('.cancel-btn');
+
+let hexWithThree = /^#[0-9a-fA-F]{3}/;
+let hexWithSix = /^#[0-9a-fA-F]{6}/;
+
 const buttonsView = document.querySelector('.buttons-view');
 const buttonsEdit = document.querySelector('.buttons-edit');
 
@@ -20,6 +26,55 @@ const blueView = document.querySelector('.blue-view');
 const greenView = document.querySelector('.green-view');
 const yellowView = document.querySelector('.yellow-view');
 const chooseView = document.querySelector('.choose-view');
+
+const colorPreviewEdit = document.querySelector('.color-preview-edit');
+const colorPreviewCreate = document.querySelector('.color-preview-create');
+const colorPreviewSectionEdit = document.querySelector(
+	'.color-preview-section-edit'
+);
+const colorPreviewSectionCreate = document.querySelector(
+	'.color-preview-section-create'
+);
+
+let notes = [];
+
+const notesContainer = document.querySelector('.container');
+
+const addBtn = document.querySelector('.fa-plus-square');
+const promptDiv = document.querySelector('.input-prompt');
+const backtThing = document.querySelector('.back-thing');
+const body = document.querySelector('body');
+
+let isSelected = false;
+let selectedColor = '';
+
+const titleInput = document.querySelector('#note-title-q');
+const textArea = document.querySelector('#note-text');
+const hexInput = document.querySelector('#hex-color');
+
+const colorsDiv = document.querySelector('.colors');
+const red = document.querySelector('.red');
+const blue = document.querySelector('.blue');
+const green = document.querySelector('.green');
+const yellow = document.querySelector('.yellow');
+const choose = document.querySelector('.choose');
+
+const deleteBackground = document.querySelector('.back-thing-delete');
+const deletePrompt = document.querySelector('.delete-prompt');
+
+const deletePromptButtons = document.querySelector('.delete-prompt-buttons');
+
+const viewTitle = document.querySelector('#note-title-q-view');
+const viewContent = document.querySelector('#note-text-view');
+const backThingView = document.querySelector('.back-thing-view');
+const viewEdit = document.querySelector('.view-edit');
+
+let titleToShow;
+let contentToShow;
+let colorToShow;
+let idToUse;
+
+let noteToShow;
 
 function rgbToHex(color) {
 	color = '' + color;
@@ -44,18 +99,15 @@ function rgbToHex(color) {
 	);
 }
 
-const colorPreviewEdit = document.querySelector('.color-preview-edit');
-const colorPreviewCreate = document.querySelector('.color-preview-create');
-const colorPreviewSectionEdit = document.querySelector(
-	'.color-preview-section-edit'
-);
-const colorPreviewSectionCreate = document.querySelector(
-	'.color-preview-section-create'
-);
-
-let notes = [];
-
-const notesContainer = document.querySelector('.container');
+function formatSpaces(text) {
+	let newText = '';
+	for (i = 0; i < text.length; i++) {
+		if (text[i] == ' ') newText += `&nbsp`;
+		if (text[i] == '\n') newText += '<br>';
+		newText += text[i];
+	}
+	return newText;
+}
 
 function addToUI(noteToAdd) {
 	let newDiv = document.createElement('div');
@@ -67,13 +119,13 @@ function addToUI(noteToAdd) {
 	newDiv.appendChild(newBorder);
 	let newTitle = document.createElement('h2');
 	newTitle.classList.add('UI-note-title');
-	newTitle.innerText = noteToAdd._title;
+	newTitle.innerHTML = formatSpaces(noteToAdd._title);
 	newDiv.appendChild(newTitle);
 	let newFlex = document.createElement('div');
 	newFlex.classList.add('p-flex');
 	let newContent = document.createElement('p');
 	newContent.classList.add('content');
-	newContent.innerText = noteToAdd._content;
+	newContent.innerHTML = formatSpaces(noteToAdd._content);
 	newFlex.appendChild(newContent);
 	let newOptions = document.createElement('div');
 	newOptions.classList.add('options');
@@ -90,14 +142,6 @@ function addToUI(noteToAdd) {
 	notesContainer.appendChild(newDiv);
 }
 
-const addBtn = document.querySelector('.fa-plus-square');
-const promptDiv = document.querySelector('.input-prompt');
-const backtThing = document.querySelector('.back-thing');
-const body = document.querySelector('body');
-
-let isSelected = false;
-let selectedColor = '';
-
 // Show Input Prompt
 addBtn.addEventListener('click', onAddNote);
 function onAddNote() {
@@ -108,17 +152,6 @@ function onAddNote() {
 		backtThing.style.display = 'block';
 	}
 }
-
-const titleInput = document.querySelector('#note-title-q');
-const textArea = document.querySelector('#note-text');
-const hexInput = document.querySelector('#hex-color');
-
-const colorsDiv = document.querySelector('.colors');
-const red = document.querySelector('.red');
-const blue = document.querySelector('.blue');
-const green = document.querySelector('.green');
-const yellow = document.querySelector('.yellow');
-const choose = document.querySelector('.choose');
 
 // Color Picker
 function updateColorPreviewCreate(color) {
@@ -188,12 +221,6 @@ function onSelectColor(e) {
 		}
 	}
 }
-
-const createBtn = document.querySelector('.submit-btn');
-const cancelBtn = document.querySelector('.cancel-btn');
-
-let hexWithThree = /^#[0-9a-fA-F]{3}/;
-let hexWithSix = /^#[0-9a-fA-F]{6}/;
 
 // Create and Cancle Buttons
 createBtn.addEventListener('click', onCreateNote);
@@ -336,11 +363,6 @@ function* generateId(lastIndex) {
 	}
 }
 
-const deleteBackground = document.querySelector('.back-thing-delete');
-const deletePrompt = document.querySelector('.delete-prompt');
-
-const deletePromptButtons = document.querySelector('.delete-prompt-buttons');
-
 notesContainer.addEventListener('click', onDeleteNote);
 function onDeleteNote(e) {
 	if (e.target.classList.contains('fa-trash-alt')) {
@@ -389,17 +411,6 @@ function onDeleteNote(e) {
 	}
 }
 
-const viewTitle = document.querySelector('#note-title-q-view');
-const viewContent = document.querySelector('#note-text-view');
-const backThingView = document.querySelector('.back-thing-view');
-const viewEdit = document.querySelector('.view-edit');
-
-let titleToShow;
-let contentToShow;
-let colorToShow;
-let idToUse;
-
-let noteToShow;
 notesContainer.addEventListener('click', onViewNote);
 function onViewNote(e) {
 	if (e.target.classList.contains('fa-eye')) {
