@@ -7,6 +7,20 @@ class Note {
 	}
 }
 
+const buttonsView = document.querySelector('.buttons-view');
+const buttonsEdit = document.querySelector('.buttons-edit');
+
+const colorsTitle = document.querySelector('.colors-label');
+const colorsList = document.querySelector('.colors-view');
+const hexCodeView = document.querySelector('#hex-color-view');
+
+const viewColorsDiv = document.querySelector('.colors-view');
+const redView = document.querySelector('.red-view');
+const blueView = document.querySelector('.blue-view');
+const greenView = document.querySelector('.green-view');
+const yellowView = document.querySelector('.yellow-view');
+const chooseView = document.querySelector('.choose-view');
+
 function rgbToHex(color) {
 	color = '' + color;
 	if (!color || color.indexOf('rgb') < 0) {
@@ -29,6 +43,15 @@ function rgbToHex(color) {
 			(b.length == 1 ? '0' + b : b))
 	);
 }
+
+const colorPreviewEdit = document.querySelector('.color-preview-edit');
+const colorPreviewCreate = document.querySelector('.color-preview-create');
+const colorPreviewSectionEdit = document.querySelector(
+	'.color-preview-section-edit'
+);
+const colorPreviewSectionCreate = document.querySelector(
+	'.color-preview-section-create'
+);
 
 let notes = [];
 
@@ -98,11 +121,42 @@ const yellow = document.querySelector('.yellow');
 const choose = document.querySelector('.choose');
 
 // Color Picker
+function updateColorPreviewCreate(color) {
+	if (
+		(hexWithThree.test(color) && color.length === 4) ||
+		(hexWithSix.test(color) && color.length === 7)
+	) {
+		colorPreviewCreate.style.backgroundColor = color;
+	} else {
+		colorPreviewCreate.style.backgroundColor = 'transparent';
+	}
+}
+
+function updateColorPreviewEdit(color) {
+	if (
+		(hexWithThree.test(color) && color.length === 4) ||
+		(hexWithSix.test(color) && color.length === 7)
+	) {
+		colorPreviewEdit.style.backgroundColor = color;
+	} else {
+		colorPreviewEdit.style.backgroundColor = 'transparent';
+	}
+}
+
+hexInput.addEventListener('input', () => {
+	updateColorPreviewCreate(hexInput.value);
+});
+
+hexCodeView.addEventListener('input', () => {
+	updateColorPreviewEdit(hexCodeView.value);
+});
+
 function selectHexInput() {
 	hexInput.removeAttribute('readonly');
 	hexInput.select();
 	if (hexInput.value == '') hexInput.value = '#';
 	selectedColor = 'choose';
+	updateColorPreviewCreate(hexInput.value);
 }
 
 hexInput.addEventListener('click', onHexClick);
@@ -130,6 +184,7 @@ function onSelectColor(e) {
 			hexInput.setAttribute('readonly', 'true');
 			hexInput.value = '';
 			selectedColor = e.target.style.backgroundColor;
+			colorPreviewCreate.style.backgroundColor = e.target.style.backgroundColor;
 		}
 	}
 }
@@ -155,7 +210,7 @@ function onCreateNote(e) {
 			if (selectedColor == 'choose') {
 				if (
 					(hexWithThree.test(hexCode) && hexCode.length === 4) ||
-					hexWithSix.test(hexCode)
+					(hexWithSix.test(hexCode) && hexCode.length === 7)
 				) {
 					selectedColor = hexCode;
 					createNote(selectedColor, noteTitle, noteText);
@@ -227,6 +282,7 @@ function reset() {
 	textArea.style.border = '1px solid #aaa';
 	isSelected = false;
 	selectedColor = '';
+	updateColorPreviewCreate('transparent');
 }
 
 (function () {
@@ -343,20 +399,6 @@ let contentToShow;
 let colorToShow;
 let idToUse;
 
-const buttonsView = document.querySelector('.buttons-view');
-const buttonsEdit = document.querySelector('.buttons-edit');
-
-const colorsTitle = document.querySelector('.colors-label');
-const colorsList = document.querySelector('.colors-view');
-const hexCodeView = document.querySelector('#hex-color-view');
-
-const viewColorsDiv = document.querySelector('.colors-view');
-const redView = document.querySelector('.red-view');
-const blueView = document.querySelector('.blue-view');
-const greenView = document.querySelector('.green-view');
-const yellowView = document.querySelector('.yellow-view');
-const chooseView = document.querySelector('.choose-view');
-
 let noteToShow;
 notesContainer.addEventListener('click', onViewNote);
 function onViewNote(e) {
@@ -427,11 +469,15 @@ function onViewNote(e) {
 			}
 			if (rgbColor == undefined) {
 				hexCodeView.value = colorCode;
+				colorPreviewEdit.style.backgroundColor = colorCode;
 				viewColorsDiv.children[4].classList.add('selected');
 			} else {
 				for (let j = 0; j < viewColorsDiv.children.length; j++) {
-					if (viewColorsDiv.children[j].style.backgroundColor == colorCode)
+					if (viewColorsDiv.children[j].style.backgroundColor == colorCode) {
 						viewColorsDiv.children[j].classList.add('selected');
+						colorPreviewEdit.style.backgroundColor =
+							viewColorsDiv.children[j].style.backgroundColor;
+					}
 				}
 			}
 
@@ -442,12 +488,22 @@ function onViewNote(e) {
 			colorsTitle.style.display = 'block';
 			colorsList.style.display = 'flex';
 			hexCodeView.style.display = 'block';
+			colorPreviewSectionEdit.style.display = 'flex';
 
 			buttonsEdit.addEventListener('click', onSaveOrCancelEdit, { once: true });
 			function onSaveOrCancelEdit(e) {
-				if (e.target.classList.contains('save-btn')) saveEdit(e);
+				if (e.target.classList.contains('save-btn')) {
+					saveEdit(e);
+					return;
+				}
+				if (e.target.classList.contains('cancel-edit-btn')) {
+					cancelEdit(e);
+					return;
+				}
 
-				if (e.target.classList.contains('cancel-edit-btn')) cancelEdit(e);
+				buttonsEdit.addEventListener('click', onSaveOrCancelEdit, {
+					once: true,
+				});
 			}
 
 			function cancelEdit(e) {
@@ -472,6 +528,8 @@ function onViewNote(e) {
 				yellowView.classList.remove('selected');
 				chooseView.classList.remove('selected');
 				hexCodeView.value = '';
+				colorPreviewSectionEdit.style.display = 'none';
+				updateColorPreviewEdit('transparent');
 
 				if (localStorage.getItem('notes') == null) {
 					notes = [];
@@ -520,7 +578,8 @@ function onViewNote(e) {
 						if (
 							(hexWithThree.test(hexCodeView.value) &&
 								hexCodeView.value.length === 4) ||
-							re2.test(hexCodeView.value)
+							(hexWithSix.test(hexCodeView.value) &&
+								hexCodeView.value.length === 7)
 						) {
 							selectedColor = hexCodeView.value;
 						} else {
@@ -564,6 +623,8 @@ function onViewNote(e) {
 					greenView.classList.remove('selected');
 					yellowView.classList.remove('selected');
 					chooseView.classList.remove('selected');
+					colorPreviewSectionEdit.style.display = 'none';
+					updateColorPreviewEdit('transparent');
 					getNotes();
 				} else {
 					buttonsEdit.addEventListener('click', onSaveOrCancelEdit, {
@@ -584,6 +645,7 @@ function selectHexCodeViewInput() {
 	hexCodeView.select();
 	if (hexCodeView.value == '') hexCodeView.value = '#';
 	selectedColor = 'choose';
+	updateColorPreviewEdit(hexCodeView.value);
 }
 
 hexCodeView.addEventListener('click', onHexViewClick);
@@ -613,6 +675,7 @@ function onSelectViewColor(e) {
 			hexCodeView.setAttribute('readonly', 'true');
 			hexCodeView.value = '';
 			selectedColor = e.target.style.backgroundColor;
+			colorPreviewEdit.style.backgroundColor = e.target.style.backgroundColor;
 		}
 	}
 }
