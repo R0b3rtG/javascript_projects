@@ -406,7 +406,6 @@ function getHighestId() {
 	}
 
 	for (let j = 0; j < notes.length; j++) {
-		console.log(notes[j]);
 		if (notes[j]._id > max) max = notes[j]._id;
 	}
 
@@ -473,27 +472,31 @@ function onDeleteNote(e) {
 	let noteToDeleteId = parseInt(noteToDelete.id);
 
 	if (trashToggleBtn.classList.contains('fa-trash')) {
-		noteToDelete.remove();
-		if (localStorage.getItem('notes') == null) {
-			notes = [];
-		} else {
-			notes = JSON.parse(localStorage.getItem('notes'));
-		}
-		if (localStorage.getItem('trashed_notes') == null) {
-			trashedNotes = [];
-		} else {
-			trashedNotes = JSON.parse(localStorage.getItem('trashed_notes'));
-		}
-		for (let i = 0; i < notes.length; i++) {
-			if (notes[i]._id == noteToDeleteId) {
-				trashedNotes.push(notes[i]);
-				localStorage.setItem('trashed_notes', JSON.stringify(trashedNotes));
-				notes.splice(i, 1);
-				localStorage.setItem('notes', JSON.stringify(notes));
+		noteToDelete.classList.add('animation');
+		noteToDelete.addEventListener('animationend', () => {
+			noteToDelete.classList.remove('animation');
+			noteToDelete.remove();
+			if (localStorage.getItem('notes') == null) {
+				notes = [];
+			} else {
+				notes = JSON.parse(localStorage.getItem('notes'));
 			}
-		}
-		getNotes();
-		noNotesDiv.style.display = notes.length > 0 ? 'none' : 'flex';
+			if (localStorage.getItem('trashed_notes') == null) {
+				trashedNotes = [];
+			} else {
+				trashedNotes = JSON.parse(localStorage.getItem('trashed_notes'));
+			}
+			for (let i = 0; i < notes.length; i++) {
+				if (notes[i]._id == noteToDeleteId) {
+					trashedNotes.push(notes[i]);
+					localStorage.setItem('trashed_notes', JSON.stringify(trashedNotes));
+					notes.splice(i, 1);
+					localStorage.setItem('notes', JSON.stringify(notes));
+				}
+			}
+			getNotes();
+			noNotesDiv.style.display = notes.length > 0 ? 'none' : 'flex';
+		});
 	} else {
 		deleteBackground.style.display = 'block';
 		deletePromptButtons.addEventListener('click', onCancelOrConfirmDelete, {
@@ -520,25 +523,28 @@ function onDeleteNote(e) {
 		}
 
 		function confirmDelete() {
-			noteToDelete.remove();
-			if (localStorage.getItem('trashed_notes') == null) {
-				trashedNotes = [];
-			} else {
-				trashedNotes = JSON.parse(localStorage.getItem('trashed_notes'));
-			}
-			for (let i = 0; i < trashedNotes.length; i++) {
-				if (trashedNotes[i]._id == noteToDeleteId) {
-					trashedNotes.splice(i, 1);
-					localStorage.setItem('trashed_notes', JSON.stringify(trashedNotes));
-				}
-			}
-
 			deleteBackground.style.display = 'none';
+			noteToDelete.classList.add('animation');
+			noteToDelete.addEventListener('animationend', () => {
+				noteToDelete.classList.remove('animation');
+				noteToDelete.remove();
+				if (localStorage.getItem('trashed_notes') == null) {
+					trashedNotes = [];
+				} else {
+					trashedNotes = JSON.parse(localStorage.getItem('trashed_notes'));
+				}
+				for (let i = 0; i < trashedNotes.length; i++) {
+					if (trashedNotes[i]._id == noteToDeleteId) {
+						trashedNotes.splice(i, 1);
+						localStorage.setItem('trashed_notes', JSON.stringify(trashedNotes));
+					}
+				}
 
-			getNotes();
-			getTrashedNotes();
-			noTrashedNotesDiv.style.display =
-				trashedNotes.length > 0 ? 'none' : 'block';
+				getNotes();
+				getTrashedNotes();
+				noTrashedNotesDiv.style.display =
+					trashedNotes.length > 0 ? 'none' : 'block';
+			});
 		}
 	}
 }
@@ -550,28 +556,33 @@ function recoverNote(e) {
 	let noteToRecover = e.target.parentElement.parentElement.parentElement;
 	let noteToRecoverId = parseInt(noteToRecover.id);
 
-	noteToRecover.remove();
-	if (localStorage.getItem('trashed_notes') == null) {
-		trashedNotes = [];
-	} else {
-		trashedNotes = JSON.parse(localStorage.getItem('trashed_notes'));
-	}
-	if (localStorage.getItem('notes') == null) {
-		notes = [];
-	} else {
-		notes = JSON.parse(localStorage.getItem('notes'));
-	}
-	for (let i = 0; i < trashedNotes.length; i++) {
-		if (trashedNotes[i]._id == noteToRecoverId) {
-			notes.push(trashedNotes[i]);
-			localStorage.setItem('notes', JSON.stringify(notes));
-			trashedNotes.splice(i, 1);
-			localStorage.setItem('trashed_notes', JSON.stringify(trashedNotes));
+	noteToRecover.classList.add('animation');
+	noteToRecover.addEventListener('animationend', () => {
+		noteToRecover.classList.remove('animation');
+		noteToRecover.remove();
+		if (localStorage.getItem('trashed_notes') == null) {
+			trashedNotes = [];
+		} else {
+			trashedNotes = JSON.parse(localStorage.getItem('trashed_notes'));
 		}
-	}
-	getNotes();
-	getTrashedNotes();
-	noTrashedNotesDiv.style.display = trashedNotes.length > 0 ? 'none' : 'block';
+		if (localStorage.getItem('notes') == null) {
+			notes = [];
+		} else {
+			notes = JSON.parse(localStorage.getItem('notes'));
+		}
+		for (let i = 0; i < trashedNotes.length; i++) {
+			if (trashedNotes[i]._id == noteToRecoverId) {
+				notes.push(trashedNotes[i]);
+				localStorage.setItem('notes', JSON.stringify(notes));
+				trashedNotes.splice(i, 1);
+				localStorage.setItem('trashed_notes', JSON.stringify(trashedNotes));
+			}
+		}
+		getNotes();
+		getTrashedNotes();
+		noTrashedNotesDiv.style.display =
+			trashedNotes.length > 0 ? 'none' : 'block';
+	});
 }
 
 notesContainer.addEventListener('click', onViewNote);
@@ -650,7 +661,12 @@ function onViewNote(e) {
 
 		function openEditPrompt(e) {
 			viewEdit.classList.remove('nice-view');
-			let colorCode = notes[noteToShow.id]._color;
+
+			let colorCode;
+			notes.forEach((note) => {
+				if (note._id == noteToShow.id) colorCode = note._color;
+			});
+
 			let rgbColor = rgbToHex(colorCode);
 			for (let j = 0; j < viewColorsDiv.children.length; j++) {
 				viewColorsDiv.children[j].classList.remove('selected');

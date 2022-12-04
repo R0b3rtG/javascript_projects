@@ -65,14 +65,14 @@ body {
 .trash-toggle-div > .fa-note-sticky {
 	font-size: 1.5rem;
 	color: #fff;
-	transition: color 0.5s, scale 0.5s, rotate 0.5s;
+	transition: color 0.5s, transform 0.5s;
 }
 
 .fa-file-circle-plus:not(.disabled):hover,
 .trash-toggle-div > .fa-trash:hover,
 .trash-toggle-div > .fa-note-sticky:hover {
 	cursor: pointer;
-	scale: 1.1;
+	transform: scale(1.1);
 }
 
 button.disabled,
@@ -124,13 +124,13 @@ main {
 .no-notes > .add-div > .fa-file-circle-plus {
 	font-size: 1.8rem;
 	color: #999;
-	transition: color 0.5s, rotate 0.5s, scale 0.5s;
+	transition: color 0.5s, transform 0.5s;
 }
 
 .no-notes > .add-div > .fa-file-circle-plus:hover {
 	color: #fbbc04;
-	scale: 1.1;
-	rotate: 10deg;
+	transform: scale(1.1);
+	transform: rotate(10deg);
 }
 
 .add-one {
@@ -138,11 +138,11 @@ main {
 	font-size: 1.3rem;
 	color: #999;
 	cursor: pointer;
-	transition: scale 0.5s, color 0.5s;
+	transition: transform 0.5s, color 0.5s;
 }
 
 .add-one:hover {
-	scale: 1.1;
+	transform: scale(1.1);
 	color: #fbbc04;
 }
 
@@ -153,6 +153,7 @@ main {
 	width: 280px;
 	border-radius: 10px;
 	border: 1px solid #ccc;
+	background-color: #fff;
 }
 
 .upper-color {
@@ -203,22 +204,22 @@ p.content {
 	font-size: 1.1rem;
 	margin-bottom: 0.5rem;
 	cursor: pointer;
-	transition: color 0.5s, scale 0.5s;
+	transition: color 0.5s, transform 0.5s;
 }
 
 .fa-arrow-rotate-left:hover {
 	color: #15db15;
-	scale: 1.1;
+	transform: scale(1.1);
 }
 
 .fa-trash-can:hover {
 	color: #f00;
-	scale: 1.1;
+	transform: scale(1.1);
 }
 
 .fa-eye:hover {
 	color: #fbbc04;
-	scale: 1.1;
+	transform: scale(1.1);
 }
 
 /* VIEW AND EDIT NOTE */
@@ -362,7 +363,6 @@ p.content {
 	height: 25px;
 	border-radius: 50%;
 	border: 1px solid #000;
-	transform: scale(1);
 	cursor: pointer;
 }
 
@@ -444,7 +444,6 @@ p.content {
 	height: 25px;
 	border-radius: 50%;
 	border: 1px solid #000;
-	transform: scale(1);
 	cursor: pointer;
 }
 
@@ -575,7 +574,7 @@ p.content {
 	font-size: 1rem;
 	height: auto;
 	padding: 0.3rem;
-	transition: background-color 0.5s, scale 0.5s;
+	transition: background-color 0.5s, transform 0.5s;
 }
 
 .delete-prompt-buttons > .btn:first-child {
@@ -586,7 +585,7 @@ p.content {
 
 .delete-prompt-buttons > .btn:first-child:hover {
 	background-color: #e70000;
-	scale: 1.05;
+	transform: scale(1.05);
 }
 
 .delete-prompt-buttons > .btn:last-child {
@@ -597,5 +596,18 @@ p.content {
 
 .delete-prompt-buttons > .btn:last-child:hover {
 	background-color: #bbb;
-	scale: 1.05;
+	transform: scale(1.05);
+}
+
+.animation {
+	animation-name: animation;
+	animation-timing-function: ease-in-out;
+	animation-duration: 1.5s;
+	z-index: 2;
+}
+
+@keyframes animation {
+	100% {
+		transform: rotate(540deg) scale(0.01);
+	}
 }
