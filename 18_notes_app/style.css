@@ -19,40 +19,72 @@ body {
 .navbar {
 	z-index: 2;
 	box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.2);
-	display: flex;
-	justify-content: right;
-	align-items: center;
 	background-color: #fbbc04;
-	padding: 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position: fixed;
 	width: 100%;
 }
 
-.title {
+.navbar .content {
+	padding: 0.4rem 0.4rem 0.2rem 0.4rem;
+	width: min(100%, 700px);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.title-and-location .title {
+	margin: -7px;
 	color: #fff;
-	font-size: 1.5rem;
-	width: 90%;
+	font-size: 1.4rem;
 	text-align: center;
 }
 
-.add-div {
+.title-and-location .location {
+	color: #fff;
+	text-align: center;
+	margin-top: 2px;
+}
+
+.add-div,
+.trash-toggle-div {
 	display: grid;
 	place-content: center;
 	width: 5%;
 }
 
-.fa-plus-square {
-	font-size: 1.5rem;
-	color: #fff;
+.add-div > .fa-file-circle-plus.disabled {
+	color: #ccc;
+	cursor: not-allowed;
 }
 
-.fa-plus-square:hover {
+.add-div > .fa-file-circle-plus,
+.trash-toggle-div > .fa-trash,
+.trash-toggle-div > .fa-note-sticky {
+	font-size: 1.5rem;
+	color: #fff;
+	transition: color 0.5s, scale 0.5s, rotate 0.5s;
+}
+
+.fa-file-circle-plus:not(.disabled):hover,
+.trash-toggle-div > .fa-trash:hover,
+.trash-toggle-div > .fa-note-sticky:hover {
 	cursor: pointer;
+	scale: 1.1;
+}
+
+button.disabled,
+.fa-pencil-alt.disabled {
+	cursor: not-allowed !important;
+	color: #ccc;
+	border-color: #ccc;
 }
 
 /* MAIN CONTENT STYLING */
 main {
-	padding: 78px 30px 30px 30px;
+	padding: 75px 30px 30px 30px;
 	min-height: 100vh;
 	display: grid;
 	justify-content: center;
@@ -64,6 +96,54 @@ main {
 	justify-content: space-evenly;
 	align-content: flex-start;
 	gap: 25px;
+}
+
+.no-notes,
+.no-trashed-notes {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+}
+
+.no-trashed-notes {
+	display: none;
+}
+
+.no-notes-text,
+.no-trashed-notes-text {
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #999;
+}
+
+.no-notes > .add-div > .fa-file-circle-plus {
+	font-size: 1.8rem;
+	color: #999;
+	transition: color 0.5s, rotate 0.5s, scale 0.5s;
+}
+
+.no-notes > .add-div > .fa-file-circle-plus:hover {
+	color: #fbbc04;
+	scale: 1.1;
+	rotate: 10deg;
+}
+
+.add-one {
+	text-align: center;
+	font-size: 1.3rem;
+	color: #999;
+	cursor: pointer;
+	transition: scale 0.5s, color 0.5s;
+}
+
+.add-one:hover {
+	scale: 1.1;
+	color: #fbbc04;
 }
 
 .note {
@@ -98,7 +178,7 @@ main {
 	height: 76%;
 }
 
-.content {
+p.content {
 	width: 90%;
 	margin: 0.7rem 0.3rem 0.7rem 0.5rem;
 	overflow: hidden !important;
@@ -116,16 +196,29 @@ main {
 	align-items: center;
 }
 
-.fa-trash-alt,
+.fa-arrow-rotate-left,
+.fa-trash-can,
 .fa-eye {
 	color: #333;
 	font-size: 1.1rem;
 	margin-bottom: 0.5rem;
+	cursor: pointer;
+	transition: color 0.5s, scale 0.5s;
 }
 
-.fa-trash-alt:hover,
+.fa-arrow-rotate-left:hover {
+	color: #15db15;
+	scale: 1.1;
+}
+
+.fa-trash-can:hover {
+	color: #f00;
+	scale: 1.1;
+}
+
 .fa-eye:hover {
-	cursor: pointer;
+	color: #fbbc04;
+	scale: 1.1;
 }
 
 /* VIEW AND EDIT NOTE */
@@ -482,6 +575,7 @@ main {
 	font-size: 1rem;
 	height: auto;
 	padding: 0.3rem;
+	transition: background-color 0.5s, scale 0.5s;
 }
 
 .delete-prompt-buttons > .btn:first-child {
@@ -490,8 +584,18 @@ main {
 	border: none;
 }
 
+.delete-prompt-buttons > .btn:first-child:hover {
+	background-color: #e70000;
+	scale: 1.05;
+}
+
 .delete-prompt-buttons > .btn:last-child {
 	background-color: #ccc;
 	color: #fff;
 	border: none;
+}
+
+.delete-prompt-buttons > .btn:last-child:hover {
+	background-color: #bbb;
+	scale: 1.05;
 }

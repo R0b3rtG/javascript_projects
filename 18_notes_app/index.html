@@ -12,17 +12,23 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
   <link rel="manifest" href="favicon/site.webmanifest" />
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-
+  <script src="https://kit.fontawesome.com/3a3420d1ec.js" crossorigin="anonymous"></script>
   <title>NotesApp</title>
 </head>
 
 <body>
   <nav class="navbar">
-    <h1 class="title">NotesApp</h1>
-    <div class="add-div">
-      <i class="far fa-plus-square"></i>
+    <div class="content">
+      <div class="trash-toggle-div">
+        <i class="fa-solid fa-trash"></i>
+      </div>
+      <div class="title-and-location">
+        <h1 class="title">NotesApp</h1>
+        <p class="location">Notes</p>
+      </div>
+      <div class="add-div">
+        <i class="fa-solid fa-file-circle-plus"></i>
+      </div>
     </div>
   </nav>
   <main id="main">
@@ -101,7 +107,7 @@
           <textarea name="note-text" id="note-text-view" cols="30" rows="10" placeholder="Note Here" spellcheck="false"
             readonly></textarea>
           <div class="buttons-view">
-            <button class="edit-btn btn" type="button"><i class="fas fa-pencil-alt"></i></button>
+            <button class="edit-btn btn" type="button"><i class="fa-solid fa-pencil-alt"></i></button>
             <button class="back-btn btn" type="button">Back</button>
           </div>
           <div class="buttons-edit" style="display: none">
@@ -116,8 +122,8 @@
       <div class="delete-prompt">
         <div class="text">
           <p>WARNING!</p>
-          <p>If you <span>DELETE</span> this note it will be <span>LOST</span> <span>FOREVER!</span></p>
-          <p>Do you really want to delete it?</p>
+          <p>You are about to <span>PERMANENTLY DELETE</span> this note!</p>
+          <p>Do you want to proceed?</p>
         </div>
         <div class="delete-prompt-buttons">
           <button class="btn confirm-delete-btn">Delete</button>
@@ -127,6 +133,17 @@
     </div>
 
     <div class="container">
+      <div class="no-notes">
+        <p class="no-notes-text">You don't have any notes.</p>
+        <br>
+        <div class="add-div">
+          <i class="fa-solid fa-file-circle-plus"></i>
+        </div>
+        <p class="add-one">Add one</p>
+      </div>
+      <div class="no-trashed-notes">
+        <p class="no-trashed-notes-text">There are no trashed notes.</p>
+      </div>
       <!-- Notes Content -->
     </div>
   </main>

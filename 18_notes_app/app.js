@@ -4,6 +4,7 @@ class Note {
 		this._content = content;
 		this._color = color;
 		this._id = id;
+		this._timeDeleted = null;
 	}
 }
 
@@ -37,10 +38,12 @@ const colorPreviewSectionCreate = document.querySelector(
 );
 
 let notes = [];
+let trashedNotes = [];
 
 const notesContainer = document.querySelector('.container');
 
-const addBtn = document.querySelector('.fa-plus-square');
+const addOne = document.querySelector('.add-one');
+const addBtns = document.querySelectorAll('.fa-file-circle-plus');
 const promptDiv = document.querySelector('.input-prompt');
 const backtThing = document.querySelector('.back-thing');
 const body = document.querySelector('body');
@@ -76,6 +79,55 @@ let idToUse;
 
 let noteToShow;
 
+const noNotesDiv = document.querySelector('.no-notes');
+const noTrashedNotesDiv = document.querySelector('.no-trashed-notes');
+
+const trashToggleBtn = document.querySelector('.trash-toggle-div > i');
+const userLocation = document.querySelector('.location');
+
+const editButton = document.querySelector('.edit-btn');
+
+function switchToTrashedNotes() {
+	addBtns[0].classList.add('disabled');
+	for (i = 0; i < notesContainer.children.length; i++) {
+		if (notesContainer.children[i].classList.contains('note')) {
+			notesContainer.children[i].remove();
+			i--;
+		}
+	}
+	showTrashedNotes();
+
+	noTrashedNotesDiv.style.display = trashedNotes.length > 0 ? 'none' : 'block';
+	userLocation.innerText = 'Trashed Notes';
+}
+
+function switchToRegularNotes() {
+	addBtns[0].classList.remove('disabled');
+	for (i = 0; i < notesContainer.children.length; i++) {
+		if (notesContainer.children[i].classList.contains('note')) {
+			notesContainer.children[i].remove();
+			i--;
+		}
+	}
+	showNotes();
+
+	noNotesDiv.style.display = notes.length > 0 ? 'none' : 'flex';
+	userLocation.innerText = 'Notes';
+}
+
+trashToggleBtn.addEventListener('click', () => {
+	noTrashedNotesDiv.style.display = 'none';
+	noNotesDiv.style.display = 'none';
+
+	if (trashToggleBtn.classList.contains('fa-trash')) switchToTrashedNotes();
+	else switchToRegularNotes();
+
+	trashToggleBtn.classList.toggle('fa-trash');
+	trashToggleBtn.classList.toggle('fa-solid');
+	trashToggleBtn.classList.toggle('fa-note-sticky');
+	trashToggleBtn.classList.toggle('fa-regular');
+});
+
 function rgbToHex(color) {
 	color = '' + color;
 	if (!color || color.indexOf('rgb') < 0) {
@@ -109,42 +161,62 @@ function formatSpaces(text) {
 	return newText;
 }
 
-function addToUI(noteToAdd) {
+function addToUI(noteToAdd, trashOrNotes) {
 	let newDiv = document.createElement('div');
 	newDiv.classList.add('note');
 	newDiv.setAttribute('id', noteToAdd._id);
+
 	let newBorder = document.createElement('div');
 	newBorder.classList.add('upper-color');
 	newBorder.style.backgroundColor = noteToAdd._color;
 	newDiv.appendChild(newBorder);
+
 	let newTitle = document.createElement('h2');
 	newTitle.classList.add('UI-note-title');
 	newTitle.innerHTML = formatSpaces(noteToAdd._title);
 	newDiv.appendChild(newTitle);
+
 	let newFlex = document.createElement('div');
 	newFlex.classList.add('p-flex');
+
 	let newContent = document.createElement('p');
 	newContent.classList.add('content');
 	newContent.innerHTML = formatSpaces(noteToAdd._content);
 	newFlex.appendChild(newContent);
+
 	let newOptions = document.createElement('div');
 	newOptions.classList.add('options');
+
+	if (trashOrNotes == 'trash') {
+		let newRecover = document.createElement('i');
+		newRecover.classList.add('fa-solid');
+		newRecover.classList.add('fa-arrow-rotate-left');
+		newOptions.appendChild(newRecover);
+	} else {
+	}
 	let newDelete = document.createElement('i');
-	newDelete.classList.add('fas');
-	newDelete.classList.add('fa-trash-alt');
+	newDelete.classList.add('fa-solid');
+	newDelete.classList.add('fa-trash-can');
 	newOptions.appendChild(newDelete);
+
 	let newCheck = document.createElement('i');
 	newCheck.classList.add('far');
 	newCheck.classList.add('fa-eye');
 	newOptions.appendChild(newCheck);
+
 	newFlex.appendChild(newOptions);
 	newDiv.appendChild(newFlex);
 	notesContainer.appendChild(newDiv);
 }
 
 // Show Input Prompt
-addBtn.addEventListener('click', onAddNote);
+addOne.addEventListener('click', onAddNote);
+addBtns.forEach((button) => {
+	button.addEventListener('click', onAddNote);
+});
 function onAddNote() {
+	if (addBtns[0].classList.contains('disabled')) return;
+
 	if (promptDiv.style.display === 'none') {
 		promptDiv.style.display = 'block';
 	}
@@ -314,46 +386,76 @@ function reset() {
 
 (function () {
 	reset();
-	getNotes();
-	if (localStorage.getItem('notes') == null) {
-		notes = [];
-	} else {
-		notes = JSON.parse(localStorage.getItem('notes'));
-	}
+
+	showNotes();
+	getTrashedNotes();
+
+	noNotesDiv.style.display =
+		notes.length > 0 && trashToggleBtn.classList.contains('fa-trash')
+			? 'none'
+			: 'flex';
 })();
+
+function getHighestId() {
+	getTrashedNotes();
+	getNotes();
+	let max = 0;
+
+	for (let j = 0; j < trashedNotes.length; j++) {
+		if (trashedNotes[j]._id > max) max = trashedNotes[j]._id;
+	}
+
+	for (let j = 0; j < notes.length; j++) {
+		console.log(notes[j]);
+		if (notes[j]._id > max) max = notes[j]._id;
+	}
+
+	return max;
+}
 
 function createNote(selectedColor, noteTitle, noteText) {
 	let lastIndexHere;
-	lastIndexHere = notes.length === 0 ? 0 : notes[notes.length - 1]._id + 1;
+	lastIndexHere =
+		notes.length === 0 && trashedNotes.length == 0 ? 0 : getHighestId() + 1;
 	let gen = generateId(lastIndexHere);
 	let newNote = new Note(noteTitle, noteText, selectedColor, gen.next().value);
 	pushToLocalStorage(newNote);
-	addToUI(newNote);
+	addToUI(newNote, 'notes');
+
+	getNotes();
+	noNotesDiv.style.display =
+		notes.length > 0 && trashToggleBtn.classList.contains('fa-trash')
+			? 'none'
+			: 'flex';
 
 	reset();
 	promptDiv.style.display = 'none';
 	backtThing.style.display = 'none';
 }
 
-function pushToLocalStorage(newNote) {
+function pushToLocalStorage(note) {
 	if (localStorage.getItem('notes') == null) {
 		notes = [];
-		notes.push(newNote);
-		localStorage.setItem('notes', JSON.stringify(notes));
 	} else {
 		notes = JSON.parse(localStorage.getItem('notes'));
-		notes.push(newNote);
-		localStorage.setItem('notes', JSON.stringify(notes));
 	}
+	notes.push(note);
+	localStorage.setItem('notes', JSON.stringify(notes));
 }
 
 function getNotes() {
 	if (localStorage.getItem('notes') != null) {
-		let arr = JSON.parse(localStorage.getItem('notes'));
-		arr.forEach((currNote) => {
-			addToUI(currNote);
-		});
+		notes = JSON.parse(localStorage.getItem('notes'));
+	} else {
+		notes = [];
 	}
+}
+
+function showNotes() {
+	getNotes();
+	notes.forEach((currNote) => {
+		addToUI(currNote, 'notes');
+	});
 }
 
 function* generateId(lastIndex) {
@@ -365,10 +467,34 @@ function* generateId(lastIndex) {
 
 notesContainer.addEventListener('click', onDeleteNote);
 function onDeleteNote(e) {
-	if (e.target.classList.contains('fa-trash-alt')) {
-		let noteToDelete = e.target.parentElement.parentElement.parentElement;
-		let noteToDeleteId = parseInt(noteToDelete.id);
+	if (!e.target.classList.contains('fa-trash-can')) return;
 
+	let noteToDelete = e.target.parentElement.parentElement.parentElement;
+	let noteToDeleteId = parseInt(noteToDelete.id);
+
+	if (trashToggleBtn.classList.contains('fa-trash')) {
+		noteToDelete.remove();
+		if (localStorage.getItem('notes') == null) {
+			notes = [];
+		} else {
+			notes = JSON.parse(localStorage.getItem('notes'));
+		}
+		if (localStorage.getItem('trashed_notes') == null) {
+			trashedNotes = [];
+		} else {
+			trashedNotes = JSON.parse(localStorage.getItem('trashed_notes'));
+		}
+		for (let i = 0; i < notes.length; i++) {
+			if (notes[i]._id == noteToDeleteId) {
+				trashedNotes.push(notes[i]);
+				localStorage.setItem('trashed_notes', JSON.stringify(trashedNotes));
+				notes.splice(i, 1);
+				localStorage.setItem('notes', JSON.stringify(notes));
+			}
+		}
+		getNotes();
+		noNotesDiv.style.display = notes.length > 0 ? 'none' : 'flex';
+	} else {
 		deleteBackground.style.display = 'block';
 		deletePromptButtons.addEventListener('click', onCancelOrConfirmDelete, {
 			once: true,
@@ -395,20 +521,57 @@ function onDeleteNote(e) {
 
 		function confirmDelete() {
 			noteToDelete.remove();
-			if (localStorage.getItem('notes') == null) {
-				notes = [];
+			if (localStorage.getItem('trashed_notes') == null) {
+				trashedNotes = [];
 			} else {
-				notes = JSON.parse(localStorage.getItem('notes'));
+				trashedNotes = JSON.parse(localStorage.getItem('trashed_notes'));
 			}
-			for (let i = 0; i < notes.length; i++) {
-				if (notes[i]._id == noteToDeleteId) {
-					notes.splice(i, 1);
+			for (let i = 0; i < trashedNotes.length; i++) {
+				if (trashedNotes[i]._id == noteToDeleteId) {
+					trashedNotes.splice(i, 1);
+					localStorage.setItem('trashed_notes', JSON.stringify(trashedNotes));
 				}
 			}
-			localStorage.setItem('notes', JSON.stringify(notes));
+
 			deleteBackground.style.display = 'none';
+
+			getNotes();
+			getTrashedNotes();
+			noTrashedNotesDiv.style.display =
+				trashedNotes.length > 0 ? 'none' : 'block';
 		}
 	}
+}
+
+notesContainer.addEventListener('click', recoverNote);
+function recoverNote(e) {
+	if (!e.target.classList.contains('fa-arrow-rotate-left')) return;
+
+	let noteToRecover = e.target.parentElement.parentElement.parentElement;
+	let noteToRecoverId = parseInt(noteToRecover.id);
+
+	noteToRecover.remove();
+	if (localStorage.getItem('trashed_notes') == null) {
+		trashedNotes = [];
+	} else {
+		trashedNotes = JSON.parse(localStorage.getItem('trashed_notes'));
+	}
+	if (localStorage.getItem('notes') == null) {
+		notes = [];
+	} else {
+		notes = JSON.parse(localStorage.getItem('notes'));
+	}
+	for (let i = 0; i < trashedNotes.length; i++) {
+		if (trashedNotes[i]._id == noteToRecoverId) {
+			notes.push(trashedNotes[i]);
+			localStorage.setItem('notes', JSON.stringify(notes));
+			trashedNotes.splice(i, 1);
+			localStorage.setItem('trashed_notes', JSON.stringify(trashedNotes));
+		}
+	}
+	getNotes();
+	getTrashedNotes();
+	noTrashedNotesDiv.style.display = trashedNotes.length > 0 ? 'none' : 'block';
 }
 
 notesContainer.addEventListener('click', onViewNote);
@@ -420,18 +583,25 @@ function onViewNote(e) {
 		yellowView.classList.remove('selected');
 		chooseView.classList.remove('selected');
 		hexCodeView.value = '';
-		noteToShow = e.target.parentElement.parentElement.parentElement;
-		if (localStorage.getItem('notes') == null) {
-			notes = [];
-		} else {
-			notes = JSON.parse(localStorage.getItem('notes'));
+		let where = 'notes';
+		if (trashToggleBtn.classList.contains('fa-note-sticky')) {
+			where = 'trashed_notes';
+			editButton.classList.add('disabled');
+			editButton.firstChild.classList.add('disabled');
 		}
-		for (let i = 0; i < notes.length; i++) {
-			if (notes[i]._id == noteToShow.id) {
-				titleToShow = notes[i]._title;
-				contentToShow = notes[i]._content;
-				colorToShow = notes[i]._color;
-				idToUse = notes[i]._id;
+		let arr = [];
+		noteToShow = e.target.parentElement.parentElement.parentElement;
+		if (localStorage.getItem(where) == null) {
+			arr = [];
+		} else {
+			arr = JSON.parse(localStorage.getItem(where));
+		}
+		for (let i = 0; i < arr.length; i++) {
+			if (arr[i]._id == noteToShow.id) {
+				titleToShow = arr[i]._title;
+				contentToShow = arr[i]._content;
+				colorToShow = arr[i]._color;
+				idToUse = arr[i]._id;
 			}
 		}
 		viewTitle.value = titleToShow;
@@ -452,7 +622,12 @@ function onViewNote(e) {
 				e.target.classList.contains('edit-btn') ||
 				e.target.parentElement.classList.contains('edit-btn')
 			) {
-				openEditPrompt(e);
+				if (
+					!editButton.classList.contains('disabled') &&
+					!editButton.firstChild.classList.contains('disabled')
+				)
+					openEditPrompt(e);
+				buttonsView.addEventListener('click', onEditOrBack, { once: true });
 				return;
 			}
 
@@ -636,7 +811,7 @@ function onViewNote(e) {
 					chooseView.classList.remove('selected');
 					colorPreviewSectionEdit.style.display = 'none';
 					updateColorPreviewEdit('transparent');
-					getNotes();
+					showNotes();
 				} else {
 					buttonsEdit.addEventListener('click', onSaveOrCancelEdit, {
 						once: true,
@@ -689,4 +864,20 @@ function onSelectViewColor(e) {
 			colorPreviewEdit.style.backgroundColor = e.target.style.backgroundColor;
 		}
 	}
+}
+
+function getTrashedNotes() {
+	if (localStorage.getItem('trashed_notes') != null) {
+		trashedNotes = JSON.parse(localStorage.getItem('trashed_notes'));
+	} else {
+		trashedNotes = [];
+	}
+}
+
+function showTrashedNotes() {
+	getTrashedNotes();
+
+	trashedNotes.forEach((currNote) => {
+		addToUI(currNote, 'trash');
+	});
 }
