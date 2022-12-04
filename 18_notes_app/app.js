@@ -588,6 +588,9 @@ function onViewNote(e) {
 			where = 'trashed_notes';
 			editButton.classList.add('disabled');
 			editButton.firstChild.classList.add('disabled');
+		} else {
+			editButton.classList.remove('disabled');
+			editButton.firstChild.classList.remove('disabled');
 		}
 		let arr = [];
 		noteToShow = e.target.parentElement.parentElement.parentElement;
