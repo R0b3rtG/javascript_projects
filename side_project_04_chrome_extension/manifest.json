@@ -1,0 +1,19 @@
+{
+	"manifest_version": 3,
+	"name": "Spendee green bar off",
+	"version": "1.0.0.0",
+
+	"action": {},
+	"default_locale": "en",
+	"description": "Removes the green bar from the top of spendee",
+	"icons": {},
+
+	"author": "R0b3rtG",
+	"content_scripts": [
+		{
+			"matches": ["https://app.spendee.com/*"],
+			"run_at": "document_end",
+			"js": ["content-script.js"]
+		}
+	]
+}
