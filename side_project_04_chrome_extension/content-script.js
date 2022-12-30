@@ -1,3 +1,6 @@
-setTimeout(() => {
-	document.querySelector('.nm2B').style.display = 'none';
-}, 1500);
+setInterval(() => {
+	const element = document.querySelector('.nm2B');
+	const loginBtn = document.querySelector('.link-hr')?.firstChild;
+	if (element != null) element.style.display = 'none';
+	if (loginBtn != null) loginBtn.click();
+}, 100);

@@ -11,7 +11,7 @@
 	"author": "R0b3rtG",
 	"content_scripts": [
 		{
-			"matches": ["https://app.spendee.com/*"],
+			"matches": ["https://app.spendee.com/*", "https://www.spendee.com/*"],
 			"run_at": "document_end",
 			"js": ["content-script.js"]
 		}
