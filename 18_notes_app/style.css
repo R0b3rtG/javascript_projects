@@ -91,11 +91,13 @@ main {
 }
 
 .container {
+	position: relative;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-content: flex-start;
 	gap: 25px;
+	width: min(100vw, 890px);
 }
 
 .no-notes,
@@ -606,8 +608,48 @@ p.content {
 	z-index: 2;
 }
 
+.animation2 {
+	animation-name: animation2;
+	animation-timing-function: ease-in-out;
+	animation-duration: 1.5s;
+	z-index: 2;
+}
+
 @keyframes animation {
 	100% {
 		transform: rotate(540deg) scale(0.01);
 	}
+}
+
+@keyframes animation2 {
+	100% {
+		transform: rotate(-540deg) scale(0.01);
+	}
+}
+
+.delete-all-btn {
+	display: none;
+	position: absolute;
+	top: -0.5rem;
+	left: 50%;
+	transform: translateX(-50%);
+	border: 2px #e70000 solid;
+	background-color: #fff;
+	border-radius: 2rem;
+	color: #e70000;
+	font-weight: 700;
+	padding: 0.25rem 1rem;
+	cursor: pointer;
+	transition: color 400ms, background-color 400ms, transform 400ms;
+	z-index: 2;
+}
+
+.delete-all-btn:hover {
+	color: #fff;
+	background-color: #e70000;
+	transform: translateX(-50%) scale(1.05);
+}
+
+.padding-2rem {
+	padding-top: 2rem;
 }

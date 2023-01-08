@@ -86,6 +86,7 @@ const trashToggleBtn = document.querySelector('.trash-toggle-div > i');
 const userLocation = document.querySelector('.location');
 
 const editButton = document.querySelector('.edit-btn');
+const deleteAllBtn = document.querySelector('.delete-all-btn');
 
 function switchToTrashedNotes() {
 	addBtns[0].classList.add('disabled');
@@ -99,6 +100,9 @@ function switchToTrashedNotes() {
 
 	noTrashedNotesDiv.style.display = trashedNotes.length > 0 ? 'none' : 'block';
 	userLocation.innerText = 'Trashed Notes';
+
+	getTrashedNotes();
+	if (trashedNotes.length > 0) deleteAllBtn.style.display = 'block';
 }
 
 function switchToRegularNotes() {
@@ -113,11 +117,14 @@ function switchToRegularNotes() {
 
 	noNotesDiv.style.display = notes.length > 0 ? 'none' : 'flex';
 	userLocation.innerText = 'Notes';
+	deleteAllBtn.style.display = 'none';
 }
 
 trashToggleBtn.addEventListener('click', () => {
 	noTrashedNotesDiv.style.display = 'none';
 	noNotesDiv.style.display = 'none';
+
+	notesContainer.classList.toggle('padding-2rem');
 
 	if (trashToggleBtn.classList.contains('fa-trash')) switchToTrashedNotes();
 	else switchToRegularNotes();
@@ -544,6 +551,7 @@ function onDeleteNote(e) {
 				getTrashedNotes();
 				noTrashedNotesDiv.style.display =
 					trashedNotes.length > 0 ? 'none' : 'block';
+				if (trashedNotes.length == 0) deleteAllBtn.style.display = 'none';
 			});
 		}
 	}
@@ -556,9 +564,9 @@ function recoverNote(e) {
 	let noteToRecover = e.target.parentElement.parentElement.parentElement;
 	let noteToRecoverId = parseInt(noteToRecover.id);
 
-	noteToRecover.classList.add('animation');
+	noteToRecover.classList.add('animation2');
 	noteToRecover.addEventListener('animationend', () => {
-		noteToRecover.classList.remove('animation');
+		noteToRecover.classList.remove('animation2');
 		noteToRecover.remove();
 		if (localStorage.getItem('trashed_notes') == null) {
 			trashedNotes = [];
@@ -900,3 +908,75 @@ function showTrashedNotes() {
 		addToUI(currNote, 'trash');
 	});
 }
+
+deleteAllBtn.addEventListener('click', () => {
+	deleteBackground.style.display = 'block';
+	deletePromptButtons.addEventListener('click', onCancelOrConfirmDelete, {
+		once: true,
+	});
+
+	const warningText =
+		deleteBackground.firstChild.nextSibling.firstChild.nextSibling.firstChild
+			.nextSibling.nextSibling.nextSibling;
+	warningText.innerHTML =
+		'You are about to <span>PERMANENTLY DELETE</span> all notes!';
+
+	function onCancelOrConfirmDelete(e) {
+		if (e.target.classList.contains('cancel-delete-btn')) {
+			cancelDelete();
+			return;
+		}
+
+		if (e.target.classList.contains('confirm-delete-btn')) {
+			confirmDelete(e);
+			return;
+		}
+
+		deletePromptButtons.addEventListener('click', onCancelOrConfirmDelete, {
+			once: true,
+		});
+	}
+
+	function cancelDelete() {
+		warningText.innerHTML =
+			'You are about to <span>PERMANENTLY DELETE</span> this note!';
+		deleteBackground.style.display = 'none';
+	}
+
+	function confirmDelete() {
+		warningText.innerHTML =
+			'You are about to <span>PERMANENTLY DELETE</span> this note!';
+		deleteBackground.style.display = 'none';
+
+		[...notesContainer.children].forEach((node) => {
+			if (node.classList.contains('note')) {
+				node.classList.add('animation');
+				node.addEventListener('animationend', () => {
+					node.classList.remove('animation');
+					noteToDeleteId = node.id;
+					node.remove();
+					deleteAllBtn.style.display = 'none';
+					if (localStorage.getItem('trashed_notes') == null) {
+						trashedNotes = [];
+					} else {
+						trashedNotes = JSON.parse(localStorage.getItem('trashed_notes'));
+					}
+					for (let i = 0; i < trashedNotes.length; i++) {
+						if (trashedNotes[i]._id == noteToDeleteId) {
+							trashedNotes.splice(i, 1);
+							localStorage.setItem(
+								'trashed_notes',
+								JSON.stringify(trashedNotes)
+							);
+						}
+					}
+
+					getNotes();
+					getTrashedNotes();
+					noTrashedNotesDiv.style.display =
+						trashedNotes.length > 0 ? 'none' : 'block';
+				});
+			}
+		});
+	}
+});
