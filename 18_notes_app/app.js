@@ -713,6 +713,7 @@ function recoverNote(e) {
 		getTrashedNotes();
 		noTrashedNotesDiv.style.display =
 			trashedNotes.length > 0 ? 'none' : 'block';
+		if (trashedNotes.length == 0) deleteAllBtn.style.display = 'none';
 	});
 }
 
