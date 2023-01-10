@@ -79,6 +79,12 @@ let idToUse;
 
 let noteToShow;
 
+let newNotification = null;
+let newTopHalf = null;
+let newSpan = null;
+let newUndoButton = null;
+let newTimer = null;
+
 const noNotesDiv = document.querySelector('.no-notes');
 const noTrashedNotesDiv = document.querySelector('.no-trashed-notes');
 
@@ -103,6 +109,10 @@ function switchToTrashedNotes() {
 
 	getTrashedNotes();
 	if (trashedNotes.length > 0) deleteAllBtn.style.display = 'block';
+
+	if (newNotification != null) {
+		slideOut(null);
+	}
 }
 
 function switchToRegularNotes() {
@@ -471,12 +481,26 @@ function* generateId(lastIndex) {
 	}
 }
 
+function slideOut(callback) {
+	newNotification.classList.add('slide-out');
+	setTimeout(() => {
+		newNotification.remove();
+		newNotification = null;
+		newTopHalf = null;
+		newSpan = null;
+		newUndoButton = null;
+		newTimer = null;
+		if (callback != null) callback();
+	}, 1000);
+}
+
 notesContainer.addEventListener('click', onDeleteNote);
 function onDeleteNote(e) {
 	if (!e.target.classList.contains('fa-trash-can')) return;
 
 	let noteToDelete = e.target.parentElement.parentElement.parentElement;
 	let noteToDeleteId = parseInt(noteToDelete.id);
+	let noteToDeletePos;
 
 	if (trashToggleBtn.classList.contains('fa-trash')) {
 		noteToDelete.classList.add('animation');
@@ -488,6 +512,8 @@ function onDeleteNote(e) {
 			} else {
 				notes = JSON.parse(localStorage.getItem('notes'));
 			}
+			let oldNotes = [...notes];
+			console.log(oldNotes);
 			if (localStorage.getItem('trashed_notes') == null) {
 				trashedNotes = [];
 			} else {
@@ -495,6 +521,7 @@ function onDeleteNote(e) {
 			}
 			for (let i = 0; i < notes.length; i++) {
 				if (notes[i]._id == noteToDeleteId) {
+					noteToDeletePos = i;
 					trashedNotes.push(notes[i]);
 					localStorage.setItem('trashed_notes', JSON.stringify(trashedNotes));
 					notes.splice(i, 1);
@@ -503,6 +530,102 @@ function onDeleteNote(e) {
 			}
 			getNotes();
 			noNotesDiv.style.display = notes.length > 0 ? 'none' : 'flex';
+
+			showNotification();
+
+			function showNotification() {
+				if (newNotification != null) {
+					slideOut(doNotificationStuff);
+				} else {
+					doNotificationStuff();
+				}
+
+				function doNotificationStuff() {
+					newNotification = document.createElement('div');
+					newNotification.classList.add('notification');
+
+					newTopHalf = document.createElement('div');
+					newTopHalf.classList.add('top-half');
+
+					newSpan = document.createElement('span');
+					newSpan.textContent = 'You have just deleted a note!';
+
+					newUndoButton = document.createElement('button');
+					newUndoButton.classList.add('undo-btn');
+					newUndoButton.textContent = 'Undo';
+
+					newTimer = document.createElement('div');
+					newTimer.classList.add('timer');
+
+					newTopHalf.append(newSpan);
+					newTopHalf.append(newUndoButton);
+					newNotification.append(newTopHalf);
+					newNotification.append(newTimer);
+
+					document.body.append(newNotification);
+
+					newTimer.addEventListener('animationend', () => {
+						slideOut(null);
+					});
+
+					newNotification.addEventListener('mouseenter', (e) => {
+						e.target.children[1].style.setProperty(
+							'animation-play-state',
+							'paused'
+						);
+					});
+
+					newNotification.addEventListener('mouseleave', (e) => {
+						e.target.children[1].style.setProperty(
+							'animation-play-state',
+							'running'
+						);
+					});
+
+					newNotification.addEventListener('click', (e) => {
+						if (e.target.classList.contains('undo-btn')) {
+							noteToRecoverId = noteToDeleteId;
+							if (localStorage.getItem('trashed_notes') == null) {
+								trashedNotes = [];
+							} else {
+								trashedNotes = JSON.parse(
+									localStorage.getItem('trashed_notes')
+								);
+							}
+							if (localStorage.getItem('notes') == null) {
+								notes = [];
+							} else {
+								notes = JSON.parse(localStorage.getItem('notes'));
+							}
+							for (let i = 0; i < trashedNotes.length; i++) {
+								if (trashedNotes[i]._id == noteToRecoverId) {
+									notes = oldNotes;
+									localStorage.setItem('notes', JSON.stringify(notes));
+									trashedNotes.splice(i, 1);
+									localStorage.setItem(
+										'trashed_notes',
+										JSON.stringify(trashedNotes)
+									);
+								}
+							}
+							getNotes();
+							[...notesContainer.children].forEach((child) => {
+								if (child.classList.contains('note')) child.remove();
+							});
+							noNotesDiv.style.display =
+								notes.length > 0 &&
+								trashToggleBtn.classList.contains('fa-trash')
+									? 'none'
+									: 'flex';
+							showNotes();
+							getTrashedNotes();
+							slideOut(null);
+						} else {
+							slideOut();
+						}
+					});
+				}
+			}
 		});
 	} else {
 		deleteBackground.style.display = 'block';
