@@ -4,7 +4,6 @@ class Note {
 		this._content = content;
 		this._color = color;
 		this._id = id;
-		this._timeDeleted = null;
 	}
 }
 
@@ -102,13 +101,18 @@ function switchToTrashedNotes() {
 			i--;
 		}
 	}
-	showTrashedNotes();
-
-	noTrashedNotesDiv.style.display = trashedNotes.length > 0 ? 'none' : 'block';
-	userLocation.innerText = 'Trashed Notes';
 
 	getTrashedNotes();
-	if (trashedNotes.length > 0) deleteAllBtn.style.display = 'block';
+	showTrashedNotes();
+
+	userLocation.innerText = 'Trashed Notes';
+
+	if (trashedNotes.length > 0) {
+		noTrashedNotesDiv.style.display = 'none';
+		deleteAllBtn.style.display = 'block';
+	} else {
+		noTrashedNotesDiv.style.display = 'flex';
+	}
 
 	if (newNotification != null) {
 		slideOut(null);
@@ -513,7 +517,6 @@ function onDeleteNote(e) {
 				notes = JSON.parse(localStorage.getItem('notes'));
 			}
 			let oldNotes = [...notes];
-			console.log(oldNotes);
 			if (localStorage.getItem('trashed_notes') == null) {
 				trashedNotes = [];
 			} else {
@@ -687,9 +690,9 @@ function recoverNote(e) {
 	let noteToRecover = e.target.parentElement.parentElement.parentElement;
 	let noteToRecoverId = parseInt(noteToRecover.id);
 
-	noteToRecover.classList.add('animation2');
+	noteToRecover.classList.add('animation');
 	noteToRecover.addEventListener('animationend', () => {
-		noteToRecover.classList.remove('animation2');
+		noteToRecover.classList.remove('animation');
 		noteToRecover.remove();
 		if (localStorage.getItem('trashed_notes') == null) {
 			trashedNotes = [];
@@ -944,7 +947,12 @@ function onViewNote(e) {
 				}
 				if (ok) {
 					localStorage.setItem('notes', JSON.stringify(notes));
-					notesContainer.innerHTML = '';
+					for (i = 0; i < notesContainer.children.length; i++) {
+						if (notesContainer.children[i].classList.contains('note')) {
+							notesContainer.children[i].remove();
+							i--;
+						}
+					}
 					backThingView.style.display = 'none';
 					hexCodeView.value = '';
 					hexCodeView.setAttribute('readonly', 'true');
@@ -962,6 +970,7 @@ function onViewNote(e) {
 					chooseView.classList.remove('selected');
 					colorPreviewSectionEdit.style.display = 'none';
 					updateColorPreviewEdit('transparent');
+					getNotes();
 					showNotes();
 				} else {
 					buttonsEdit.addEventListener('click', onSaveOrCancelEdit, {

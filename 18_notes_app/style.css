@@ -617,13 +617,7 @@ p.content {
 
 @keyframes animation {
 	100% {
-		transform: rotate(540deg) scale(0.01);
-	}
-}
-
-@keyframes animation2 {
-	100% {
-		transform: rotate(-540deg) scale(0.01);
+		transform: scale(0.01);
 	}
 }
 
@@ -655,6 +649,7 @@ p.content {
 }
 
 .notification {
+	cursor: pointer;
 	position: absolute;
 	left: 1rem;
 	bottom: 1rem;
