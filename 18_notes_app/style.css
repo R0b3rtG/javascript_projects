@@ -659,7 +659,7 @@ p.content {
 	border-right: #ddd solid 2px;
 	border-radius: 0.5rem;
 	padding: 0.75rem 1rem;
-	background-color: #eee;
+	background-color: #fff;
 	overflow: hidden;
 	transform: translateX(-150%);
 	animation-name: slide-in;
