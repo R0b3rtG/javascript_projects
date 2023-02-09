@@ -22,7 +22,7 @@
 | 15  | Javascript Input Validation | <https://r0b3rtg-js-input-validation.netlify.app/>        | NO    |
 | 16  | Key Value App               | <https://r0b3rtg-key-value-app.netlify.app/>              | NO    |
 | 17  | Dummy Text Generator        | <https://r0b3rtg-dummy-text-generator.netlify.app/>       | NO    |
-| 18  | Notes App                   | <https://r0b3rtg-notes-app.netlify.app/>                  | NO    |
+| 18  | Notes App                   | <https://r0b3rtg-notes-app.netlify.app/>                  | YES   |
 | 19  | Pomodoro Clock              | <https://r0b3rtg-pomodoro-clock.netlify.app/>             | NO    |
 | 20  | Footshop                    | <https://r0b3rtg-footshop.netlify.app/>                   | YES   |
 | 21  | Quiz App                    | <https://r0b3rtg-quiz-app.netlify.app/>                   | NO    |
