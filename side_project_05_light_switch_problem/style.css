@@ -1,0 +1,29 @@
+.light {
+	width: 50px;
+	height: 50px;
+	margin: 0.1rem;
+	background-color: rgb(220, 220, 26);
+	position: relative;
+}
+
+.light:before {
+	content: attr(id);
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #fff;
+	width: 100%;
+	height: 100%;
+	font-size: 2rem;
+}
+
+.off {
+	background-color: #333;
+}
+
+.grid {
+	width: min-content;
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+	grid-template-rows: repeat(10, 1fr);
+}
