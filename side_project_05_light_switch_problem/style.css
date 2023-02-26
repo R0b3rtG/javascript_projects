@@ -6,7 +6,7 @@
 	position: relative;
 }
 
-.light:before {
+.light.numbered:before {
 	content: attr(id);
 	position: absolute;
 	top: 0;
