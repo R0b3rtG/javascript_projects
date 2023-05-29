@@ -44,3 +44,5 @@
 | 04  | Chrome Extenstion                      | No Link                                             | YES   |
 | 05  | Math Experiment - Light Switch Problem | <https://r0b3rtg-light-switch-problem.netlify.app/> | YES   |
 | 06  | Math Experiment - Sierpinski Triangle  | <https://r0b3rtg-sierpinski-triangle.netlify.app/>  | YES   |
+| 07  | Minesweeper                            | n/a                                                 | YES   |
+| 08  | Erasmus Presentation                   | n/a                                                 | NO    |
