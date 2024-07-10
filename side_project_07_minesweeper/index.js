@@ -1,5 +1,5 @@
 const game = document.querySelector('.game-body');
-const minesNum = 3;
+const minesNum = 10;
 let firstTry = true;
 
 let mines = [
