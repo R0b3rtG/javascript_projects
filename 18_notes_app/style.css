@@ -189,6 +189,7 @@ p.content {
 	color: #555;
 	display: -webkit-box;
 	-webkit-line-clamp: 5;
+	line-clamp: 5;
 	-webkit-box-orient: vertical;
 }
 
@@ -267,6 +268,7 @@ p.content {
 	overflow: hidden !important;
 	display: -webkit-box;
 	-webkit-line-clamp: 1;
+	line-clamp: 1;
 	-webkit-box-orient: vertical;
 }
 
