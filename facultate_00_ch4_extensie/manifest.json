@@ -1,0 +1,23 @@
+{
+	"manifest_version": 3,
+	"name": "Time and Date",
+	"version": "1.0.0.0",
+	"permissions": ["storage", "tabs", "activeTab"],
+	"host_permissions": ["http://inf.ucv.ro/anunturi.aspx"],
+	"action": {
+		"default_title": "Click to view a popup",
+		"default_popup": "popup.html"
+	},
+	"default_locale": "en",
+	"description": "Shows the time and date. Or does it....",
+	"icons": {},
+
+	"author": "Studenti UCV Echipa smechera",
+	"content_scripts": [
+		{
+			"matches": ["http://inf.ucv.ro/anunturi.aspx"],
+			"run_at": "document_start",
+			"js": ["content-script.js"]
+		}
+	]
+}

@@ -33,6 +33,12 @@
 | 26  | StopWatch                   | <https://r0b3rtg-stopwatch.netlify.app>                   | YES   |
 | 27  | Word Frequency              | <https://r0b3rtg-word-frequency.netlify.app>              | YES   |
 
+## Facultate
+
+| ID  | Project Name                                                      | Link | Done? |
+| --- | ----------------------------------------------------------------- | ---- | ----- |
+| 00  | Challenge 4 Securitatea Sistemelor Informatice - Chrome Extension | n/a  | YES   |
+
 ## Side Projects
 
 | ID  | Project Name                           | Link                                                | Done? |
